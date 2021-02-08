@@ -50,3 +50,42 @@ export const mutations = {
 }
 
 ```
+
+lodashを使えるようにする
+nuxt.config.jsに
+```
+const webpack = require('webpack')
+
+（中略）
+
+build: {
+  plugins: [
+    new webpack.ProvidePlugin({
+      '_': 'lodash'
+    })
+  ]
+}
+```
+
+momentを使えるようにする
+```
+npm install --save moment@2.24.0
+```
+
+ダークテーマ解除  
+nuxt.config.jsにて  
+darkをfalseに
+```
+light: {
+  primary: colors.blue.darken2,
+  accent: colors.grey.darken3,
+  secondary: colors.amber.darken3,
+  info: colors.teal.lighten1,
+  warning: colors.amber.base,
+  error: colors.deepOrange.accent4,
+  success: colors.green.accent3
+}
+```
+以下のテーマを追加
+
+簡単なメモサンプルでデータが入ることが確認できたので、nuxt × firebaseで開発していく

@@ -1,89 +1,64 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
+  <div>
+    <div v-for="comment in comments" :key="comment.id">
+      <span v-if="comment.created">
+        <span>
+          名前:{{ comment.name }}<br>
+          内容:{{ comment.index}}<br>
+          投稿時間:{{ comment.created.toDate() | dateFilter}}
+        </span>
+      </span>
+    </div>
+    <form @submit.prevent="add">
+      <div>
+        <div>
+          <label>
+            名前
+          </label>
+        </div>
+        <input v-model="name">
+        <div>
+          <label>
+            内容
+          </label>
+        </div>
+        <input v-model="index">
       </div>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+      <button>投稿する</button> 
+    </form>
+  </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
-
+import moment from 'moment'
 export default {
-  components: {
-    Logo,
-    VuetifyLogo
+  data: function() {
+    return {
+      name: '',
+      index: '',
+      done: false
+    }
+  },
+  created: function() {
+    this.$store.dispatch('comments/init')
+  },
+  methods: {
+    add() {
+      this.$store.dispatch('comments/add', {index: this.index, name: this.name})
+      this.name = ''
+      this.index = ''
+    }
+  },
+//この部分で上述のcomments.js内のgettersのcomments/orderdCommentsを呼び出して投稿順に整形しています。
+  computed: {
+    comments() {
+      return this.$store.getters['comments/orderdComments']
+    }
+  },
+  filters: {
+    dateFilter: function(date) {
+      return moment(date).format('YYYY/MM/DD HH:mm:ss')
+    }
   }
 }
 </script>
