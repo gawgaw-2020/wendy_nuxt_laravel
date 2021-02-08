@@ -6,4 +6,4 @@ export const mutations = {
   ...vuexfireMutations
 }
 
-//このvuexfiremutationsはindex.jsにしか記載してはいけない。エラーになる。
+//このvuexfireMutationsはindex.jsにしか記載してはいけない。エラーになる。
