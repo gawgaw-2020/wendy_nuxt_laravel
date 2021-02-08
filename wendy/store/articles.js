@@ -9,14 +9,24 @@ const articlesRef = db.collection('articles')
 
 //ここでstateを定義する。今回使うdbであるarticlesを配列で格納する
 export const state = () => ({
-  articles: []
+  articles: [],
+  article: {
+    store_name: '',
+    store_id: ''
+  }
 })
+
+export const mutations = {
+}
 
 export const actions = {
   //initは初期化
   //ここでどのデータをバインド（=関連付けするか）を書く
   init: firestoreAction(({ bindFirestoreRef }) => {
     bindFirestoreRef('articles', articlesRef)
-  })
-}
+  }),
+  getArticleById: firestoreAction(({ bindFirestoreRef }, payload) => {
+    bindFirestoreRef('article', articlesRef.doc(`${payload.articleId}`))
+  }),
 
+}

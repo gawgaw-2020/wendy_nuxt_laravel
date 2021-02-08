@@ -1,33 +1,27 @@
 <template>
   <section>
     <h1>{{ message }}</h1>
-    <p>記事のidは{{ id }}</p>
-    <p id="data"></p>
+    <p>{{ article.store_name }}</p>
   </section>
 </template>
 
 <script>
-import firebase from '/plugins/firebase'
-
+import { mapState } from "vuex";
 export default {
   data() {
     return {
       message: '/articles/_id.vueを表示中',
-      article: []
     }
   },
   computed: {
-    id: function() {
-      return this.$route.params.id
-    }
+    ...mapState('articles', ['article'])
+    // article: function() {
+    //   return this.$store.state.articles.article
+    // }
   },
   created() {
-    this.article.push(12)
-    const db = firebase.firestore()
-    var docRef = db.collection("articles").doc(this.id)
-    var self = this;
-    docRef.get().then(function(doc) {
-      self.article.push(doc.data())
+    this.$store.dispatch('articles/getArticleById', {
+      articleId: this.$route.params.id
     })
   }
 }

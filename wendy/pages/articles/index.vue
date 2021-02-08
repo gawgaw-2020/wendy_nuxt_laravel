@@ -18,16 +18,15 @@ export default {
 
     }
   },
+  computed: {
+    articles: function() {
+      return this.$store.state.articles.articles
+    }
+    
+  },
   created: function() {
     this.$store.dispatch('articles/init')
   },
-  computed: {
-    // storeのarticlesを返すメソッドを定義
-    articles() {
-      return this.$store.state.articles.articles
-    }
-  }
-
 }
 </script>
 
