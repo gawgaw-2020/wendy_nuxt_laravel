@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section v-if="article">
     <h1>{{ message }}</h1>
     <p>{{ article.store_name }}</p>
     <p>{{ article.store_area }}</p>
@@ -24,7 +24,7 @@ export default {
   methods: {
     ...mapActions('articles', ['getArticleById'])
   },
-  mounted: function(){
+  created: function(){
     this.getArticleById({
       articleId: this.$route.params.id
     })
