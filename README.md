@@ -1,4 +1,4 @@
-# WENDY
+# WENDYメモ
 
 nuxtプロジェクト新規作成  
 SPAを選択
@@ -89,3 +89,32 @@ light: {
 以下のテーマを追加
 
 簡単なメモサンプルでデータが入ることが確認できたので、nuxt × firebaseで開発していく
+
+TOPページ  
+↓  
+店舗一覧  
+↓  
+店舗詳細  
+↓  
+TOPページ流れだけ作成
+
+nuxtとfirebaseが一番テンション上がる
+
+最初はvuexfireインストールしたが、逆に分かりづらくなりそうだったので辞めた。
+
+dispatchもやめて、map~に統一
+
+vueとfirebaseのドキュメントが読みやすくてありがたい。
+
+Components  
+↓  
+Actions ←→ firebase  
+↓  
+Mutations  
+↓  
+State ← Getters  
+↓        ↑
+Components
+
+この流れをひたすら実感した１日だった  
+当たり前だけどasyncDataとかcreatedやmountedのタイミングも考えないとダメ
