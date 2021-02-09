@@ -1,27 +1,31 @@
 <template>
   <section>
     <h1>{{ message }}</h1>
-    <p>{{ article }}</p>
+    <p>{{ article.store_name }}</p>
+    <p>{{ article.store_area }}</p>
+    <p>{{ article.store_id }}</p>
     <p><nuxt-link to="/">TOPページへ</nuxt-link></p>
   </section>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
+
 export default {
   data() {
     return {
       message: '/articles/_id.vueを表示中',
+      store_name: '店舗名'
     }
   },
   computed: {
     ...mapState('articles', ['article'])
-    // article: function() {
-    //   return this.$store.state.articles.article
-    // }
   },
-  created() {
-    this.$store.dispatch('articles/getArticleById', {
+  methods: {
+    ...mapActions('articles', ['getArticleById'])
+  },
+  mounted: function(){
+    this.getArticleById({
       articleId: this.$route.params.id
     })
   }

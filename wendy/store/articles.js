@@ -7,31 +7,45 @@ import { firestoreAction } from 'vuexfire'
 const db = firebase.firestore()
 const articlesRef = db.collection('articles')
 
-//ここでstateを定義する。今回使うdbであるarticlesを配列で格納する
 export const state = () => ({
-  articles: [],
-  articlesAarea: [],
-  article: {
-    store_name: '',
-    store_id: '',
-    store_area: ''
-  }
+  allArticles: [],
+  article: null
 })
 
 export const mutations = {
+  setAllArticles(state, allArticles) {
+    state.allArticles = allArticles
+  },
+  setArticle(state, articleData) {
+    state.article = articleData
+  }
 }
 
 export const actions = {
-  //initは初期化
-  //ここでどのデータをバインド（=関連付けするか）を書く
-  init: firestoreAction(({ bindFirestoreRef }) => {
-    bindFirestoreRef('articles', articlesRef)
-  }),
-  getArticleById: firestoreAction(({ bindFirestoreRef }, payload) => {
-    bindFirestoreRef('article', articlesRef.doc(`${payload.articleId}`))
-  }),
-  getArticlesAarea: firestoreAction(({ bindFirestoreRef }) => {
-    bindFirestoreRef('articlesAarea', articlesRef.where("store_area", "==", "A"))
-  }),
+
+  async getAllArticles({ commit }) {
+    let data = []
+    let id = {}
+    await articlesRef.get()
+    .then(snapshot => {
+      snapshot.forEach((doc) => {
+        id.id = doc.id
+        const allData = {...id, ...doc.data()}
+        data.push(allData)
+      })
+    })
+    const allArticlesData = data
+    commit('setAllArticles', allArticlesData)
+  },
+
+  async getArticleById({ commit }, payload) {
+    let data
+    await articlesRef.doc(`${payload.articleId}`).get()
+    .then(function(doc) {
+      data = doc.data()
+    })
+    const articleData = data
+    commit('setArticle', articleData)
+  }
 
 }
