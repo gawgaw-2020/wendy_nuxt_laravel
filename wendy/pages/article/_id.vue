@@ -1,5 +1,5 @@
 <template>
-  <section v-if="article">
+  <section>
     <h1>{{ message }}</h1>
     <p>{{ article.store_name }}</p>
     <p>{{ article.store_area }}</p>
@@ -10,6 +10,14 @@
 
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
+import firebase from 'firebase'
+//firestoreのアクション部分のパッケージをインストールする
+import { firestoreAction } from 'vuexfire'
+
+//firebaseのDBを定義する
+const db = firebase.firestore()
+const articlesRef = db.collection('articles')
+
 
 export default {
   data() {
@@ -18,17 +26,25 @@ export default {
       store_name: '店舗名'
     }
   },
-  computed: {
-    ...mapState('articles', ['article'])
-  },
-  methods: {
-    ...mapActions('articles', ['getArticleById'])
-  },
-  created: function(){
-    this.getArticleById({
-      articleId: this.$route.params.id
+  async asyncData(context) {
+    let article
+    await articlesRef.doc(context.params.id).get()
+    .then(function(doc) {
+      article = doc.data()
     })
-  }
+    return { article }
+  },
+  // computed: {
+  //   ...mapState('articles', ['article'])
+  // },
+  // methods: {
+  //   ...mapActions('articles', ['getArticleById'])
+  // },
+  // created: function(){
+  //   this.getArticleById({
+  //     articleId: this.$route.params.id
+  //   })
+  // }
 }
 </script>
 
