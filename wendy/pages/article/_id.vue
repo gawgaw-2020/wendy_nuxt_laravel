@@ -1,9 +1,9 @@
 <template>
   <section>
     <h1>{{ message }}</h1>
-    <p>{{ article.store_name }}</p>
-    <p>{{ article.store_area }}</p>
-    <p>{{ article.store_id }}</p>
+    <p>店名：{{ article.store_name }}</p>
+    <p>エリア：{{ article.store_area }}</p>
+    <p>店舗ID：{{ article.store_id }}</p>
     <p><nuxt-link to="/">TOPページへ</nuxt-link></p>
   </section>
 </template>

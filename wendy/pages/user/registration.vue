@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1>トップページ</h1>
-    <p><nuxt-link :to="`/all-articles/`">全店舗一覧</nuxt-link></p>
+    <h2>新規登録画面</h2>
   </div>
 </template>
 

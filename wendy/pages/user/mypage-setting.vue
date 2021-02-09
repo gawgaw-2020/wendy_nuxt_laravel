@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1>トップページ</h1>
-    <p><nuxt-link :to="`/all-articles/`">全店舗一覧</nuxt-link></p>
+    <h2>メール・パスワードの再設定</h2>
   </div>
 </template>
 
 <script>
 export default {
+  layout: 'mypage',
   data() {
     return {
 

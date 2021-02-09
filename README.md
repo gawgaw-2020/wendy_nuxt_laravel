@@ -118,3 +118,9 @@ Components
 
 この流れをひたすら実感した１日だった  
 当たり前だけどasyncDataとかcreatedやmountedのタイミングも考えないとダメ
+
+寝るまでに時間があったので、  
+``<nuxt-link :to="`/article/${article.id}`">``  
+と  
+``@click="$router.push('/')"``  
+以上２つでページ遷移を作ってみた

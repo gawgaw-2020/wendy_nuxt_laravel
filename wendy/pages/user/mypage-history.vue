@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1>トップページ</h1>
-    <p><nuxt-link :to="`/all-articles/`">全店舗一覧</nuxt-link></p>
+    <h2>利用履歴</h2>
   </div>
 </template>
 
 <script>
 export default {
+  layout: 'mypage',
   data() {
     return {
 
