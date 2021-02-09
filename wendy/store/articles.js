@@ -10,9 +10,11 @@ const articlesRef = db.collection('articles')
 //ここでstateを定義する。今回使うdbであるarticlesを配列で格納する
 export const state = () => ({
   articles: [],
+  articlesAarea: [],
   article: {
     store_name: '',
-    store_id: ''
+    store_id: '',
+    store_area: ''
   }
 })
 
@@ -27,6 +29,9 @@ export const actions = {
   }),
   getArticleById: firestoreAction(({ bindFirestoreRef }, payload) => {
     bindFirestoreRef('article', articlesRef.doc(`${payload.articleId}`))
+  }),
+  getArticlesAarea: firestoreAction(({ bindFirestoreRef }) => {
+    bindFirestoreRef('articlesAarea', articlesRef.where("store_area", "==", "A"))
   }),
 
 }

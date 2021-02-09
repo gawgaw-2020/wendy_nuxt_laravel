@@ -1,64 +1,33 @@
 <template>
   <div>
-    <div v-for="comment in comments" :key="comment.id">
-      <span v-if="comment.created">
-        <span>
-          名前:{{ comment.name }}<br>
-          内容:{{ comment.index}}<br>
-          投稿時間:{{ comment.created.toDate() | dateFilter}}
-        </span>
-      </span>
-    </div>
-    <form @submit.prevent="add">
-      <div>
-        <div>
-          <label>
-            名前
-          </label>
-        </div>
-        <input v-model="name">
-        <div>
-          <label>
-            内容
-          </label>
-        </div>
-        <input v-model="index">
-      </div>
-      <button>投稿する</button> 
-    </form>
+    <h1>トップページ</h1>
+    <p><nuxt-link :to="`/articles/`">店舗一覧</nuxt-link></p>
+    <h2>エリアAのお店</h2>
+        <ul>
+      <li v-for="(article, index) in articlesAarea" :key="index">
+        <p>{{ article.store_name }}</p>
+        <p><nuxt-link :to="`/articles/${article.id}`">{{ article.store_name }}の詳細を見る</nuxt-link></p>
+      </li>
+    </ul>
+
   </div>
 </template>
 
 <script>
-import moment from 'moment'
 export default {
-  data: function() {
+  data() {
     return {
-      name: '',
-      index: '',
-      done: false
+
     }
+  },
+  computed: {
+    articlesAarea: function() {
+      return this.$store.state.articles.articlesAarea
+    }
+    
   },
   created: function() {
-    this.$store.dispatch('comments/init')
+    this.$store.dispatch('articles/getArticlesAarea')
   },
-  methods: {
-    add() {
-      this.$store.dispatch('comments/add', {index: this.index, name: this.name})
-      this.name = ''
-      this.index = ''
-    }
-  },
-//この部分で上述のcomments.js内のgettersのcomments/orderdCommentsを呼び出して投稿順に整形しています。
-  computed: {
-    comments() {
-      return this.$store.getters['comments/orderdComments']
-    }
-  },
-  filters: {
-    dateFilter: function(date) {
-      return moment(date).format('YYYY/MM/DD HH:mm:ss')
-    }
-  }
 }
 </script>

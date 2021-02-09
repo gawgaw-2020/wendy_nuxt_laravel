@@ -1,7 +1,6 @@
 <template>
   <section>
     <h1>店舗一覧</h1>
-    {{ articles }}
     <ul>
       <li v-for="(article, index) in articles" :key="index">
         <p>{{ article.store_name }}</p>

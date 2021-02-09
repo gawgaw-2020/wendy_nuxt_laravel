@@ -1,7 +1,8 @@
 <template>
   <section>
     <h1>{{ message }}</h1>
-    <p>{{ article.store_name }}</p>
+    <p>{{ article }}</p>
+    <p><nuxt-link to="/">TOPページへ</nuxt-link></p>
   </section>
 </template>
 
