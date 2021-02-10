@@ -1,14 +1,14 @@
 <template>
   <div>
-    <p>component test</p>
+    <p>mixin test（400px以上で文字色変更）</p>
   </div>
 </template>
 
 <style lang="scss" scoped>
   p {
-    font-size: 2.4rem;
+    font-size: 1.6rem;
     color: gold;
-    @include mq() {
+    @include mq(sm) {
       color: blue;
     }
   }
