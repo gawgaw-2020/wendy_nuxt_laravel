@@ -8,8 +8,6 @@
       <v-spacer />
       <v-toolbar-title @click="$router.push('/')" style="cursor: pointer" v-text="title" />
       <v-spacer />
-      <v-btn small elevation="" color="" @click="$router.push('/user/login')">ログイン・新規登録</v-btn>
-      <v-btn small elevation="" color="" @click="$router.push('/user/mypage-favorite')">マイページ</v-btn>
     </v-app-bar>
     <v-main>
       <div class="maypage-menu">
