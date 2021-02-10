@@ -124,3 +124,47 @@ Components
 と  
 ``@click="$router.push('/')"``  
 以上２つでページ遷移を作ってみた
+
+sassを導入したかったので  
+```npm install sass-loader node-sass --save-dev```
+
+sass-loaderの最新バージョンがVuetifyと噛み合わず。  
+```npm uninstall sass-loader --save-dev```  
+```npm install sass-loader@10  --save-dev```  
+ダウングレードした。
+
+```
+  "dependencies": {
+    "@nuxtjs/axios": "^5.12.5",
+    "@nuxtjs/dotenv": "^1.3.0",
+    "core-js": "^3.8.2",
+    "firebase": "^7.19.1",
+    "lodash": "^4.17.20",
+    "moment": "^2.24.0",
+    "nuxt": "^2.14.12",
+    "vuexfire": "^3.0.1"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.11.3",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.1"
+  }
+```
+
+sassのテスト  
+各ページのstyleタグにscoped属性をつけるとそのvueファイルだけに適用される  
+ネストも成功
+
+css設計したかったけど  
+vuetifyがめっちゃ邪魔だしいらんかった。全部上書きされる!!
+
+```npm uninstall @nuxtjs/vuetify```
+
+読み込みなど全て削除
+
+``assets/sass``の中にFLOCSSぽいの作っていく。  
+vuetifyは管理画面で使おう。
+
+vuetifyのタグを全て修正した。
+
+component内で変数が使えない問題  
