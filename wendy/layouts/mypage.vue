@@ -1,15 +1,9 @@
 <template>
-  <v-app dark>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
-      <v-spacer />
-      <v-toolbar-title @click="$router.push('/')" style="cursor: pointer" v-text="title" />
-      <v-spacer />
-    </v-app-bar>
-    <v-main>
+  <div>
+    <div>
+      <p @click="$router.push('/')" style="cursor: pointer" v-text="title"></p>
+    </div>
+    <main>
       <div class="maypage-menu">
         <h1>マイページ</h1>
           <p><nuxt-link :to="`/user/mypage-favorite`">マイページ-お気に入り店舗一覧</nuxt-link></p>
@@ -18,19 +12,14 @@
           <p><nuxt-link :to="`/user/mypage-setting`">マイページ-メール＆パスワード再設定</nuxt-link></p>
           <p>ログアウト（処理してトップページへ遷移）</p>
       </div>
-      <v-container>
+      <div>
         <nuxt />
-      </v-container>
-    </v-main>
-    <v-footer
-      :absolute="!fixed"
-      app
-    >
-      <v-spacer />
+      </div>
+    </main>
+    <footer>
       <span>&copy; WENDY {{ new Date().getFullYear() }}</span>
-      <v-spacer />
-    </v-footer>
-  </v-app>
+    </footer>
+  </div>
 </template>
 
 <script>
@@ -61,14 +50,14 @@ export default {
 }
 </script>
 
-<style >
+<style lang="scss">
 .maypage-menu {
   background-color: #EB5276;
   height: 344px;
+  h1,h2 {
+    text-align: center;
+    padding: 1rem;
+  }
 }
 
-h1,h2 {
-  text-align: center;
-  padding: 1rem;
-}
 </style>

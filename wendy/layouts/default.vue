@@ -1,30 +1,19 @@
 <template>
-  <v-app dark>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
-      <v-spacer />
-      <v-toolbar-title @click="$router.push('/')" style="cursor: pointer" v-text="title" />
-      <v-spacer />
-      <v-btn small elevation="" color="" @click="$router.push('/user/login')">ログイン・新規登録</v-btn>
-      <v-btn small elevation="" color="" @click="$router.push('/user/mypage-favorite')">マイページ</v-btn>
-    </v-app-bar>
-    <v-main>
-      <v-container>
+  <div>
+    <div>
+      <p @click="$router.push('/')" style="cursor: pointer" v-text="title"></p>
+      <button small elevation="" color="" @click="$router.push('/user/login')">ログイン・新規登録</button>
+      <button small elevation="" color="" @click="$router.push('/user/mypage-favorite')">マイページ</button>
+    </div>
+    <main>
+      <div>
         <nuxt />
-      </v-container>
-    </v-main>
-    <v-footer
-      :absolute="!fixed"
-      app
-    >
-      <v-spacer />
+      </div>
+    </main>
+    <footer>
       <span>&copy; WENDY {{ new Date().getFullYear() }}</span>
-      <v-spacer />
-    </v-footer>
-  </v-app>
+    </footer>
+  </div>
 </template>
 
 <script>
