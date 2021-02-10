@@ -168,3 +168,25 @@ vuetifyは管理画面で使おう。
 vuetifyのタグを全て修正した。
 
 component内で変数が使えない問題  
+```npm install --save-dev @nuxtjs/style-resources```
+
+```
+  modules: [
+    // https://go.nuxtjs.dev/axios
+    '@nuxtjs/axios',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/style-resources'
+  ],
+
+  styleResources: {
+    sass: [
+      // '@/assets/sass/variable.sass'
+    ],
+    scss: [
+      '@/assets/scss/_mixin.scss'
+    ],
+    stylus: [
+      // '@/assets/stylus/layout.styl'
+    ]
+  }
+```
