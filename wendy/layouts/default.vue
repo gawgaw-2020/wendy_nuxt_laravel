@@ -17,29 +17,29 @@
 </template>
 
 <script>
+//firebaseの初期化の部分のインストール
+import firebase from '../plugins/firebase'
+
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
+
 export default {
   data () {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
       title: 'WENDY'
     }
+  },
+  created() {
+    // onAuthStateChangedは引数に認証の状態が変わった時に呼び出されるコールバック関数を受け取る
+    // ログイン・ログアウトの際に引数の関数が呼ばれ、ログイン時にはユーザーのオブジェクトが渡ってくる、ログアウトのときはnullが渡ってくる
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        const { uid, email, displayName } = user
+        this.setLoginUser({ uid, email, displayName })
+      }
+    })
+  },
+  methods: {
+    ...mapActions('auth', ['setLoginUser'])
   }
 }
 </script>
