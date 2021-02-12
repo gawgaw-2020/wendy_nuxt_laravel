@@ -24,6 +24,7 @@ import firebase from '../plugins/firebase'
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
+  name: "default",
   data () {
     return {
       title: 'WENDY'
