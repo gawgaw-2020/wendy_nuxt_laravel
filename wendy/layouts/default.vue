@@ -1,9 +1,11 @@
 <template>
   <div>
     <div>
-      <p @click="$router.push('/')" style="cursor: pointer" v-text="title"></p>
-      <button small elevation="" color="" @click="$router.push('/user/login')">ログイン・新規登録</button>
-      <button small elevation="" color="" @click="$router.push('/user/mypage-favorite')">マイページ</button>
+      <span>{{ userName }}</span>
+      <span @click="$router.push('/')" style="cursor: pointer" v-text="title"></span>
+      <button @click="$router.push('/user/login')">ログイン・新規登録</button>
+      <button @click="$router.push('/user/mypage-favorite')">マイページ</button>
+      <button v-if="userName" @click="logout">ログアウト</button>
     </div>
     <main>
       <div>
@@ -35,11 +37,18 @@ export default {
       if (user) {
         const { uid, email, displayName } = user
         this.setLoginUser({ uid, email, displayName })
+        if(this.$router.currentRoute.name === 'user-login') this.$router.push({ name: 'user-mypage-favorite' })
+      } else {
+        this.deleteLoginUser()
+        this.$router.push({ name: 'index' })
       }
     })
   },
+  computed: {
+    ...mapGetters('auth', ['userName'])
+  },
   methods: {
-    ...mapActions('auth', ['setLoginUser'])
+    ...mapActions('auth', ['setLoginUser', 'logout', 'deleteLoginUser'])
   }
 }
 </script>
