@@ -36,7 +36,10 @@ export default {
     // ログイン・ログアウトの際に引数の関数が呼ばれ、ログイン時にはユーザーのオブジェクトが渡ってくる、ログアウトのときはnullが渡ってくる
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        const { uid, email, displayName, photoURL  } = user
+        let { uid, email, displayName, photoURL  } = user
+        if (displayName === null) {
+          displayName = 'ゲストユーザー'
+        }
         this.setLoginUser({ uid, email, displayName, photoURL })
         if(this.$router.currentRoute.name === 'user-login') this.$router.push({ name: 'user-mypage-favorite' })
       } else {
