@@ -2,14 +2,17 @@ import firebase from '~/plugins/firebase'
 
 export const state = () => ({
   login_user: null,
+  authenticated: false
 })
 
 export const mutations = {
   setLoginUserState(state, user)  {
     state.login_user = user
+    state.authenticated = true
   },
   deleteLoginUserState(state)  {
     state.login_user = null
+    state.authenticated = false
   }
 }
 
