@@ -23,7 +23,6 @@ export default {
   data() {
     return {
       message: '/articles/_id.vueを表示中',
-      store_name: '店舗名'
     }
   },
   async asyncData(context) {
