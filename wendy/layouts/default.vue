@@ -12,7 +12,9 @@
       </div>
     </main>
     <footer>
-      <span>&copy; WENDY {{ new Date().getFullYear() }}</span>
+      <span @click="$router.push('/')" style="cursor: pointer">ホーム</span>
+      <span>検索（未実装）</span>
+      <span @click="$router.push('/user/mypage-favorite')" style="cursor: pointer">お気に入り</span>
     </footer>
   </div>
 </template>
@@ -35,8 +37,8 @@ export default {
     // ログイン・ログアウトの際に引数の関数が呼ばれ、ログイン時にはユーザーのオブジェクトが渡ってくる、ログアウトのときはnullが渡ってくる
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        const { uid, email, displayName } = user
-        this.setLoginUser({ uid, email, displayName })
+        const { uid, email, displayName, photoURL  } = user
+        this.setLoginUser({ uid, email, displayName, photoURL })
         if(this.$router.currentRoute.name === 'user-login') this.$router.push({ name: 'user-mypage-favorite' })
       } else {
         this.deleteLoginUser()
@@ -52,3 +54,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  footer {
+    background-color: #efefef;
+    padding: 1rem;
+  }
+</style>
