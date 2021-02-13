@@ -23,10 +23,19 @@ export const actions = {
   deleteLoginUser({ commit }) {
     commit('deleteLoginUserState')
   },
+
+  firebaseLogin({ commit }, payload) {
+    console.log(payload)
+  },
+  firebaseSignUp({ commit }, payload) {
+    console.log(payload)
+  },
+
   googleLogin() {
     const google_auth_provider = new firebase.auth.GoogleAuthProvider()
     firebase.auth().signInWithRedirect(google_auth_provider) // このタイミングでGoogleの認証画面にリダイレクトされる
   },
+
   logout() {
     firebase.auth().signOut()
   }
