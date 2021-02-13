@@ -24,8 +24,8 @@ export const actions = {
     commit('deleteLoginUserState')
   },
 
-  firebaseLogin({ commit }, payload) {
-    console.log(payload)
+  async firebaseLogin({ commit }, payload) {
+    const data = await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
   },
   firebaseSignUp({ commit }, payload) {
     console.log(payload)

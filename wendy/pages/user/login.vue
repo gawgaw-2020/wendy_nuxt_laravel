@@ -1,9 +1,9 @@
 <template>
   <div>
     <h2>ログイン画面</h2>
-    <p>メールアドレス入力欄</p>
-    <p>パスワード入力欄</p>
-    <h3>ログインボタン</h3>
+    <p><input type="email" v-model="email"></p>
+    <p><input type="password" v-model="password"></p>
+    <button @click="login">ログイン</button>
     <button @click="googleLogin">Googleアカウントでログイン</button>
     <p>初めての方はこちら</p>
     <nuxt-link :to="`/user/registration`">新規登録</nuxt-link>
@@ -16,6 +16,8 @@ import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 export default {
   data() {
     return {
+      email: '',
+      password: ''
 
     }
   },
@@ -23,7 +25,13 @@ export default {
     
   },
   methods: {
-    ...mapActions('auth', ['googleLogin'])
+    ...mapActions('auth', ['googleLogin', 'firebaseLogin']),
+    login() {
+      this.firebaseLogin({
+        email: this.email,
+        password: this.password,
+      });
+    }
   },
   created: function() {
   },
