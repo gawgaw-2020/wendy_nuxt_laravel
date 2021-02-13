@@ -12,7 +12,6 @@ export default {
   components: { MixinTest },
   data() {
     return {
-
     }
   },
   computed: {

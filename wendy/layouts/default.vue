@@ -3,7 +3,6 @@
     <div>
       <span @click="$router.push('/')" style="cursor: pointer" v-text="title"></span>
       <button v-if="!userName" @click="$router.push('/user/login')">ログイン・新規登録</button>
-      <button v-if="userName" @click="$router.push('/user/mypage-favorite')">マイページ</button>
       <button v-if="userName" @click="logout">ログアウト</button>
     </div>
     <main>
