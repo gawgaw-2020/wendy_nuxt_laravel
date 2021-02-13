@@ -3,7 +3,7 @@
     <h2>新規登録画面</h2>
     <p><input type="email" v-model="email"></p>
     <p><input type="password" v-model="password"></p>
-    <button @click="signup">新規登録</button>
+    <button @click="signUp">新規登録</button>
   </div>
 </template>
 
@@ -21,7 +21,10 @@ export default {
     
   },
   methods: {
-    signup() {},
+    ...mapActions("auth", ["firebaseSignUp"]),
+    signUp() {
+      this.firebaseSignUp({ email: this.email, password: this.password });
+    },
   },
   created: function() {
   },
