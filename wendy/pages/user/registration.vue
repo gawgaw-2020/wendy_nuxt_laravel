@@ -18,12 +18,18 @@ export default {
     }
   },
   computed: {
-    
+    ...mapState("auth", ["login_user"])
   },
   methods: {
-    ...mapActions("auth", ["firebaseSignUp"]),
-    signUp() {
-      this.firebaseSignUp({ email: this.email, password: this.password });
+    ...mapActions("auth", ["firebaseSignUp", 'createUser']),
+    async signUp() {
+      await this.firebaseSignUp({ email: this.email, password: this.password })
+      console.log(this.login_user.uid);
+      await this.createUser({
+        uid: this.login_user.uid,
+        email: this.email,
+        displayName: 'ゲストユーザー'
+      });
     },
   },
   created: function() {

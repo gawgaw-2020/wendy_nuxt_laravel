@@ -28,8 +28,11 @@ export const actions = {
     await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
   },
   async firebaseSignUp({ commit }, payload) {
-    await firebase.auth()
-      .createUserWithEmailAndPassword(payload.email, payload.password)
+    await firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
+  },
+  async createUser({ commit }, payload) {
+    const { uid, ...data } = payload
+    await firebase.firestore().doc(`users/${uid}`).set(data)
   },
 
   googleLogin() {

@@ -41,7 +41,7 @@ export default {
           displayName = 'ゲストユーザー'
         }
         this.setLoginUser({ uid, email, displayName, photoURL })
-        if(this.$router.currentRoute.name === 'user-login') this.$router.push({ name: 'user-mypage-favorite' })
+        if(this.$router.currentRoute.name === 'user-login' || this.$router.currentRoute.name === 'user-registration') this.$router.push({ name: 'user-mypage-favorite' })
       } else {
         this.deleteLoginUser()
         this.$router.push({ name: 'index' })
