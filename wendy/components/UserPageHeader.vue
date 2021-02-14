@@ -1,7 +1,11 @@
 <template>
   <div>
     <h1>マイページ</h1>
-      <p class="user-icon"><img v-if="userPhotoURL" :src="userPhotoURL" alt=""></p>
+      <p class="user-icon">
+        {{ userPhotoURL }}
+        <img v-if="userPhotoURL" :src="userPhotoURL" alt="">
+        <img v-if="!userPhotoURL" src="~/assets/img/user-icon.png" alt="">
+      </p>
       <p>{{ userName }}様</p>
   </div>
 </template>
