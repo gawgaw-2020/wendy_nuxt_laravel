@@ -47,6 +47,7 @@ export const actions = {
 
 export const getters = {
   userName: state => state.login_user ? state.login_user.displayName :'',
+  userEmail: state => state.login_user ? state.login_user.email :'',
   userPhotoURL: state => state.login_user ? state.login_user.photoURL :''
 }
 

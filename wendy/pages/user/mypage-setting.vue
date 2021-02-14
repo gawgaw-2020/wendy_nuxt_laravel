@@ -2,11 +2,21 @@
   <div>
     <UserPageHeader/>
     <MyPageNavigation/>
-    <h2>メール・パスワードの再設定</h2>
+    <h2>ユーザー情報</h2>
+    <p>ユーザーネーム</p>
+    <p>{{ userName }}</p>
+    <button>ユーザー情報を変更する</button>
+    <p>メールアドレス</p>
+    <p>{{ userEmail }}</p>
+    <p>パスワード</p>
+    <p>*************</p>
+    <button>メール・パスワードを変更する</button>
   </div>
 </template>
 
 <script>
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
+
 export default {
   middleware: 'authenticated',
   data() {
@@ -15,7 +25,7 @@ export default {
     }
   },
   computed: {
-    
+    ...mapGetters('auth', ['userName', 'userEmail'])
   },
   created: function() {
   },
