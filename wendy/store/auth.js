@@ -17,6 +17,7 @@ export const mutations = {
 }
 
 export const actions = {
+
   setLoginUser({ commit }, user) {
     commit('setLoginUserState', user)
   },
@@ -24,20 +25,30 @@ export const actions = {
     commit('deleteLoginUserState')
   },
 
-  async firebaseLogin({ commit }, payload) {
+  async firebaseLogin(payload) {
     await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
   },
-  async firebaseSignUp({ commit }, payload) {
+  async firebaseSignUp(payload) {
     await firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
-  },
-  async createUser({ commit }, payload) {
-    const { uid, ...data } = payload
-    await firebase.firestore().doc(`users/${uid}`).set(data)
   },
 
   googleLogin() {
     const google_auth_provider = new firebase.auth.GoogleAuthProvider()
-    firebase.auth().signInWithRedirect(google_auth_provider) // このタイミングでGoogleの認証画面にリダイレクトされる
+    firebase.auth().signInWithPopup(google_auth_provider).then((res) => {
+      return firebase.firestore().doc(`users/${res.user.uid}`).set({
+        uid: res.user.uid,
+        displayName: res.user.displayName,
+        photoURL: res.user.photoURL,
+      });
+    })
+    .then(() => {
+      console.log('success');
+    })
+  },
+
+  async createUser(payload) {
+    const { uid, ...data } = payload
+    await firebase.firestore().doc(`users/${uid}`).set(data)
   },
 
   logout() {

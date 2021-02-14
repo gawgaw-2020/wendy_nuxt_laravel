@@ -37,10 +37,13 @@ export default {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         let { uid, email, displayName, photoURL  } = user
+
         if (displayName === null) {
           displayName = 'ゲストユーザー'
         }
+        
         this.setLoginUser({ uid, email, displayName, photoURL })
+
         if(this.$router.currentRoute.name === 'user-login' || this.$router.currentRoute.name === 'user-registration') this.$router.push({ name: 'user-mypage-favorite' })
       } else {
         this.deleteLoginUser()
@@ -52,7 +55,7 @@ export default {
     ...mapGetters('auth', ['userName'])
   },
   methods: {
-    ...mapActions('auth', ['setLoginUser', 'logout', 'deleteLoginUser'])
+    ...mapActions('auth', ['setLoginUser', 'logout', 'deleteLoginUser', 'createUser'])
   }
 }
 </script>

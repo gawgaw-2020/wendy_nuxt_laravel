@@ -24,14 +24,14 @@ export default {
     }
   },
   computed: {
-    
+  ...mapState("auth", ["login_user"])
   },
   methods: {
-    ...mapActions('auth', ['googleLogin', 'firebaseLogin']),
-    login() {
-      this.firebaseLogin({
+    ...mapActions('auth', ['googleLogin', 'firebaseLogin', 'createUser']),
+    async login() {
+      await this.firebaseLogin({
         email: this.email,
-        password: this.password,
+        password: this.password
       });
     }
   },

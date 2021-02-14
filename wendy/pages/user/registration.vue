@@ -1,7 +1,9 @@
 <template>
   <div>
     <h2>新規登録画面</h2>
+    <p>メールアドレス</p>
     <p><input type="email" v-model="email"></p>
+    <p>パスワード</p>
     <p><input type="password" v-model="password"></p>
     <button @click="signUp">新規登録</button>
   </div>
@@ -28,7 +30,8 @@ export default {
       await this.createUser({
         uid: this.login_user.uid,
         email: this.email,
-        displayName: 'ゲストユーザー'
+        displayName: 'ゲストユーザー',
+        photoURL: null,
       });
     },
   },
