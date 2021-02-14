@@ -3,9 +3,8 @@
     <UserPageHeader/>
     <MyPageNavigation/>
     <h2>ユーザー情報</h2>
-    <p>ユーザーネーム</p>
+    <p>ユーザーネーム<span>変更する</span></p>
     <p>{{ userName }}</p>
-    <button>ユーザー情報を変更する</button>
     <p>メールアドレス</p>
     <p>{{ userEmail }}</p>
     <p>パスワード</p>

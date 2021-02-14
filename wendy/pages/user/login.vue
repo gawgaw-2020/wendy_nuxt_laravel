@@ -1,7 +1,9 @@
 <template>
   <div>
     <h2>ログイン画面</h2>
+    <p>メールアドレス</p>
     <p><input type="email" v-model="email"></p>
+    <p>パスワード</p>
     <p><input type="password" v-model="password"></p>
     <button @click="login">ログイン</button>
     <button @click="googleLogin">Googleアカウントでログイン</button>
