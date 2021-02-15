@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>詳細ページ</title>
+    <!-- fontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+    ></script>
+  </head>
+
+  <body>
+    <main>
+      <section>
+        <div class="info d-flex flex-row">
+          <div class="plan_map w-45 d-flex flex-column">
+            <div class="map">
+              <div id="mapSample" style="width: 880px; height: 350px;">
+                <span id="js-ag_latitude" data-name="35.6095208"></span>
+                <span id="js-ag_longitude" data-name="140.1173478"></span>
+                <span id="js-dish_latitude" data-name="35.6095841"></span>
+                <span id="js-dish_longitude" data-name="140.1196668"></span>
+              </div>
+              <div class="route_map">
+                <a
+                  href="http://maps.google.com/maps?saddr=35.6095208,140.1173478&daddr=35.6095841,140.1196668&dirflg=d"
+                  target="_blank"
+                  ><span> 経路検索 </span
+                  ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const ag_longitude = $("#js-ag_longitude").data();
+      const ag_latitude = $("#js-ag_latitude").data();
+      const dish_longitude = $("#js-dish_longitude").data();
+      const dish_latitude = $("#js-dish_latitude").data();
+
+      console.log(ag_longitude.name);
+
+      var map;
+      var marker = [];
+      var infoWindow = [];
+      var markerData = [
+        // マーカーを立てる場所名・緯度・経度
+        {
+          name: "studio千葉だよ!!API最高だよ!!",
+          lat: parseFloat(ag_latitude.name),
+          lng: parseFloat(ag_longitude.name),
+          icon:
+            "/img/kisa.png" //
+        },
+        {
+          name: "ここにいるよ!!スシローだよ!!",
+          lat: parseFloat(dish_latitude.name),
+          lng: parseFloat(dish_longitude.name),
+          icon:
+            "/img/kisa.png" //
+        }
+      ];
+      function initMap() {
+        // 地図の作成
+        var mapLatLng = new google.maps.LatLng({
+          lat: markerData[0]["lat"],
+          lng: markerData[0]["lng"]
+        });
+        // 緯度経度のデータ作成
+        map = new google.maps.Map(document.getElementById("mapSample"), {
+          // 地図の中心を指定
+          center: mapLatLng,
+          // 地図のズームを指定
+          zoom: 18
+        });
+        // マーカー毎の処理
+        // 緯度経度のデータ作成
+        for (var i = 0; i < markerData.length; i++) {
+          markerLatLng = new google.maps.LatLng({
+            lat: markerData[i]["lat"],
+            lng: markerData[i]["lng"]
+          });
+          marker[i] = new google.maps.Marker({
+            // マーカーの追加
+            position: markerLatLng, // マーカーを立てる位置を指定
+            map: map // マーカーを立てる地図を指定
+          });
+          infoWindow[i] = new google.maps.InfoWindow({
+            // 吹き出しの追加
+            content:
+              '<div class="mapSample">' + markerData[i]["name"] + "</div>"
+          });
+          markerEvent(i); // マーカーにクリックイベントを追加
+          marker[i].setOptions({
+            // TAM 東京のマーカーのオプション設定
+            icon: {
+              url: markerData[i]["icon"] // マーカーの画像を変更
+            }
+          });
+          infoWindow[i].open(map, marker[i]); // 吹き出しの表示
+          // マーカーにクリックイベントを追加
+          function markerEvent(i) {
+            marker[i].addListener("click", function () {
+              // マーカーをクリックしたとき
+              infoWindow[i].open(map, marker[i]); // 吹き出しの表示
+            });
+          }
+        }
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?language=ja&amp;region=JP&amp;key={{ API keyをここにペースト }}&amp;callback=initMap"></script>
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+    ></script>
+  </body>
+</html>
