@@ -4,6 +4,14 @@ html {
   font-size: 62.5%;
 }
 
+@font-face {
+  font-family: 'nicomoji';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~assets/fonts/nicomoji-plus_1.11.ttf') format('truetype');
+}
+
 body {
   font-size: 1.6rem;
   color: #333;
