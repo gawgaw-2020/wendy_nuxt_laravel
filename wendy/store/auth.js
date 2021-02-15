@@ -35,10 +35,17 @@ export const actions = {
   googleLogin() {
     const google_auth_provider = new firebase.auth.GoogleAuthProvider()
     firebase.auth().signInWithPopup(google_auth_provider).then((res) => {
-      return firebase.firestore().doc(`users/${res.user.uid}`).set({
-        uid: res.user.uid,
-        displayName: res.user.displayName,
-        photoURL: res.user.photoURL,
+      
+      firebase.firestore().collection('users').doc(res.user.uid).get().then(function(doc) {
+        if (!doc.exists) {
+          firebase.firestore().doc(`users/${res.user.uid}`).set({
+            uid: res.user.uid,
+            displayName: res.user.displayName,
+            photoURL: res.user.photoURL,
+          });
+        }
+      }).catch(function(error) {
+        console.log("Error getting document:", error);
       });
     })
     .then(() => {
