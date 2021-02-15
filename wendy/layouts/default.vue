@@ -1,10 +1,24 @@
 <template>
   <div>
     <header class="header">
-      <h1 class="header__title" @click="$router.push('/')" v-text="title"></h1>
-      <div class="header__buttons">
-        <p class="header__login-button" v-if="!userName" @click="$router.push('/user/login')">ログイン</p>
-        <p class="header__logout-button" v-if="userName" @click="logout">ログアウト</p>
+      <div class="header__inner">
+        <h1
+          class="header__title"
+          @click="$router.push('/')"
+          v-text="title"
+        ></h1>
+        <div class="header__buttons">
+          <p
+            class="header__login-button"
+            v-if="!userName"
+            @click="$router.push('/user/login')"
+          >
+            ログイン
+          </p>
+          <p class="header__logout-button" v-if="userName" @click="logout">
+            ログアウト
+          </p>
+        </div>
       </div>
     </header>
     <main>
@@ -12,90 +26,165 @@
         <nuxt />
       </div>
     </main>
-    <footer>
-      <span @click="$router.push('/')" style="cursor: pointer">ホーム</span>
-      <span>検索（未実装）</span>
-      <span @click="$router.push('/user/mypage-favorite')" style="cursor: pointer">お気に入り</span>
+    <footer class="footer">
+      <div class="footer__inner">
+        <nuxt-link
+          class="footer__button"
+          to="/"
+          exact
+        >
+          <p><i class="fas fa-home"></i></p>
+          <p>ホーム</p>
+        </nuxt-link>
+        <nuxt-link to="#" class="footer__button">
+          <p><i class="fas fa-search"></i></p>
+          <p>検索</p>
+        </nuxt-link>
+        <nuxt-link
+          class="footer__button"
+          to="/user/mypage-favorite"
+        >
+          <p><i class="fas fa-heart"></i></p>
+          <p>お気に入り</p>
+        </nuxt-link>
+      </div>
     </footer>
   </div>
 </template>
 
 <script>
-import firebase from '../plugins/firebase'
+import firebase from "../plugins/firebase";
 
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
   name: "default",
-  data () {
+  data() {
     return {
-      title: 'WENDY'
-    }
+      title: "WENDY",
+    };
   },
   created() {
-    firebase.auth().onAuthStateChanged(async user => {
+    firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
-        let { uid, email, displayName, photoURL } = user
+        let { uid, email, displayName, photoURL } = user;
 
         if (displayName === null) {
-          displayName = 'ゲストユーザー'
+          displayName = "ゲストユーザー";
         }
 
-        await firebase.firestore().collection('users').doc(uid).get().then(function(doc) {
-          if (doc.exists) {
-            displayName = doc.data().displayName
-            photoURL = doc.data().photoURL
-          }
-        })
+        await firebase
+          .firestore()
+          .collection("users")
+          .doc(uid)
+          .get()
+          .then(function (doc) {
+            if (doc.exists) {
+              displayName = doc.data().displayName;
+              photoURL = doc.data().photoURL;
+            }
+          });
 
-        this.setLoginUser({ uid, email, displayName, photoURL })
+        this.setLoginUser({ uid, email, displayName, photoURL });
 
-        if(this.$router.currentRoute.name === 'user-login' || this.$router.currentRoute.name === 'user-registration') this.$router.push({ name: 'user-mypage-favorite' })
-
+        if (
+          this.$router.currentRoute.name === "user-login" ||
+          this.$router.currentRoute.name === "user-registration"
+        )
+          this.$router.push({ name: "user-mypage-favorite" });
       } else {
-
-        this.deleteLoginUser()
-        this.$router.push({ name: 'index' })
-
+        this.deleteLoginUser();
+        this.$router.push({ name: "index" });
       }
-    })
+    });
   },
   computed: {
-    ...mapGetters('auth', ['userName'])
+    ...mapGetters("auth", ["userName"]),
   },
   methods: {
-    ...mapActions('auth', ['setLoginUser', 'logout', 'deleteLoginUser', 'createUser'])
-  }
-}
+    ...mapActions("auth", [
+      "setLoginUser",
+      "logout",
+      "deleteLoginUser",
+      "createUser",
+    ]),
+  },
+};
 </script>
 
-<style lang="scss">
-  .header {
-    height: 50px;
+<style lang="scss" scoped>
+.header {
+  height: 50px;
+  width: 100vw;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  &__inner {
+    max-width: 1366px;
+    padding: 0 16px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+  }
+  &__title {
+    font-size: 3.2rem;
+    font-family: "nicomoji";
+    font-weight: normal;
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &__buttons {
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+  &__login-button {
+    line-height: 50px;
+  }
+  &__logout-button {
+    line-height: 50px;
+  }
+}
+
+.footer {
+  height: 75px;
+  width: 100vw;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.2);
+  color: #000;
+  &__inner {
+    max-width: 1366px;
+    height: 100%;
+    padding: 0 16px;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
-    position: relative;
-    &__title {
-      font-size: 3.2rem;
-      font-family: 'nicomoji';
-      cursor: pointer;
-    }
-    &__buttons {
-      position: absolute;
-      right: 0;
-      margin-right: 1.6rem;
-      cursor: pointer;
-    }
-    &__login-button {
-      line-height: 50px;
-    }
-    &__logout-button {
-      line-height: 50px;
+  }
+  &__button {
+    width: 93px;
+    height: 100%;
+    text-align: center;
+    padding: 1.8rem 0 0;
+    font-size: 1rem;
+    cursor: pointer;
+    .fas {
+      color: #838383;
+      font-size: 2.5rem;
+      margin-bottom: 0.8rem;
     }
   }
+}
 
-  footer {
-    background-color: #efefef;
-    padding: 1rem;
-  }
+.nuxt-link-active {
+  color: #eb5276;
+}
+.nuxt-link-active .fas{
+  color: #eb5276;
+}
 </style>
