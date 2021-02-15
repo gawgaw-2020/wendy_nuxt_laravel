@@ -6,11 +6,11 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setLoginUserState(state, user)  {
+  setLoginUserState(state, user) {
     state.login_user = user
     state.authenticated = true
   },
-  deleteLoginUserState(state)  {
+  deleteLoginUserState(state) {
     state.login_user = null
     state.authenticated = false
   }

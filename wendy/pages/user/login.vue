@@ -29,10 +29,7 @@ export default {
   methods: {
     ...mapActions('auth', ['googleLogin', 'firebaseLogin', 'createUser']),
     async login() {
-      await this.firebaseLogin({
-        email: this.email,
-        password: this.password
-      });
+      await this.firebaseLogin({ email: this.email, password: this.password });
     }
   },
   created: function() {
