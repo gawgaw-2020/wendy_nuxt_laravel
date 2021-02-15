@@ -19,7 +19,6 @@
 </template>
 
 <script>
-//firebaseの初期化の部分のインストール
 import firebase from '../plugins/firebase'
 
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
@@ -32,26 +31,22 @@ export default {
     }
   },
   created() {
-    // onAuthStateChangedは引数に認証の状態が変わった時に呼び出されるコールバック関数を受け取る
-    // ログイン・ログアウトの際に引数の関数が呼ばれ、ログイン時にはユーザーのオブジェクトが渡ってくる、ログアウトのときはnullが渡ってくる
     firebase.auth().onAuthStateChanged(async user => {
       if (user) {
-        let { uid, email, displayName, photoURL  } = user
+        let { uid, email, displayName, photoURL } = user
 
         if (displayName === null) {
           displayName = 'ゲストユーザー'
         }
 
         await firebase.firestore().collection('users').doc(uid).get().then(function(doc) {
-          console.log(doc.data());
           if (doc.exists) {
             displayName = doc.data().displayName
             photoURL = doc.data().photoURL
           }
-          console.log(displayName);
         })
-        this.setLoginUser({ uid, email, displayName, photoURL })
 
+        this.setLoginUser({ uid, email, displayName, photoURL })
 
         if(this.$router.currentRoute.name === 'user-login' || this.$router.currentRoute.name === 'user-registration') this.$router.push({ name: 'user-mypage-favorite' })
 

@@ -26,7 +26,6 @@ export default {
     ...mapActions("auth", ["firebaseSignUp", 'createUser']),
     async signUp() {
       await this.firebaseSignUp({ email: this.email, password: this.password })
-      console.log(this.login_user.uid);
       await this.createUser({
         uid: this.login_user.uid,
         email: this.email,

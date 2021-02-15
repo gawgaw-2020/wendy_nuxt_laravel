@@ -44,12 +44,7 @@ export const actions = {
             photoURL: res.user.photoURL,
           });
         }
-      }).catch(function(error) {
-        console.log("Error getting document:", error);
-      });
-    })
-    .then(() => {
-      console.log('success');
+      })
     })
   },
 

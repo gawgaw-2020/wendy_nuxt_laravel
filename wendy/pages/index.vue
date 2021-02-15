@@ -6,9 +6,7 @@
 </template>
 
 <script>
-import MixinTest from '~/components/MixinTest.vue'
 export default {
-  components: { MixinTest },
   data() {
     return {
     }

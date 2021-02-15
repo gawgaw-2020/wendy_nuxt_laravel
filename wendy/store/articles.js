@@ -1,9 +1,6 @@
-//firebaseの初期化の部分のインストール
 import firebase from '../plugins/firebase'
-//firestoreのアクション部分のパッケージをインストールする
 import { firestoreAction } from 'vuexfire'
 
-//firebaseのDBを定義する
 const db = firebase.firestore()
 const articlesRef = db.collection('articles')
 
