@@ -120,6 +120,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 9999;
   &__inner {
     max-width: 1366px;
     padding: 0 16px;
@@ -158,6 +159,7 @@ export default {
   left: 0;
   box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.2);
   color: #000;
+  z-index: 9999;
   &__inner {
     max-width: 1366px;
     height: 100%;
