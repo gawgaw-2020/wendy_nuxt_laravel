@@ -1,10 +1,12 @@
 <template>
   <div>
-    <div>
-      <span @click="$router.push('/')" style="cursor: pointer" v-text="title"></span>
-      <button v-if="!userName" @click="$router.push('/user/login')">ログイン・新規登録</button>
-      <button v-if="userName" @click="logout">ログアウト</button>
-    </div>
+    <header class="header">
+      <h1 class="header__title" @click="$router.push('/')" v-text="title"></h1>
+      <div class="header__buttons">
+        <p class="header__login-button" v-if="!userName" @click="$router.push('/user/login')">ログイン</p>
+        <p class="header__logout-button" v-if="userName" @click="logout">ログアウト</p>
+      </div>
+    </header>
     <main>
       <div>
         <nuxt />
@@ -68,6 +70,30 @@ export default {
 </script>
 
 <style lang="scss">
+  .header {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    &__title {
+      font-size: 3.2rem;
+      font-family: 'nicomoji';
+      cursor: pointer;
+    }
+    &__buttons {
+      position: absolute;
+      right: 0;
+      margin-right: 1.6rem;
+      cursor: pointer;
+    }
+    &__login-button {
+      line-height: 50px;
+    }
+    &__logout-button {
+      line-height: 50px;
+    }
+  }
+
   footer {
     background-color: #efefef;
     padding: 1rem;
