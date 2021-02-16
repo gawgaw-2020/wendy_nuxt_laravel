@@ -100,7 +100,7 @@ export default {
         // /user/以下のディレクトリにいた場合のみ、トップページへ遷移させる
         const str = this.$router.currentRoute.name
         const pattern = 'user-'
-        if (!str.indexOf(pattern)) {
+        if (str.startsWith(pattern)) {
           this.$router.push({ name: "index" });
         }
       }
