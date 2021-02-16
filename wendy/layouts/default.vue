@@ -94,7 +94,7 @@ export default {
           this.$router.push({ name: "user-mypage-favorite" });
       } else {
         this.deleteLoginUser();
-        this.$router.push({ name: "index" });
+        // this.$router.push({ name: "index" });
       }
     });
   },
