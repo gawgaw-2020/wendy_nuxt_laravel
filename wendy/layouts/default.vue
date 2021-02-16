@@ -94,7 +94,15 @@ export default {
           this.$router.push({ name: "user-mypage-favorite" });
       } else {
         this.deleteLoginUser();
-        // this.$router.push({ name: "index" });
+
+        // ここの処理はログアウト時にリロードした場合にも走る
+        // ログアウト時に店舗画面や詳細画面でリロードすると、トップページに遷移してしまうので
+        // /user/以下のディレクトリにいた場合のみ、トップページへ遷移させる
+        const str = this.$router.currentRoute.name
+        const pattern = 'user-'
+        if (!str.indexOf(pattern)) {
+          this.$router.push({ name: "index" });
+        }
       }
     });
   },
