@@ -75,7 +75,7 @@ export default {
       font-weight: bold;
       width: 100%;
       color: #fff;
-      background-color: #eb5276;
+      background-color: #ff427a;
       padding: 1.6rem;
       border: none;
       border-radius: 28px;

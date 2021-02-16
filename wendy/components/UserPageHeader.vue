@@ -1,11 +1,13 @@
 <template>
-  <div>
-    <h1>マイページ</h1>
-      <p class="user-icon">
+  <div class="mypage-header">
+    <h2 class="mypage-header__title">マイページ</h2>
+    <div class="mypage-header__icon-name">
+      <p class="mypage-header__icon">
         <img v-if="userPhotoURL" :src="userPhotoURL" alt="">
         <img v-if="!userPhotoURL" src="/img/user-icon.png" alt="">
       </p>
-      <p>{{ userName }}様</p>
+      <p class="mypage-header__name">{{ userName }} 様</p>
+    </div>
   </div>
 </template>
 
@@ -25,8 +27,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.user-icon img {
+.mypage-header {
+  background-color: #ff427a;
+  color: #fff;
+  padding: 3.2rem 4.6rem;
+  &__title {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 1.8rem;
+  }
+  &__icon-name {
+    display: flex;
+  }
+  &__icon img {
   width: 60px;
   border-radius: 50%;
+  margin-right: 1.3rem;
+  }
+  &__name {
+    line-height: 60px;
+    font-weight: bold;
+  }
 }
 </style>

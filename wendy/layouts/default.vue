@@ -214,9 +214,9 @@ export default {
 }
 
 .nuxt-link-active {
-  color: #eb5276;
+  color: #ff427a;
 }
 .nuxt-link-active .fas{
-  color: #eb5276;
+  color: #ff427a;
 }
 </style>
