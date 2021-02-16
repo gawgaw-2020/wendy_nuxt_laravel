@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="header">
+    <header class="header" :class="{addShadow: isActiveShadow}">
       <div class="header__inner">
         <h1
           class="header__title"
@@ -62,9 +62,14 @@ export default {
   data() {
     return {
       title: "WENDY",
+      isActiveShadow: true
     };
   },
   created() {
+    if (this.$router.currentRoute.name === 'index') {
+      this.isActiveShadow = false
+    }
+
     firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
         let { uid, email, displayName, photoURL } = user;
@@ -105,6 +110,7 @@ export default {
         }
       }
     });
+
   },
   computed: {
     ...mapGetters("auth", ["userName"]),
@@ -117,6 +123,18 @@ export default {
       "createUser",
     ]),
   },
+  watch: {
+    // ページ遷移を監視
+    '$route': function(to, from) {
+      if (to.path !== from.path) {
+        if (to.path === '/') {
+          this.isActiveShadow = false
+        } else {
+          this.isActiveShadow = true
+        }
+      }
+    }
+  }
 };
 </script>
 
@@ -129,6 +147,10 @@ export default {
   top: 0;
   left: 0;
   z-index: 9999;
+  box-shadow: nome;
+  &.addShadow {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  }
   &__inner {
     max-width: 1366px;
     padding: 0 16px;
