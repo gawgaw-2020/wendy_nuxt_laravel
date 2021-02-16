@@ -73,7 +73,7 @@ export default {
     firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
         let { uid, email, displayName, photoURL } = user;
-
+        
         if (displayName === null) {
           displayName = "ゲストユーザー";
         }
@@ -90,13 +90,12 @@ export default {
             }
           });
 
-        this.setLoginUser({ uid, email, displayName, photoURL });
+          await this.setLoginUser({ uid, email, displayName, photoURL });
 
-        if (
-          this.$router.currentRoute.name === "user-login" ||
-          this.$router.currentRoute.name === "user-registration"
-        )
+          if (this.$router.currentRoute.name === "user-login" || this.$router.currentRoute.name === "user-registration") {
           this.$router.push({ name: "user-mypage-favorite" });
+        }
+
       } else {
         this.deleteLoginUser();
 

@@ -25,11 +25,18 @@ export const actions = {
     commit('deleteLoginUserState')
   },
 
-  async firebaseLogin(payload) {
+  async firebaseLogin({ commit }, payload) {
     await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
   },
-  async firebaseSignUp(payload) {
-    await firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
+  async firebaseSignUp({ commit }, payload) {
+    await firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password).then((res) => {
+      firebase.firestore().doc(`users/${res.user.uid}`).set({
+        uid: res.user.uid,
+        displayName: 'ゲストユーザー',
+        photoURL: res.user.photoURL,
+        email: res.user.email
+      })
+    })
   },
 
   googleLogin() {
@@ -42,13 +49,15 @@ export const actions = {
             uid: res.user.uid,
             displayName: res.user.displayName,
             photoURL: res.user.photoURL,
+            email: res.user.email
           });
         }
       })
     })
   },
 
-  async createUser(payload) {
+  async createUser({ commit }, payload) {
+    console.log(payload);
     const { uid, ...data } = payload
     await firebase.firestore().doc(`users/${uid}`).set(data)
   },

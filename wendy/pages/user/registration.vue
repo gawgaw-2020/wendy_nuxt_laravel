@@ -26,12 +26,6 @@ export default {
     ...mapActions("auth", ["firebaseSignUp", 'createUser']),
     async signUp() {
       await this.firebaseSignUp({ email: this.email, password: this.password })
-      await this.createUser({
-        uid: this.login_user.uid,
-        email: this.email,
-        displayName: 'ゲストユーザー',
-        photoURL: null,
-      });
     },
   },
   created: function() {
