@@ -121,6 +121,9 @@ export default {
       "deleteLoginUser",
       "createUser",
     ]),
+    ...mapActions("mypage", [
+      "setLinePosition",
+    ]),
   },
   watch: {
     // ページ遷移を監視
@@ -130,6 +133,9 @@ export default {
           this.isActiveShadow = false
         } else {
           this.isActiveShadow = true
+        }
+        if (to.path === '/user/mypage-favorite') {
+          this.setLinePosition('favorite')
         }
       }
     }
