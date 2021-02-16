@@ -30,7 +30,7 @@ export default {
 .mypage-header {
   background-color: #ff427a;
   color: #fff;
-  padding: 3.2rem 4.6rem;
+  padding: 2.8rem 4.6rem;
   &__title {
     font-size: 1.8rem;
     text-align: center;
@@ -40,12 +40,12 @@ export default {
     display: flex;
   }
   &__icon img {
-  width: 60px;
+  width: 46px;
   border-radius: 50%;
   margin-right: 1.3rem;
   }
   &__name {
-    line-height: 60px;
+    line-height: 46px;
     font-weight: bold;
   }
 }
