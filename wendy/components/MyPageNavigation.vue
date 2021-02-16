@@ -41,6 +41,7 @@ export default {
   background-color: #ff427a;
   left: 25%;
   transition: all 0.2s;
+  border-radius: 2px;
 }
 #slide-line.info {
   left: 0%;

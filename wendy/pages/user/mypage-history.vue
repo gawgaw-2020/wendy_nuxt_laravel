@@ -4,7 +4,7 @@
     <MyPageNavigation/>
     <div class="mypage-history">
       <div class="mypage-history__inner">
-        <h3 class="mypage-history__title">利用履歴</h3>
+        <h3 class="mypage-history__title">WENDYクーポン利用履歴</h3>
         <div class="history">
           <ul class="history__list">
             <li class="history__item">
