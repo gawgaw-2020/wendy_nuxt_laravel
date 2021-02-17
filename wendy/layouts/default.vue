@@ -115,10 +115,12 @@ export default {
     ...mapGetters("auth", ["userName"]),
   },
   methods: {
-    ...mapActions("auth", [
+    ...mapMutations("auth", [
       "setLoginUser",
-      "logout",
       "deleteLoginUser",
+    ]),
+    ...mapActions("auth", [
+      "logout",
       "createUser",
     ]),
     ...mapActions("mypage", [

@@ -6,24 +6,17 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setLoginUserState(state, user) {
+  setLoginUser(state, user) {
     state.login_user = user
     state.authenticated = true
   },
-  deleteLoginUserState(state) {
+  deleteLoginUser(state) {
     state.login_user = null
     state.authenticated = false
   }
 }
 
 export const actions = {
-
-  setLoginUser({ commit }, user) {
-    commit('setLoginUserState', user)
-  },
-  deleteLoginUser({ commit }) {
-    commit('deleteLoginUserState')
-  },
 
   async firebaseLogin({ commit }, payload) {
     await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
