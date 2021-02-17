@@ -65,6 +65,10 @@ export default {
       isActiveShadow: true
     };
   },
+  beforeCreate() {
+    const linePosition = localStorage.getItem('linePosition');
+    this.$store.commit("mypage/setLinePositionState", linePosition)
+  },
   created() {
     if (this.$router.currentRoute.name === 'index') {
       this.isActiveShadow = false
@@ -93,7 +97,7 @@ export default {
         await this.setLoginUser({ uid, email, displayName, photoURL });
 
         // 現在のcurrentページを表示
-        console.log(this.$router.currentRoute.name)
+        // console.log(this.$router.currentRoute.name)
 
         // ログイン時（currentページが「ログインページ」か「新規登録ページ」だった場合）にマイページの「お気に入り画面」へリダイレクトさせる
         if (this.$router.currentRoute.name === "user-login" || this.$router.currentRoute.name === "user-registration") {
@@ -102,6 +106,8 @@ export default {
 
       } else {
         this.deleteLoginUser();
+        localStorage.removeItem("linePosition");
+
 
         // ここの処理はログアウト時にリロードした場合にも走る
         // ログアウト時に店舗画面や詳細画面でリロードすると、トップページに遷移してしまうので
@@ -122,6 +128,9 @@ export default {
     ...mapMutations("auth", [
       "setLoginUser",
       "deleteLoginUser",
+    ]),
+    ...mapMutations("mypage", [
+      "setLinePositionState",
     ]),
     ...mapActions("auth", [
       "logout",
