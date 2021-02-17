@@ -1,7 +1,7 @@
 import firebase from '~/plugins/firebase'
 
 export const state = () => ({
-  boxPosition: 'registration'
+  boxPosition: ''
 })
 
 export const mutations = {
@@ -14,7 +14,7 @@ export const actions = {
 
   setBoxPosition({ commit }, position) {
     localStorage.setItem('boxPosition', position);
-    $nuxt.$router.push(`/user/${position}`)
+    $nuxt.$router.push(`/login/${position}`)
     setTimeout(() => {
       commit('setBoxPositionState', position)
     }, 80);

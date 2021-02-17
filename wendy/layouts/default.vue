@@ -11,7 +11,7 @@
           <p
             class="header__login-button"
             v-if="!userName"
-            @click="$router.push('/user/login')"
+            @click="$router.push('/login/login')"
           >
             ログイン
           </p>
@@ -68,6 +68,8 @@ export default {
   beforeCreate() {
     const linePosition = localStorage.getItem('linePosition');
     this.$store.commit("mypage/setLinePositionState", linePosition)
+    const boxPosition = localStorage.getItem('boxPosition');
+    this.$store.commit("login/setBoxPositionState", boxPosition)
   },
   created() {
     if (this.$router.currentRoute.name === 'index') {
@@ -100,13 +102,14 @@ export default {
         // console.log(this.$router.currentRoute.name)
 
         // ログイン時（currentページが「ログインページ」か「新規登録ページ」だった場合）にマイページの「お気に入り画面」へリダイレクトさせる
-        if (this.$router.currentRoute.name === "user-login" || this.$router.currentRoute.name === "user-registration") {
+        if (this.$router.currentRoute.name === "login-login" || this.$router.currentRoute.name === "login-registration") {
           this.$router.push({ name: "user-mypage-favorite" });
         }
 
       } else {
         this.deleteLoginUser();
         localStorage.removeItem("linePosition");
+        localStorage.removeItem("boxPosition");
 
 
         // ここの処理はログアウト時にリロードした場合にも走る

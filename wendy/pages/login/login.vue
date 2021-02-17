@@ -9,7 +9,7 @@
     <button @click="login">ログイン</button>
     <button @click="googleLogin">Googleアカウントでログイン</button>
     <p>初めての方はこちら</p>
-    <nuxt-link :to="`/user/registration`">新規登録</nuxt-link>
+    <nuxt-link :to="`/login/registration`">新規登録</nuxt-link>
   </div>
 </template>
 

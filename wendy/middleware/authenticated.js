@@ -16,6 +16,6 @@ export default function ({ store, redirect, route }) {
 
   // ユーザーが認証されていない場合はリダイレクトさせる
   if (user === null) {
-    return redirect('/user/login')
+    return redirect('/login/login')
   }
 } 
