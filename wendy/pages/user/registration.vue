@@ -1,5 +1,6 @@
 <template>
   <div>
+    <LoginNavigation/>
     <h2>新規登録画面</h2>
     <p>メールアドレス</p>
     <p><input type="email" v-model="email"></p>
