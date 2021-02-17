@@ -90,9 +90,13 @@ export default {
             }
           });
 
-          await this.setLoginUser({ uid, email, displayName, photoURL });
+        await this.setLoginUser({ uid, email, displayName, photoURL });
 
-          if (this.$router.currentRoute.name === "user-login" || this.$router.currentRoute.name === "user-registration") {
+        // 現在のcurrentページを表示
+        console.log(this.$router.currentRoute.name)
+
+        // ログイン時（currentページが「ログインページ」か「新規登録ページ」だった場合）にマイページの「お気に入り画面」へリダイレクトさせる
+        if (this.$router.currentRoute.name === "user-login" || this.$router.currentRoute.name === "user-registration") {
           this.$router.push({ name: "user-mypage-favorite" });
         }
 
