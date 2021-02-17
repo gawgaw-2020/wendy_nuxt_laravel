@@ -142,6 +142,9 @@ export default {
     ...mapActions("mypage", [
       "setLinePosition",
     ]),
+    ...mapActions("login", [
+      "setBoxPosition",
+    ]),
   },
   watch: {
     // ページ遷移を監視
@@ -154,6 +157,9 @@ export default {
         }
         if (to.path === '/user/mypage-favorite') {
           this.setLinePosition('favorite')
+        }
+        if (to.path === '/login/login') {
+          this.setBoxPosition('login')
         }
       }
     }
