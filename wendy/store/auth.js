@@ -50,7 +50,6 @@ export const actions = {
   },
 
   async createUser({ commit }, payload) {
-    console.log(payload);
     const { uid, ...data } = payload
     await firebase.firestore().doc(`users/${uid}`).set(data)
   },

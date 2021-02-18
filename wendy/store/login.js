@@ -13,7 +13,6 @@ export const mutations = {
 export const actions = {
 
   setBoxPosition({ commit }, position) {
-    localStorage.setItem('boxPosition', position);
     $nuxt.$router.push(`/login/${position}`)
     setTimeout(() => {
       commit('setBoxPositionState', position)

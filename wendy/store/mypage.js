@@ -13,7 +13,6 @@ export const mutations = {
 export const actions = {
 
   setLinePosition({ commit }, position) {
-    localStorage.setItem('linePosition', position);
     $nuxt.$router.push(`/user/mypage-${position}`)
     setTimeout(() => {
       commit('setLinePositionState', position)

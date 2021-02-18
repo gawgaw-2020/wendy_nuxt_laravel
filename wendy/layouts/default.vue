@@ -66,10 +66,13 @@ export default {
     };
   },
   beforeCreate() {
-    const linePosition = localStorage.getItem('linePosition');
-    this.$store.commit("mypage/setLinePositionState", linePosition)
-    const boxPosition = localStorage.getItem('boxPosition');
-    this.$store.commit("login/setBoxPositionState", boxPosition)
+    let wendyLocal = localStorage.getItem('wendy')
+    if (wendyLocal !== null) {
+      const linePosition = JSON.parse(wendyLocal).mypage.linePosition;
+      this.$store.commit("mypage/setLinePositionState", linePosition)
+      const boxPosition = JSON.parse(wendyLocal).login.boxPosition;
+      this.$store.commit("login/setBoxPositionState", boxPosition)
+    }
   },
   created() {
     if (this.$router.currentRoute.name === 'index') {
@@ -98,9 +101,6 @@ export default {
 
         await this.setLoginUser({ uid, email, displayName, photoURL });
 
-        // 現在のcurrentページを表示
-        // console.log(this.$router.currentRoute.name)
-
         // ログイン時（currentページが「ログインページ」か「新規登録ページ」だった場合）にマイページの「お気に入り画面」へリダイレクトさせる
         if (this.$router.currentRoute.name === "login-login" || this.$router.currentRoute.name === "login-registration") {
           this.$router.push({ name: "user-mypage-favorite" });
@@ -108,8 +108,7 @@ export default {
 
       } else {
         this.deleteLoginUser();
-        localStorage.removeItem("linePosition");
-        localStorage.removeItem("boxPosition");
+        localStorage.removeItem("wendy");
 
 
         // ここの処理はログアウト時にリロードした場合にも走る
