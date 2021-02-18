@@ -14,6 +14,8 @@
               <p class="user-input__error">※メールアドレスは正しい形式で入力して下さい</p>
             </div>
             <button class="registration-link__btn btn btn-primary" @click="signUp">新規登録</button>
+            <p class="registration-link__social-title">他サイトIDで簡単登録</p>
+            <p class="registration-link__social-btn" @click="googleLogin"><img src="/img/btn_google_signin_dark_normal_web@2x.png" alt="Googleアカウントでログイン"></p>
           </div>
         </div>
       </div>

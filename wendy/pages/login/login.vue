@@ -16,7 +16,6 @@
             <button class="login-link__btn btn btn-primary" @click="login">ログイン</button>
             <p class="login-link__social-title">他サイトIDで簡単ログイン</p>
             <p class="login-link__social-btn" @click="googleLogin"><img src="/img/btn_google_signin_dark_normal_web@2x.png" alt="Googleアカウントでログイン"></p>
-            <p class="login-link__social-btn" @click="googleLogin"><img src="/img/btn_google_signin_dark_normal_web@2x.png" alt="Googleアカウントでログイン"></p>
           </div>
           <div class="registration-link">
             <p class="registration-link__title">はじめての方はこちら</p>
@@ -58,6 +57,7 @@ export default {
 
 <style lang="scss" scoped>
 .login-form {
+  height: calc( 100vh - 50px);
   background-color: #efefef;
   color: #2E6171;
   background-image: url(/img/login-background.png);
