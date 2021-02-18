@@ -1,0 +1,22 @@
+.user-input {
+  &__input input {
+    color: #2E6171;
+    width: 100%;
+    padding: 2rem 0.5rem 0.5rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #2E6171;
+    outline: none;
+  }
+  &__input input:focus {
+    color: #2E6171;
+  }
+  &__input input::placeholder {
+    color: rgba(46, 97, 113, 0.7);
+  }
+  &__error {
+    color: #838383;
+    height: 20px;
+    font-size: 1.2rem;
+  }
+}

@@ -36,7 +36,7 @@ export default {
   left: 0%;
   transition: all 0.2s;
   border-radius: 999px;
-  z-index: -1;
+  z-index: 0;
 }
 #slide-box.login {
   left: 0%;
@@ -63,6 +63,7 @@ export default {
     height: 35px;
     text-align: center;
     line-height: 35px;
+    z-index: 1;
   }
   &__item.current {
     color: #fff;

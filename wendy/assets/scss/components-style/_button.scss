@@ -2,6 +2,7 @@
   font-size: 1.8rem;
   background-color: transparent;
   font-weight: bold;
+  text-align: center;
   border: 3px solid transparent;
   border-radius: 99px;
   padding: 1.2rem 2.5rem;
@@ -9,6 +10,11 @@
   &-additional {
     background-color: #fff;
     color: #ff427a;
+    border: 3px solid #ff427a;
+  }
+  &-primary {
+    background-color: #ff427a;
+    color: #fff;
     border: 3px solid #ff427a;
   }
 }
