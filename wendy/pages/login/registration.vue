@@ -11,7 +11,7 @@
             </div>
             <div class="user-input">
               <p class="user-input__input"><input type="password" v-model="password" placeholder="パスワード"></p>
-              <p class="user-input__error">※メールアドレスは正しい形式で入力して下さい</p>
+              <p class="user-input__error">{{ passwordError }}</p>
             </div>
             <button class="registration-link__btn btn btn-primary" @click="signUp">新規登録</button>
             <p class="registration-link__social-title">他サイトIDで簡単登録</p>
@@ -34,10 +34,18 @@ export default {
     }
   },
   computed: {
-    ...mapState("auth", ["login_user"])
+    ...mapState("auth", ["login_user"]),
+    passwordError: function() {
+      if (this.password.length === 0) {
+        return ''
+      }
+      if (this.password.length < 8) {
+        return 'パスワードは8文字以上で入力してください'
+      }
+    }
   },
   methods: {
-    ...mapActions("auth", ["firebaseSignUp", 'createUser']),
+    ...mapActions("auth", ["googleLogin", "firebaseSignUp", 'createUser']),
     async signUp() {
       await this.firebaseSignUp({ email: this.email, password: this.password })
     },
