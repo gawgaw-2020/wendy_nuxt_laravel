@@ -1,24 +1,46 @@
 <template>
-  <section>
-    <h1>{{ message }}</h1>
-    <p><img :src="article.store_main_image" alt=""></p>
-    <p>店名：{{ article.store_name }}</p>
-    <p>店名：{{ article.store_category }}</p>
-    <p>最寄り駅：{{ article.store_area }}</p>
-    <p>ランチタイム：{{ article.store_business_hours_lunch }}</p>
-    <p v-if="article.store_business_hours_cafe">カフェタイム：{{ article.store_business_hours_cafe }}</p>
-    <p>ディナータイム：{{ article.store_business_hours_dinner }}</p>
-    <p>店舗ID：{{ article.store_id }}</p>
-    <ul>
-      <li v-for="(coupon, index) in article.coupons" :key="index">
-        <p>{{ coupon.coupon_category }}</p>
-        <p>{{ coupon.coupon_start }}~{{ coupon.coupon_end }}の入店で</p>
-        <p>クーポン内容{{ coupon.coupon_title }}</p>
-      </li>
-    </ul>
-    <p>住所：{{ article.store_address }}</p>
-    <p><nuxt-link to="/">TOPページへ</nuxt-link></p>
-  </section>
+  <div class="article-detail">
+    <div class="gallery" :style="{ backgroundImage: 'url(' + article.store_main_image + ')' }">
+      <p class="gallery__area"><i class="fas fa-home"></i>> 東京都 > 渋谷・原宿・表参道 > 渋谷</p>
+      <div class="gallery__share"><p><i class="fas fa-share-square"></i></p></div>
+      <div class="gallery__like"><p><i class="fas fa-heart"></i></p></div>
+    </div>
+    <div class="content">
+      <div class="content-header">
+        <div class="content-header__inner">
+          <p class="content-header__title">{{ article.store_name }}</p>
+          <p class="content-header__category">{{ article.store_category }}</p>
+          <div  class="business-hours">
+            <ul class="business-hours__list">
+              <li class="business-hours__item" v-if="article.store_business_hours_lunch">{{ article.store_business_hours_lunch }}</li>
+              <li class="business-hours__item" v-if="article.store_business_hours_cafe">{{ article.store_business_hours_cafe }}</li>
+              <li class="business-hours__item" v-if="article.store_business_hours_dinner">{{ article.store_business_hours_dinner }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="content-coupons">
+        <ul class="coupons-list">
+          <li class="coupon" v-for="(coupon, index) in article.coupons" :key="index" :style="{ backgroundImage: 'url(/img/' + coupon.coupon_id + '-bg.png)' }">
+            <div  class="coupon__content">
+              <p class="coupon__category">{{ coupon.coupon_category }}</p>
+              <p class="coupon__time">{{ coupon.coupon_start }}~{{ coupon.coupon_end }}の入店で</p>
+              <p class="coupon__title">{{ coupon.coupon_title }}</p>
+            </div>
+            <p class="coupon__link"><nuxt-link :to="`/article/${article.article_id}/${coupon.coupon_id}`"></nuxt-link></p>
+          </li>
+        </ul>
+      </div>
+      <p>住所：{{ article.store_address }}</p>
+      <div v-if="article.store_cashless">
+        <p><i class="fas fa-credit-card"></i>キャッシュレス</p>
+      </div>
+      <div v-if="article.store_non_smoke">
+        <p><i class="fas fa-smoking-ban"></i>完全禁煙</p>
+      </div>
+      <p>{{ article.store_main_text }}</p>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -35,23 +57,26 @@ const articlesRef = db.collection('articles')
 export default {
   data() {
     return {
-      message: '/articles/_id.vueを表示中',
     }
   },
   async asyncData(context) {
     let article
     let coupons = []
+    let coupon_id = []
+    let article_id = []
     const collection = await articlesRef.doc(context.params.id).get()
     .then(async function(doc) {
-      article = doc.data()
+      article_id.article_id = doc.id
+      const articleData = {...article_id, ...doc.data()}
+      article = articleData
       const subCollection = await doc.ref.collection('coupons').orderBy('coupon_start').get();
       subCollection.forEach(doc => {
-        console.log(doc.id);
-        coupons.push(doc.data())
+        coupon_id.coupon_id = doc.id
+        const allData = {...coupon_id, ...doc.data()}
+        coupons.push(allData)
       });
     })
     article['coupons'] = coupons
-    console.log(article);
     return { article }
   },
   // computed: {
@@ -68,6 +93,130 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.gallery {
+  height: 170px;
+  background-size: cover;
+  position: relative;
+  &__area {
+    font-size: 1rem;
+    color: #fff;
+    padding: 0.5rem 1.6rem;
+    backdrop-filter: blur(4px);
+    .fas {
+      margin-right: 0.4rem;
+    }
+  }
+  &__share {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    .fas {
+      font-size: 1.2rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &__like {
+    width: 51px;
+    height: 51px;
+    background-color: #ddd;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -32px;
+    right: 32px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    .fas {
+      color: #fff;
+      font-size: 2.1rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+.content {
+  color: #444;
+  .content-header {
+    padding: 1.6rem 0 0.8rem;
+    &__inner {
+      width: 95%;
+      margin: 0 auto;
+    }
+    &__title {
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+    &__category {
+      font-size: 1rem;
+      padding: 0.2rem 1rem;
+      border-radius: 999px;
+      border: 1px solid #707070;
+      display: inline-block;
+    }
+    .business-hours {
+      &__list {
+        padding-top: 0.8rem;
+      }
+      &__item {
+        font-size: 1.6rem;
+      }
+      &__item:not(:last-child) {
+        margin-bottom: 0.4rem;
+      }
+    }
+  }
+  .content-coupons {
+    background-color: #efefef;
+    padding: 2rem 0 2rem;
+    .coupon {
+      width: 340px;
+      height: 112px;
+      margin: 0 auto 0.8rem;
+      color: #2e6171;
+      font-weight: bold;
+      position: relative;
+      display: flex;
+      background-position: center;
+      &__content {
+        width: 75%;
+      }
+      &__category {
+        font-size: 1.4rem;
+        color: #ff427a;
+        position: absolute;
+        left: 16px;
+        top: 10px;
+      }
+      &__time {
+        font-size: 1.2rem;
+        padding: 1.2rem 0 0.6rem 6rem;
+        text-align: center;
+      }
+      &__title {
+        font-size: 1.2rem;
+        padding-left: 1.5rem;
+        line-height: 1.7;
+      }
+      &__link {
+        width: 25%;
+      }
+      &__link a {
+        font-size: 1rem;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        color: #fff;
+      }
+    }
+  }
+}
 </style>
+
