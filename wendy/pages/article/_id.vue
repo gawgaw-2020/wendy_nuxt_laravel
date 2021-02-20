@@ -31,14 +31,20 @@
           </li>
         </ul>
       </div>
-      <p>住所：{{ article.store_address }}</p>
+      <div class="content-map">
+        <div class="content-map__inner">
+          <p class="content-map__address">{{ article.store_address }}</p>
+          <p class="content-map__image"><img src="/img/store-map.png" alt=""></p>
+          <p class="content-map__link"><a target="_blank" :href="`https://www.google.com/maps/search/?api=1&query=${article.store_address}`">別ウィンドウで開く >></a></p>
+        </div>
+      </div>
+      <p>{{ article.store_main_text }}</p>
       <div v-if="article.store_cashless">
         <p><i class="fas fa-credit-card"></i>キャッシュレス</p>
       </div>
       <div v-if="article.store_non_smoke">
         <p><i class="fas fa-smoking-ban"></i>完全禁煙</p>
       </div>
-      <p>{{ article.store_main_text }}</p>
     </div>
   </div>
 </template>
@@ -94,6 +100,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.article-detail {
+  padding-bottom: 8rem;
+}
 .gallery {
   height: 170px;
   background-size: cover;
@@ -145,14 +154,15 @@ export default {
 .content {
   color: #444;
   .content-header {
-    padding: 1.6rem 0 0.8rem;
+    padding: 1rem 0 0.8rem;
     &__inner {
-      width: 95%;
+      width: 93%;
       margin: 0 auto;
     }
     &__title {
       font-size: 1.6rem;
       font-weight: bold;
+      margin-bottom: 0.4rem;
     }
     &__category {
       font-size: 1rem;
@@ -215,6 +225,26 @@ export default {
         height: 100%;
         color: #fff;
       }
+    }
+  }
+  .content-map {
+    padding: 2.7rem 0;
+    &__inner {
+      width: 93%;
+      margin: 0 auto;
+    }
+    &__address {
+      margin-bottom: 0.8rem;
+    }
+    &__image {
+      margin-bottom: 0.4rem;
+    }
+    &__link {
+      font-size: 1.2rem;
+      text-align: right;
+    }
+    &__link a {
+      color: #2e6171;
     }
   }
 }
