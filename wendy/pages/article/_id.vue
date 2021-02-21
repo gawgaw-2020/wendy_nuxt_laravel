@@ -40,13 +40,15 @@
       </div>
       <div class="content-info">
         <div class="content-info__inner">
-          <ArticleSectionTitle :section-title="'お店情報'"/>
-          <p>{{ article.store_main_text }}</p>
-          <div v-if="article.store_cashless">
-            <p><i class="fas fa-credit-card"></i>キャッシュレス</p>
-          </div>
-          <div v-if="article.store_non_smoke">
-            <p><i class="fas fa-smoking-ban"></i>完全禁煙</p>
+          <ArticleSectionTitle class="content-info__title" :section-title="'お店情報'"/>
+          <p class="content-info__description" v-for="(str, index) in (article.store_main_text).split('\\n')" :key="index">{{str}}</p>
+          <div class="content-info__tags">
+            <div class="content-info__tag" v-if="article.store_cashless">
+              <p><i class="fas fa-credit-card"></i>キャッシュレス</p>
+            </div>
+            <div class="content-info__tag" v-if="article.store_non_smoke">
+              <p><i class="fas fa-smoking-ban"></i>完全禁煙</p>
+            </div>
           </div>
         </div>
       </div>
@@ -256,6 +258,28 @@ export default {
     &__inner {
       width: 93%;
       margin: 0 auto;
+    }
+    &__title {
+      margin-bottom: 2.4rem;
+    }
+    &__description {
+      font-size: 1.4rem;
+    }
+    &__tags {
+      display: flex;
+      padding: 2.4rem 0;
+    }
+    &__tag {
+      width: 160px;
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      border-radius: 10px;
+      border: 1px solid #707070;
+      margin-right: 1.6rem;
+      .fas {
+        margin-right: 0.8rem;
+      }
     }
   }
 }
