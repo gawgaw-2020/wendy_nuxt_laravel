@@ -63,15 +63,43 @@
           <ArticleSectionTitle class="content-payment__title" :section-title="'お店の情報'"/>
           <dl class="payment-list">
             <dt class="payment-list__title">クレジットカード</dt>
-            <dd class="payment-list__data">VISA・MASTER CARD・JCB</dd>
+            <dd class="payment-list__data">{{ article.store_credit_card }}</dd>
             <dt class="payment-list__title">電子マネー</dt>
-            <dd class="payment-list__data">iD・QUICPay・楽天Edy</dd>
+            <dd class="payment-list__data">{{ article.store_e_money }}</dd>
           </dl>
           <p class="content-payment__info">※その他のお支払い方法については店舗にお問い合わせください</p>
         </div>
       </div>
+      <div class="content-menu">
+        <div class="content-menu__inner">
+          <ArticleSectionTitle class="content-menu__title" :section-title="'メニュー'"/>
+          <p class="content-menu__category-title">おすすめ料理</p>
+          <dl class="menu-list">
+            <dt class="menu-list__title">マルゲリータ</dt>
+            <dd class="menu-list__data">1,500 円</dd>
+            <dt class="menu-list__title">マルゲリータ</dt>
+            <dd class="menu-list__data">1,500 円</dd>
+            <dt class="menu-list__title">マルゲリータ</dt>
+            <dd class="menu-list__data">1,500 円</dd>
+            <dt class="menu-list__title">マルゲリータ</dt>
+            <dd class="menu-list__data">1,500 円</dd>
+            <dt class="menu-list__title">マルゲリータ</dt>
+            <dd class="menu-list__data">1,500 円</dd>
+          </dl>
+          <p class="content-menu__category-title">おすすめドリンク</p>
+          <dl class="menu-list">
+            <dt class="menu-list__title">プレミアム・モルツ（生）</dt>
+            <dd class="menu-list__data">500 円</dd>
+            <dt class="menu-list__title">デトックスモヒート</dt>
+            <dd class="menu-list__data">680 円</dd>
+            <dt class="menu-list__title">デトックスモヒート</dt>
+            <dd class="menu-list__data">680 円</dd>
+          </dl>
+        </div>
+      </div>
+      <!-- 検証用 -->
       <textarea name="" id="" cols="30" rows="10" v-model="content"></textarea>
-      <button @click="save">保存</button>
+      <button @click="save" :data-documentID="article.article_id">保存</button>
     </div>
   </div>
 </template>
@@ -122,8 +150,10 @@ ArticleStorePicturesSlider
     // ...mapActions('articles', ['getArticleById'])
 
     // 投稿テスト用メソッド
-    save() {
-      var testRef = articlesRef.doc("MzcZn7ie00dYig8YWlZ1");
+    save(e) {
+      let target = e.target
+      const documentID = target.getAttribute('data-documentID')
+      var testRef = articlesRef.doc(documentID);
       testRef.update({
         store_main_text: this.content
       })
@@ -136,11 +166,9 @@ ArticleStorePicturesSlider
       });
     }
   },
-  // created: function(){
-  //   this.getArticleById({
-  //     articleId: this.$route.params.id
-  //   })
-  // }
+  created: function(){
+    this.content = this.article.store_main_text
+  }
 }
 </script>
 
@@ -354,6 +382,36 @@ ArticleStorePicturesSlider
     &__info {
       font-size: 1.2rem;
       color: #838383;
+    }
+  }
+  .content-menu {
+    padding: 0 0 2.4rem;
+    font-size: 1.2rem;
+    &__inner {
+      width: 93%;
+      margin: 0 auto;
+    }
+    &__title {
+      margin-bottom: 2.4rem;
+    }
+    &__category-title {
+      margin-bottom: 1rem;
+    }
+    .menu-list {
+      display: flex;
+      flex-wrap: wrap;
+      padding-bottom: 2.4rem;
+      &__title {
+        width: 70%;
+        padding-left: 2.4rem;
+      }
+      &__data {
+        width: 30%;
+        text-align: right;
+      }
+      &__data:not(:last-child) {
+        margin-bottom: 1rem;
+      }
     }
   }
 }
