@@ -52,6 +52,12 @@
           </div>
         </div>
       </div>
+      <div class="content-pictures">
+        <div class="content-pictures__inner">
+          <ArticleSectionTitle class="content-info__title" :section-title="'お店の雰囲気'"/>
+        </div>
+        <ArticleStorePicturesSlider :store-pictures="article.store_pictures"/>
+      </div>
     </div>
   </div>
 </template>
@@ -61,6 +67,7 @@ import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 import firebase from 'firebase'
 //firestoreのアクション部分のパッケージをインストールする
 import { firestoreAction } from 'vuexfire'
+import ArticleStorePicturesSlider from '../../components/ArticleStorePicturesSlider.vue';
 
 //firebaseのDBを定義する
 const db = firebase.firestore()
@@ -73,6 +80,7 @@ export default {
     }
   },
   async asyncData(context) {
+ArticleStorePicturesSlider
     let article
     let coupons = []
     let coupon_id = []
@@ -280,6 +288,12 @@ export default {
       .fas {
         margin-right: 0.8rem;
       }
+    }
+  }
+  .content-pictures {
+    &__inner {
+      width: 93%;
+      margin: 0 auto;
     }
   }
 }
