@@ -58,6 +58,20 @@
         </div>
         <ArticleStorePicturesSlider :store-pictures="article.store_pictures"/>
       </div>
+      <div class="content-payment">
+        <div class="content-payment__inner">
+          <ArticleSectionTitle class="content-payment__title" :section-title="'お店の情報'"/>
+          <dl class="payment-list">
+            <dt class="payment-list__title">クレジットカード</dt>
+            <dd class="payment-list__data">VISA・MASTER CARD・JCB</dd>
+            <dt class="payment-list__title">電子マネー</dt>
+            <dd class="payment-list__data">iD・QUICPay・楽天Edy</dd>
+          </dl>
+          <p class="content-payment__info">※その他のお支払い方法については店舗にお問い合わせください</p>
+        </div>
+      </div>
+      <textarea name="" id="" cols="30" rows="10" v-model="content"></textarea>
+      <button @click="save">保存</button>
     </div>
   </div>
 </template>
@@ -77,6 +91,7 @@ const articlesRef = db.collection('articles')
 export default {
   data() {
     return {
+      content: ''
     }
   },
   async asyncData(context) {
@@ -100,12 +115,27 @@ ArticleStorePicturesSlider
     article['coupons'] = coupons
     return { article }
   },
-  // computed: {
-  //   ...mapState('articles', ['article'])
-  // },
-  // methods: {
-  //   ...mapActions('articles', ['getArticleById'])
-  // },
+  computed: {
+    // ...mapState('articles', ['article'])
+  },
+  methods: {
+    // ...mapActions('articles', ['getArticleById'])
+
+    // 投稿テスト用メソッド
+    save() {
+      var testRef = articlesRef.doc("MzcZn7ie00dYig8YWlZ1");
+      testRef.update({
+        store_main_text: this.content
+      })
+      .then(() => {
+        console.log("Document successfully updated!");
+      })
+      .catch((error) => {
+        // The document probably doesn't exist.
+        console.error("Error updating document: ", error);
+      });
+    }
+  },
   // created: function(){
   //   this.getArticleById({
   //     articleId: this.$route.params.id
@@ -272,9 +302,11 @@ ArticleStorePicturesSlider
     }
     &__description {
       font-size: 1.4rem;
+      white-space: pre-wrap;
     }
     &__tags {
       display: flex;
+      flex-wrap: wrap;
       padding: 2.4rem 0;
     }
     &__tag {
@@ -284,7 +316,8 @@ ArticleStorePicturesSlider
       text-align: center;
       border-radius: 10px;
       border: 1px solid #707070;
-      margin-right: 1.6rem;
+      margin-right: 1.4rem;
+      margin-bottom: 0.8rem;
       .fas {
         margin-right: 0.8rem;
       }
@@ -294,6 +327,33 @@ ArticleStorePicturesSlider
     &__inner {
       width: 93%;
       margin: 0 auto;
+    }
+  }
+  .content-payment {
+    padding: 4rem 0 2.4rem;
+    font-size: 1.2rem;
+    &__inner {
+      width: 93%;
+      margin: 0 auto;
+    }
+    &__title {
+      margin-bottom: 2.4rem;
+    }
+    .payment-list {
+      padding-bottom: 1.6rem;
+      &__title {
+        margin-bottom: 0.4rem;
+      }
+      &__data {
+        padding-left: 3.2rem;
+      }
+      &__data:not(:last-child) {
+        margin-bottom: 2.4rem;
+      }
+    }
+    &__info {
+      font-size: 1.2rem;
+      color: #838383;
     }
   }
 }
