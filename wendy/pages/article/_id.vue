@@ -38,6 +38,11 @@
           <p class="content-map__link"><a target="_blank" :href="`https://www.google.com/maps/search/?api=1&query=${article.store_address}`">別ウィンドウで開く >></a></p>
         </div>
       </div>
+      <div class="content-reservation">
+        <div class="content-reservation__inner">
+          <button class="btn btn-success">このお店を予約・お問い合わせ</button>
+        </div>
+      </div>
       <div class="content-info">
         <div class="content-info__inner">
           <ArticleSectionTitle class="content-info__title" :section-title="'お店情報'"/>
@@ -95,6 +100,11 @@
             <dt class="menu-list__title">デトックスモヒート</dt>
             <dd class="menu-list__data">680 円</dd>
           </dl>
+        </div>
+      </div>
+      <div class="content-reservation">
+        <div class="content-reservation__inner">
+          <button class="btn btn-success">このお店を予約・お問い合わせ</button>
         </div>
       </div>
       <!-- 検証用 -->
@@ -301,7 +311,7 @@ ArticleStorePicturesSlider
     }
   }
   .content-map {
-    padding: 2.7rem 0;
+    padding: 2.7rem 0 1.2rem;
     &__inner {
       width: 93%;
       margin: 0 auto;
@@ -319,6 +329,10 @@ ArticleStorePicturesSlider
     &__link a {
       color: #2e6171;
     }
+  }
+  .content-reservation {
+    text-align: center;
+    padding: 0 0 2.4rem;
   }
   .content-info {
     &__inner {
