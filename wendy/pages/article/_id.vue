@@ -38,12 +38,17 @@
           <p class="content-map__link"><a target="_blank" :href="`https://www.google.com/maps/search/?api=1&query=${article.store_address}`">別ウィンドウで開く >></a></p>
         </div>
       </div>
-      <p>{{ article.store_main_text }}</p>
-      <div v-if="article.store_cashless">
-        <p><i class="fas fa-credit-card"></i>キャッシュレス</p>
-      </div>
-      <div v-if="article.store_non_smoke">
-        <p><i class="fas fa-smoking-ban"></i>完全禁煙</p>
+      <div class="content-info">
+        <div class="content-info__inner">
+          <ArticleSectionTitle :section-title="'お店情報'"/>
+          <p>{{ article.store_main_text }}</p>
+          <div v-if="article.store_cashless">
+            <p><i class="fas fa-credit-card"></i>キャッシュレス</p>
+          </div>
+          <div v-if="article.store_non_smoke">
+            <p><i class="fas fa-smoking-ban"></i>完全禁煙</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -245,6 +250,12 @@ export default {
     }
     &__link a {
       color: #2e6171;
+    }
+  }
+  .content-info {
+    &__inner {
+      width: 93%;
+      margin: 0 auto;
     }
   }
 }
