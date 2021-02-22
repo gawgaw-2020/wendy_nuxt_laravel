@@ -37,16 +37,13 @@ export const actions = {
         subCollection.forEach(doc => {
           coupon_id.coupon_id = doc.id
           const couponData = { ...coupon_id, ...doc.data() }
-          console.log(couponData);
           coupons.push(couponData)
         });
         
         storeData['coupons'] = coupons
-        console.log(storeData);
         allArticlesData.push(storeData)
       })
     })
-    console.log(allArticlesData);
     await commit('setAllArticles', allArticlesData)
   },
 
