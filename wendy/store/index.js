@@ -7,3 +7,5 @@ export const mutations = {
 }
 
 //このvuexfireMutationsはindex.jsにしか記載してはいけない。エラーになる。
+
+// export const strict = false

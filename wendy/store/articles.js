@@ -1,6 +1,7 @@
 import firebase from '../plugins/firebase'
 import { firestoreAction } from 'vuexfire'
 
+
 const db = firebase.firestore()
 const articlesRef = db.collection('articles')
 
@@ -21,18 +22,31 @@ export const mutations = {
 export const actions = {
 
   async getAllArticles({ commit }) {
-    let data = []
-    let id = {}
+    let allArticlesData = []
     await articlesRef.get()
     .then(snapshot => {
-      snapshot.forEach((doc) => {
+      snapshot.forEach(async(doc) => {
+        let id = {}
+        let coupon_id = {}
+        let storeData = {}
+        let coupons = []
         id.id = doc.id
-        const allData = {...id, ...doc.data()}
-        data.push(allData)
+        storeData = {...id, ...doc.data()}
+        const subCollection = await doc.ref.collection('coupons').orderBy('coupon_start').get();
+        
+        subCollection.forEach(doc => {
+          coupon_id.coupon_id = doc.id
+          const couponData = { ...coupon_id, ...doc.data() }
+          coupons.push(couponData)
+        });
+        
+        storeData['coupons'] = coupons
+        console.log(storeData);
+        allArticlesData.push(storeData)
       })
     })
-    const allArticlesData = data
-    commit('setAllArticles', allArticlesData)
+    console.log(allArticlesData);
+    await commit('setAllArticles', allArticlesData)
   },
 
   async getArticleById({ commit }, payload) {

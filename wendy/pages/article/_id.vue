@@ -133,7 +133,6 @@ export default {
     }
   },
   async asyncData(context) {
-ArticleStorePicturesSlider
     let article
     let coupons = []
     let coupon_id = []
