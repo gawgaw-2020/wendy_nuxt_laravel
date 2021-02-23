@@ -12,6 +12,10 @@ export const state = () => ({
 
 export const mutations = {
   setAllArticles(state, allArticles) {
+    console.log(allArticles);
+    console.log(typeof allArticles);
+    // state.allArticles.splice(0)
+    // state.allArticles.push(...allArticles)
     state.allArticles = allArticles
   },
   setArticle(state, articleData) {
@@ -23,28 +27,32 @@ export const actions = {
 
   async getAllArticles({ commit }) {
     let allArticlesData = []
+    console.log(allArticlesData);
     await articlesRef.get()
     .then(snapshot => {
-      snapshot.forEach(async(doc) => {
+      snapshot.forEach(async (doc) => {
         let id = {}
         let coupon_id = {}
         let storeData = {}
         let coupons = []
         id.id = doc.id
-        storeData = {...id, ...doc.data()}
-        
-        const subCollection = await doc.ref.collection('coupons').orderBy('coupon_start').get();
+        storeData = { ...id, ...doc.data() }
+
+        const subCollection = await doc.ref.collection('coupons').orderBy('coupon_start').get()
         subCollection.forEach(doc => {
           coupon_id.coupon_id = doc.id
           const couponData = { ...coupon_id, ...doc.data() }
           coupons.push(couponData)
-        });
-        
+        })
+
         storeData['coupons'] = coupons
+        // console.log(storeData)
         allArticlesData.push(storeData)
+        // console.log(allArticlesData)
       })
     })
-    await commit('setAllArticles', allArticlesData)
+    commit('setAllArticles', allArticlesData)
+    
   },
 
   async getArticleById({ commit }, payload) {

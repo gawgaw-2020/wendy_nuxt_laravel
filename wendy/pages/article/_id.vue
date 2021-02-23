@@ -1,5 +1,13 @@
 <template>
   <div class="article-detail">
+    <div class="modal" v-show="isShow">
+      <div class="modal__inner animate__animated animate__fadeIn">
+      <div class="modal__image" :style="{ backgroundImage: 'url(' + article.store_main_image + ')' }"></div>
+      <p class="modal__title">{{ article.store_name }}</p>
+      <p class="modal__info">予約・お問い合わせの際は<br>「WENDYのクーポンを使いたい」<br>とお伝え下さい。</p>
+      </div>
+      <div class="modal__background animate__animated animate__fadeIn" @click="modalToggle"></div>
+    </div>
     <div class="gallery" :style="{ backgroundImage: 'url(' + article.store_main_image + ')' }">
       <p class="gallery__area"><i class="fas fa-home"></i>> 東京都 > 渋谷・原宿・表参道 > 渋谷</p>
       <div class="gallery__share"><p><i class="fas fa-share-square"></i></p></div>
@@ -40,7 +48,7 @@
       </div>
       <div class="content-reservation">
         <div class="content-reservation__inner">
-          <button class="btn btn-success">このお店を予約・お問い合わせ</button>
+          <button class="content-reservation__btn btn btn-success" @click="modalToggle">このお店を予約・お問い合わせ</button>
         </div>
       </div>
       <div class="content-info">
@@ -104,7 +112,7 @@
       </div>
       <div class="content-reservation">
         <div class="content-reservation__inner">
-          <button class="btn btn-success">このお店を予約・お問い合わせ</button>
+          <button class="content-reservation__btn btn btn-success" @click="modalToggle">このお店を予約・お問い合わせ</button>
         </div>
       </div>
       <!-- 検証用 -->
@@ -129,7 +137,8 @@ const articlesRef = db.collection('articles')
 export default {
   data() {
     return {
-      content: ''
+      content: '',
+      isShow: false
     }
   },
   async asyncData(context) {
@@ -157,6 +166,14 @@ export default {
   },
   methods: {
     // ...mapActions('articles', ['getArticleById'])
+    modalToggle() {
+      this.isShow = !this.isShow
+      if(document.body.style.overflow === '') {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    },
 
     // 投稿テスト用メソッド
     save(e) {
@@ -182,6 +199,49 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.modal {
+  text-align: center;
+  color: #fff;
+  &__inner{
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 600px;
+    // background: transparent linear-gradient(180deg, var(--unnamed-color-eb5276) 0%, #EAE5E6 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(180deg, #EB5276 0%, #EAE5E6 300%) 0% 0% no-repeat padding-box;
+    opacity: 1;
+    border-radius: 20px;
+    z-index: 10000;
+  }
+  &__image {
+    height: 170px;
+    background-size: cover;
+    border-radius: 20px 20px 0 0;
+    margin-bottom: 1.6rem;
+  }
+  &__title {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 2.4rem;
+  }
+  &__info {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  &__background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.8);
+    z-index: 9999;
+    cursor: pointer;
+  }
+}
+
 .article-detail {
   padding-bottom: 8rem;
 }
@@ -332,6 +392,9 @@ export default {
   .content-reservation {
     text-align: center;
     padding: 0 0 2.4rem;
+    &__btn {
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    }
   }
   .content-info {
     &__inner {
