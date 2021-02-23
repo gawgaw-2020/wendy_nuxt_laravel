@@ -5,6 +5,36 @@
       <div class="modal__image" :style="{ backgroundImage: 'url(' + article.store_main_image + ')' }"></div>
       <p class="modal__title">{{ article.store_name }}</p>
       <p class="modal__info">予約・お問い合わせの際は<br>「WENDYのクーポンを使いたい」<br>とお伝え下さい。</p>
+      <ul class="link-list">
+        <li class="link-list__item">
+          <i class="fas fa-external-link-alt"></i>
+          <a class="link-list__link" target="_blank" :href="article.store_url_official">店舗ホームページ</a>
+        </li>
+        <li class="link-list__item" v-if="article.store_url_hotpepper">
+          <i class="fas fa-external-link-alt"></i>
+          <a class="link-list__link" target="_blank" :href="article.store_url_hotpepper">ホットペッパーグルメ</a>
+        </li>
+        <li class="link-list__item" v-if="article.store_url_tabelog">
+          <i class="fas fa-external-link-alt"></i>
+          <a class="link-list__link" target="_blank" :href="article.store_url_tabelog">食べログ</a>
+        </li>
+        <li class="link-list__item" v-if="article.store_url_gnavi">
+          <i class="fas fa-external-link-alt"></i>
+          <a class="link-list__link" target="_blank" :href="article.store_url_gnavi">ぐるなび</a>
+        </li>
+        <li class="link-list__item" v-if="article.store_url_twitter">
+          <i class="fas fa-external-link-alt"></i>
+          <a class="link-list__link" target="_blank" :href="article.store_url_twitter">Twitter</a>
+        </li>
+        <li class="link-list__item" v-if="article.store_url_instagram">
+          <i class="fas fa-external-link-alt"></i>
+          <a class="link-list__link" target="_blank" :href="article.store_url_instagram">Instagram</a>
+        </li>
+        <li class="link-list__item">
+          <i class="fas fa-times"></i>
+          <a class="link-list__link" @click="modalToggle">店舗詳細画面へ戻る</a>
+        </li>
+      </ul>
       </div>
       <div class="modal__background animate__animated animate__fadeIn" @click="modalToggle"></div>
     </div>
@@ -203,23 +233,32 @@ export default {
   text-align: center;
   color: #fff;
   &__inner{
+    // overflow: hidden;
+    overflow: scroll;
     position: fixed;
-    top: 40%;
+    top: 0%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    height: 600px;
+    transform: translate(-50%, 0%);
+    width: 85%;
+    height: calc(100vh - 75px);
     // background: transparent linear-gradient(180deg, var(--unnamed-color-eb5276) 0%, #EAE5E6 100%) 0% 0% no-repeat padding-box;
-    background: transparent linear-gradient(180deg, #EB5276 0%, #EAE5E6 300%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(180deg, #ff427a 0%, #EAE5E6 300%) 0% 0% no-repeat padding-box;
     opacity: 1;
-    border-radius: 20px;
     z-index: 10000;
   }
   &__image {
     height: 170px;
     background-size: cover;
-    border-radius: 20px 20px 0 0;
     margin-bottom: 1.6rem;
+  }
+  &__content {
+    position: relative;
+  }
+  &__close {
+    position: absolute;
+    top: 0;
+    right: 5%;
+    font-size: 2.4rem;
   }
   &__title {
     font-size: 1.6rem;
@@ -239,6 +278,32 @@ export default {
     background-color: rgba(0,0,0,.8);
     z-index: 9999;
     cursor: pointer;
+  }
+  .link-list {
+    width: 90%;
+    margin: 0 auto;
+    padding: 3rem 0;
+    &__item {
+      border: 2px solid #fff;
+      border-radius: 8px;
+      position: relative;
+      height: 50px;
+      margin-bottom: 1.2rem;
+    }
+    &__link {
+      color: #fff;
+      font-weight: bold;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      line-height: 50px;
+    }
+    .fas {
+      position: absolute;
+      right: 5%;
+      top: 50%;
+      transform: translate(0%, -50%);
+    }
   }
 }
 
