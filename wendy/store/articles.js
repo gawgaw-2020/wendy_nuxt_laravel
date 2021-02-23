@@ -12,11 +12,8 @@ export const state = () => ({
 
 export const mutations = {
   setAllArticles(state, allArticles) {
-    console.log(allArticles);
-    console.log(typeof allArticles);
-    // state.allArticles.splice(0)
-    // state.allArticles.push(...allArticles)
-    state.allArticles = allArticles
+    state.allArticles.splice(0)
+    state.allArticles.push(...allArticles)
   },
   setArticle(state, articleData) {
     state.article = articleData
@@ -26,10 +23,11 @@ export const mutations = {
 export const actions = {
 
   async getAllArticles({ commit }) {
-    let allArticlesData = []
-    console.log(allArticlesData);
     await articlesRef.get()
     .then(snapshot => {
+
+      let i = snapshot.size
+      let allArticlesData = []
       snapshot.forEach(async (doc) => {
         let id = {}
         let coupon_id = {}
@@ -46,12 +44,14 @@ export const actions = {
         })
 
         storeData['coupons'] = coupons
-        // console.log(storeData)
         allArticlesData.push(storeData)
-        // console.log(allArticlesData)
+        
+        i--
+        if (i == 0) {
+          commit('setAllArticles', allArticlesData)
+        }
       })
     })
-    commit('setAllArticles', allArticlesData)
     
   },
 
