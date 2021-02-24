@@ -108,6 +108,7 @@ export default {
 
       } else {
         this.deleteLoginUser();
+        this.deleteLinePositionState();
         localStorage.removeItem("wendy");
 
 
@@ -133,6 +134,7 @@ export default {
     ]),
     ...mapMutations("mypage", [
       "setLinePositionState",
+      "deleteLinePositionState"
     ]),
     ...mapActions("auth", [
       "logout",
