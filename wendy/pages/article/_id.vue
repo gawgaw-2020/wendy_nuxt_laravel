@@ -41,7 +41,7 @@
     <div class="gallery" :style="{ backgroundImage: 'url(' + article.store_main_image + ')' }">
       <p class="gallery__area"><i class="fas fa-home"></i>> 東京都 > 渋谷・原宿・表参道 > 渋谷</p>
       <div class="gallery__share"><p><i class="fas fa-share-square"></i></p></div>
-      <div class="gallery__like"><p><i class="fas fa-heart"></i></p></div>
+      <div class="gallery__like" :class="{ 'active animate__animated animate__bounceIn': likeActive === true }" @click="likeToggle"><p><i class="fas fa-heart"></i></p></div>
     </div>
     <div class="content">
       <div class="content-header">
@@ -168,7 +168,8 @@ export default {
   data() {
     return {
       content: '',
-      isShow: false
+      isShow: false,
+      likeActive: false
     }
   },
   async asyncData(context) {
@@ -220,10 +221,41 @@ export default {
         // The document probably doesn't exist.
         console.error("Error updating document: ", error);
       });
+    },
+
+    // いいね処理
+    async likeToggle() {
+      console.log('likeToggleスタート！！');
+      // 見た目の切り替え
+      this.likeActive = !this.likeActive
+
+      // DB上の処理
+      // お気に入り登録されてなかったら（記事のfavorite_usersにuser.uidがなければ）
+        // お気に入り登録する（記事以下サブコレとユーザー以下サブコレ両方）
+      // そうでなければ
+        // お気に入り削除する（記事以下サブコレとユーザー以下サブコレ両方）
+
     }
   },
-  created: function(){
+  created: async function(){
+    const user = firebase.auth().currentUser;
+
     this.content = this.article.store_main_text
+
+    // お気に入りしていたら、this.likeActiveをtrueにする
+    let likeFlag = false
+    await articlesRef
+    .doc(this.$nuxt.$route.params.id)
+    .collection('favorite_users')
+    .doc(user.uid)
+    .get()
+    .then(function(doc) {
+      if (doc.exists) {
+        likeFlag = true
+      }
+    })
+    this.likeActive = likeFlag
+
   }
 }
 </script>
@@ -356,6 +388,9 @@ export default {
       left: 50%;
       transform: translate(-50%, -50%);
     }
+  }
+  &__like.active {
+    background-color: #ff427a;
   }
 }
 .content {
