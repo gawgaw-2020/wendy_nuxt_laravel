@@ -154,9 +154,6 @@ export default {
         } else {
           this.isActiveShadow = true
         }
-        if (to.path === '/user/mypage-favorite') {
-          this.setLinePosition('favorite')
-        }
         if (to.path === '/login/login') {
           this.setBoxPosition('login')
         }
