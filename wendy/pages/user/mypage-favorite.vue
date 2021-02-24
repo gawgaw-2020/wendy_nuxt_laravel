@@ -33,10 +33,7 @@ export default {
     ...mapActions('mypage', ['getFavoriteArticles']),
   },
   created: function() {
-    firebase.auth().onAuthStateChanged(user => {
-      //リロード後に実行したい処理
-      this.getFavoriteArticles(user)
-    })
+    this.getFavoriteArticles()
   },
 }
 </script>

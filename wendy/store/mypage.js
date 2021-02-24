@@ -28,11 +28,9 @@ export const actions = {
     }, 80);
   },
 
-  getFavoriteArticles({ commit }, user) {
-    console.log('start');
-    console.log(user.uid);
-    // let wendyLocal = localStorage.getItem('wendy')
-    // console.log(JSON.parse(wendyLocal).auth.login_user.uid);
+  getFavoriteArticles({ commit }) {
+    let wendyLocal = localStorage.getItem('wendy')
+    const user = JSON.parse(wendyLocal).auth.login_user
 
     usersRef.doc(`${user.uid}`).collection('favorite_articles').get()
     .then(function(querySnapshot) {
@@ -42,8 +40,6 @@ export const actions = {
       let articleCount = 0;
 
       querySnapshot.forEach(async doc => {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
 
           const addData = {
             store_name: '',
@@ -60,8 +56,6 @@ export const actions = {
           favoriteArticles[articleCount].store_area = articleSnapshot.get('store_area')
           favoriteArticles[articleCount].store_small_text = articleSnapshot.get('store_small_text')
           articleCount++
-
-          console.log(favoriteArticles);
 
           i--
           if (i == 0) {
