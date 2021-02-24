@@ -5,16 +5,12 @@ const articlesRef = db.collection('articles')
 
 export const state = () => ({
   allArticles: [],
-  article: null
 })
 
 export const mutations = {
   setAllArticles(state, allArticles) {
     state.allArticles.splice(0)
     state.allArticles.push(...allArticles)
-  },
-  setArticle(state, articleData) {
-    state.article = articleData
   }
 }
 
@@ -50,17 +46,6 @@ export const actions = {
         }
       })
     })
-    
-  },
-
-  async getArticleById({ commit }, payload) {
-    let data
-    await articlesRef.doc(`${payload.articleId}`).get()
-    .then(function(doc) {
-      data = doc.data()
-    })
-    const articleData = data
-    commit('setArticle', articleData)
   }
 
 }

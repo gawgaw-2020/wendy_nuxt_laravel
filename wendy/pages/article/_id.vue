@@ -145,25 +145,17 @@
           <button class="content-reservation__btn btn btn-success" @click="modalToggle">このお店を予約・お問い合わせ</button>
         </div>
       </div>
-      <!-- 検証用 -->
-      <textarea name="" id="" cols="30" rows="10" v-model="content"></textarea>
-      <button @click="save" :data-documentID="article.article_id">保存</button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 import firebase from 'firebase'
-//firestoreのアクション部分のパッケージをインストールする
-import { firestoreAction } from 'vuexfire'
-import ArticleStorePicturesSlider from '../../components/ArticleStorePicturesSlider.vue';
 
 //firebaseのDBを定義する
 const db = firebase.firestore()
 const articlesRef = db.collection('articles')
 const usersRef = db.collection('users')
-
 
 export default {
   data() {
@@ -178,7 +170,7 @@ export default {
     let coupons = []
     let coupon_id = []
     let article_id = []
-    const collection = await articlesRef.doc(context.params.id).get()
+    await articlesRef.doc(context.params.id).get()
     .then(async function(doc) {
       article_id.article_id = doc.id
       const articleData = {...article_id, ...doc.data()}
@@ -194,10 +186,8 @@ export default {
     return { article }
   },
   computed: {
-    // ...mapState('articles', ['article'])
   },
   methods: {
-    // ...mapActions('articles', ['getArticleById'])
     modalToggle() {
       this.isShow = !this.isShow
       if(document.body.style.overflow === '') {
@@ -206,24 +196,6 @@ export default {
         document.body.style.overflow = '';
       }
     },
-
-    // 投稿テスト用メソッド
-    save(e) {
-      let target = e.target
-      const documentID = target.getAttribute('data-documentID')
-      var testRef = articlesRef.doc(documentID);
-      testRef.update({
-        store_main_text: this.content
-      })
-      .then(() => {
-        console.log("Document successfully updated!");
-      })
-      .catch((error) => {
-        // The document probably doesn't exist.
-        console.error("Error updating document: ", error);
-      });
-    },
-
     // いいね処理
     async likeToggle() {
       // 見た目の切り替え
@@ -277,8 +249,6 @@ export default {
   },
   created: async function(){
     
-    this.content = this.article.store_main_text
-
     const user = firebase.auth().currentUser;
     // お気に入りしていたら、this.likeActiveをtrueにする
     if (user) {
