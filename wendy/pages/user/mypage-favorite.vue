@@ -29,9 +29,10 @@ export default {
     ...mapState('mypage', ['favoriteArticles']),
   },
   methods: {
-    ...mapActions('mypage', ['getFavoriteArticles']),
+    ...mapActions('mypage', ['getFavoriteArticles', 'setLinePosition']),
   },
   created: function() {
+    this.setLinePosition('favorite')
     this.getFavoriteArticles()
   },
   mounted() {

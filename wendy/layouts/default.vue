@@ -65,16 +65,8 @@ export default {
       isActiveShadow: true
     };
   },
-  beforeCreate() {
-    let wendyLocal = localStorage.getItem('wendy')
-    if (wendyLocal !== null) {
-      const linePosition = JSON.parse(wendyLocal).mypage.linePosition;
-      this.$store.commit("mypage/setLinePositionState", linePosition)
-      const boxPosition = JSON.parse(wendyLocal).login.boxPosition;
-      this.$store.commit("login/setBoxPositionState", boxPosition)
-    }
-  },
   created() {
+    // ホーム画面なら影を付けない
     if (this.$router.currentRoute.name === 'index') {
       this.isActiveShadow = false
     }
@@ -107,13 +99,11 @@ export default {
         }
 
       } else {
+        // 以下ログアウト時 ＆ ログアウト時にリロードした時の処理
         this.deleteLoginUser();
         this.deleteLinePositionState();
         localStorage.removeItem("wendy");
 
-
-        // ここの処理はログアウト時にリロードした場合にも走る
-        // ログアウト時に店舗画面や詳細画面でリロードすると、トップページに遷移してしまうので
         // /user/以下のディレクトリにいた場合のみ、トップページへ遷移させる
         const str = this.$router.currentRoute.name
         const pattern = 'user-'
@@ -148,14 +138,16 @@ export default {
     ]),
   },
   watch: {
-    // ページ遷移を監視
+    // 常にページ遷移を監視
     '$route': function(to, from) {
       if (to.path !== from.path) {
+        // ホーム画面に遷移した時のみ、影を付けない
         if (to.path === '/') {
           this.isActiveShadow = false
         } else {
           this.isActiveShadow = true
         }
+        // ログイン画面に遷移した時に、boxの初期位置を指定
         if (to.path === '/login/login') {
           this.setBoxPosition('login')
         }
