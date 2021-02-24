@@ -162,6 +162,7 @@ import ArticleStorePicturesSlider from '../../components/ArticleStorePicturesSli
 //firebaseのDBを定義する
 const db = firebase.firestore()
 const articlesRef = db.collection('articles')
+const usersRef = db.collection('users')
 
 
 export default {
@@ -225,36 +226,75 @@ export default {
 
     // いいね処理
     async likeToggle() {
-      console.log('likeToggleスタート！！');
       // 見た目の切り替え
       this.likeActive = !this.likeActive
 
-      // DB上の処理
-      // お気に入り登録されてなかったら（記事のfavorite_usersにuser.uidがなければ）
-        // お気に入り登録する（記事以下サブコレとユーザー以下サブコレ両方）
-      // そうでなければ
-        // お気に入り削除する（記事以下サブコレとユーザー以下サブコレ両方）
+      const user = firebase.auth().currentUser;
+      const articleId = this.$nuxt.$route.params.id
+      if (user) {
+        
+        articlesRef
+        .doc(this.$nuxt.$route.params.id)
+        .collection('favorite_users')
+        .doc(user.uid)
+        .get()
+        .then(function(doc) {
+          if (!doc.exists) {
 
+            articlesRef
+            .doc(articleId)
+            .collection('favorite_users')
+            .doc(user.uid)
+            .set({
+              ref: db.doc('users/' + user.uid),
+            })
+
+            usersRef
+            .doc(user.uid)
+            .collection('favorite_articles')
+            .doc(articleId)
+            .set({
+              ref: db.doc('articles/' + articleId),
+            })
+
+          } else {
+
+            articlesRef
+            .doc(articleId)
+            .collection('favorite_users')
+            .doc(user.uid)
+            .delete()
+
+            usersRef
+            .doc(user.uid)
+            .collection('favorite_articles')
+            .doc(articleId)
+            .delete()
+          }
+        })
+      }
     }
   },
   created: async function(){
-    const user = firebase.auth().currentUser;
-
+    
     this.content = this.article.store_main_text
 
+    const user = firebase.auth().currentUser;
     // お気に入りしていたら、this.likeActiveをtrueにする
-    let likeFlag = false
-    await articlesRef
-    .doc(this.$nuxt.$route.params.id)
-    .collection('favorite_users')
-    .doc(user.uid)
-    .get()
-    .then(function(doc) {
-      if (doc.exists) {
-        likeFlag = true
-      }
-    })
-    this.likeActive = likeFlag
+    if (user) {
+      let likeFlag = false
+      await articlesRef
+      .doc(this.$nuxt.$route.params.id)
+      .collection('favorite_users')
+      .doc(user.uid)
+      .get()
+      .then(function(doc) {
+        if (doc.exists) {
+          likeFlag = true
+        }
+      })
+      this.likeActive = likeFlag
+    }
 
   }
 }
