@@ -1,38 +1,8 @@
 <template>
-  <section class="allArticles background" :style="{ backgroundColor: this.background }">
+  <section class="allArticles background" :style="{ backgroundColor: background }">
     <div class="allArticles__inner">
       <p class="allArticles__title">全店舗一覧</p>
-      <ul class="allArticles__list">
-        <li class="allArticles__item store-card" v-for="(article, index) in allArticles" :key="index">
-          <nuxt-link :to="`/article/${article.id}`">
-            <div  class="store-card__header">
-              <p class="store-card__main-image" :style="{ backgroundImage: 'url(' + article.store_main_image + ')' }"></p>
-              <p class="store-card__name">{{ article.store_name }}</p>
-              <p class="store-card__category">{{ article.store_category }}</p>
-            </div>
-            <div  class="store-card__content">
-              <p class="store-card__area">最寄り駅：{{ article.store_area }}</p>
-              <p class="store-card__small_text">{{ article.store_small_text }}</p>
-            </div>
-          </nuxt-link>
-          <div  class="store-card__footer">
-            <ul class="store-card__tab-list">
-              <li :class="{ active: active === coupon.coupon_id }" class="store-card__tab-item" v-for="(coupon, index) in article.coupons" :key="index">
-                <a  href="#" @click.prevent="activate(coupon.coupon_id)">
-                  <div class="store-card__tab-inner">
-                    <p class="store-card__coupon-time-image"><img :src="'/img/' + coupon.coupon_id + '-time-image@2x.png'" alt=""></p>
-                    <p class="store-card__coupon-category">{{ coupon.coupon_category }}</p>
-                  </div>
-                </a>
-              </li>
-            </ul>
-            <div class="store-card__tab-content" v-show="active === coupon.coupon_id" v-for="(coupon, index) in article.coupons" :key="index">
-              <p class="store-card__coupon-time animate__animated animate__fadeIn animate__faster">{{ coupon.coupon_start }} ~ {{ coupon.coupon_end }}の入店</p>
-              <p class="store-card__coupon-title animate__animated animate__fadeIn animate__faster">{{ coupon.coupon_title }}</p>
-            </div>
-          </div>
-        </li>
-      </ul>
+      <StoreCard :favoriteArticles="allArticles" @background-color='background = $event'/>
     </div>
   </section>
 </template>
@@ -43,8 +13,7 @@ import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 export default {
   data() {
     return {
-      active: "haya-dinner",
-      background: 'rgba(236, 103, 63, 0.15)'
+      background: ''
     }
   },
   computed: {
@@ -53,18 +22,6 @@ export default {
   },
   methods: {
     ...mapActions('articles', ['getAllArticles']),
-    activate(id) {
-      this.active = id
-      if (id === 'oso-lunch') {
-        this.background = 'rgba(154, 212, 248, 0.2)'
-      }
-      if (id === 'haya-dinner') {
-        this.background = 'rgba(236, 103, 63, 0.15)'
-      }
-      if (id === 'oso-dinner') {
-        this.background = 'rgba(66, 58, 141, 0.1)'
-      }
-    }
   },
   created: function(){
     this.getAllArticles()
@@ -75,7 +32,7 @@ export default {
 <style lang="scss" scoped>
 .allArticles {
   text-align: center;
-  background-color: rgba(66, 58, 141, 0.3);
+  background-color: rgba(236, 103, 63, 0.15);
   padding-bottom: 7rem;
   &__inner {
     width: 93%;
@@ -90,113 +47,6 @@ export default {
     border-bottom: 1px solid #ff427a;
     padding: 2rem 1rem 0.8rem;
     margin-bottom: 2.4rem;
-  }
-  .store-card {
-    background-color: #fff;
-    margin-bottom: 2.4rem;
-    border-radius: 10px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-    &__header {
-      height: 155px;
-      position: relative;
-    }
-    &__main-image {
-      height: 100%;
-      background-size: cover;
-      border-radius: 10px 10px 0 0;
-    }
-    &__main-image:after {
-      content: '';
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: rgb(0,0,0);
-      background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.196516106442577) 20%, rgba(255,255,255,0) 100%);
-    }
-    &__name {
-      position: absolute;
-      bottom: 0;
-      color: #fff;
-      font-weight: bold;
-      font-size: 1.6rem;
-      padding: 0.8rem 1rem;
-    }
-    &__category {
-      position: absolute;
-      top: 0;
-      color: #fff;
-      font-size: 1.4rem;
-      font-weight: bold;
-      background-color: rgba(46, 97, 113, 0.7);
-      padding: 0.4rem 2.2rem;
-      border-radius: 10px 0 4px 0;
-    }
-    &__content {
-      padding: 1rem 1rem 1.6rem;
-    }
-    &__area {
-      font-size: 1.2rem;
-      color: #838383;
-      margin-bottom: 0.8rem;
-    }
-    &__small_text {
-      font-size: 1.2rem;
-      font-weight: bold;
-      text-align: left;
-    }
-    // card footer
-    &__tab-list {
-      display: flex;
-      justify-content: space-between;
-    }
-    &__tab-item {
-      width: 33%;
-      border-radius: 4px 4px 0 0;
-    }
-    &__coupon-time-image {
-      padding: 0 3.5rem 0;
-      margin-bottom: -1rem;
-      filter: grayscale(100%);
-      transition: all 0.1s;
-    }
-    &__coupon-category {
-      display: inline-block;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #aaa;
-      padding: 0 0 0.4rem;
-      transition: all 0.1s;
-    }
-    &__tab-item.active {
-      background-color: #efefef;
-    }
-    &__tab-item.active .store-card__coupon-time-image {
-      filter: grayscale(0%);
-    }
-    &__tab-item.active .store-card__coupon-category {
-      color: #ff427a;
-      border-bottom: 1px solid #ff427a;
-    }
-    &__tab-content {
-      min-height: 112px;
-      background-color: #efefef;
-      border-radius: 0 0 10px 10px;
-      color: #2E6171;
-      padding-bottom: 1.2rem;
-    }
-    &__coupon-time {
-      font-size: 1.4rem;
-      font-weight: bold;
-      padding: 1rem 0 0.6rem;
-    }
-    &__coupon-title {
-      font-size: 1.4rem;
-      font-weight: bold;
-      padding: 0 1rem;
-      text-align: left;
-    }
   }
 }
 </style>

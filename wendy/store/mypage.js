@@ -48,7 +48,9 @@ export const actions = {
               store_name: '',
               store_category: '',
               store_area: '',
-              store_small_text: ''
+              store_small_text: '',
+              store_main_image: '',
+              store_id: ''
             }
   
             favoriteArticles.push(addData)
@@ -58,6 +60,8 @@ export const actions = {
             favoriteArticles[articleCount].store_category = articleSnapshot.get('store_category')
             favoriteArticles[articleCount].store_area = articleSnapshot.get('store_area')
             favoriteArticles[articleCount].store_small_text = articleSnapshot.get('store_small_text')
+            favoriteArticles[articleCount].store_main_image = articleSnapshot.get('store_main_image')
+            favoriteArticles[articleCount].store_id = articleSnapshot.get('store_id')
             articleCount++
   
             i--

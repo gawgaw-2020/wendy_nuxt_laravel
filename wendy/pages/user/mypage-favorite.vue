@@ -1,16 +1,15 @@
 <template>
-  <div>
+  <div class="mypage-favorite__container">
     <UserPageHeader/>
     <MyPageNavigation/>
-    <h2>お気に入り店舗</h2>
-    <ul>
-      <li class="allArticles__item store-card" v-for="(article, index) in favoriteArticles" :key="index">
-        <p>{{ article.store_name }}</p>
-        <p>{{ article.store_categroy }}</p>
-        <p>{{ article.store_area }}</p>
-        <p>{{ article.store_small_text }}</p>
-      </li>
-    </ul>
+    <div class="mypage-favorite">
+      <div class="mypage-favorite__inner">
+        <h2 class="mypage-favorite__title">お気に入り店舗</h2>
+        <div class="favorite">
+          <StoreCard :favoriteArticles="favoriteArticles"/>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -35,9 +34,33 @@ export default {
   created: function() {
     this.getFavoriteArticles()
   },
+  mounted() {
+    const page = document.querySelector('.mypage-favorite__container')
+    const bodyHeight = document.body.clientHeight
+    if (bodyHeight > page.clientHeight) {
+      page.style.height = `${bodyHeight}px`
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+  .mypage-favorite__container {
+    background-color: #efefef;
+    padding-bottom: 80px;
+  }
+  .mypage-favorite {
+    color: #2e6171;
+    &__inner {
+      max-width: 1366px;
+      padding: 0 16px;
+      margin: 0 auto;
+    }
+    &__title {
+      font-size: 1.4rem;
+      text-align: center;
+      padding: 3.2rem 0 2.2rem;
+    }
+  }
 
 </style>
