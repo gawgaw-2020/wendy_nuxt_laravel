@@ -1,6 +1,4 @@
 import firebase from '../plugins/firebase'
-import { firestoreAction } from 'vuexfire'
-
 
 const db = firebase.firestore()
 const articlesRef = db.collection('articles')
@@ -65,4 +63,8 @@ export const actions = {
     commit('setArticle', articleData)
   }
 
+}
+
+export const getters = {
+  allArticles: state => state.allArticles,
 }

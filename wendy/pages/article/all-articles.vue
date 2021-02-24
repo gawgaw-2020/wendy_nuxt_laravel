@@ -1,5 +1,5 @@
 <template>
-  <section class="allArticles background" :style="{ backgroundColor: background }">
+  <section class="allArticles" :style="{ backgroundColor: background }">
     <div class="allArticles__inner">
       <p class="allArticles__title">全店舗一覧</p>
       <StoreCard :favoriteArticles="allArticles" @background-color='background = $event'/>
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   data() {
@@ -17,8 +17,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('articles', ['allArticles']),
-    
+    ...mapGetters('articles', ['allArticles'])
   },
   methods: {
     ...mapActions('articles', ['getAllArticles']),
