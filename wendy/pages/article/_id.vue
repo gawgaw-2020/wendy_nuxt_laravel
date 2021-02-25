@@ -41,7 +41,7 @@
     <div class="gallery" :style="{ backgroundImage: 'url(' + article.store_main_image + ')' }">
       <p class="gallery__area"><i class="fas fa-home"></i>> 東京都 > 渋谷・原宿・表参道 > 渋谷</p>
       <div class="gallery__share"><p><i class="fas fa-share-square"></i></p></div>
-      <div class="gallery__like" :class="{ 'active animate__animated animate__bounceIn': likeActive === true }" @click="likeToggle"><p><i class="fas fa-heart"></i></p></div>
+      <div v-if="user" class="gallery__like" :class="{ 'active animate__animated animate__bounceIn': likeActive === true }" @click="likeToggle"><p><i class="fas fa-heart"></i></p></div>
     </div>
     <div class="content">
       <div class="content-header">
@@ -124,8 +124,8 @@
             <dd class="menu-list__data">1,500 円</dd>
             <dt class="menu-list__title">マルゲリータ</dt>
             <dd class="menu-list__data">1,500 円</dd>
-            <dt class="menu-list__title">マルゲリータ</dt>
-            <dd class="menu-list__data">1,500 円</dd>
+            <dt v-if="false" class="menu-list__title"></dt>
+            <dd v-if="false" class="menu-list__data"></dd>
             <dt class="menu-list__title">マルゲリータ</dt>
             <dd class="menu-list__data">1,500 円</dd>
           </dl>
@@ -162,7 +162,8 @@ export default {
     return {
       content: '',
       isShow: false,
-      likeActive: false
+      likeActive: false,
+      user: null
     }
   },
   async asyncData(context) {
@@ -250,6 +251,7 @@ export default {
   created: async function(){
     
     const user = firebase.auth().currentUser;
+    this.user = user
     // お気に入りしていたら、this.likeActiveをtrueにする
     if (user) {
       let likeFlag = false
