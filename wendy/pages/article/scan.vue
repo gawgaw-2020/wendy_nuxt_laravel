@@ -26,7 +26,18 @@ export default {
   },
   methods: {
     onDecode(result) {
-      this.result = result
+      let wendyLocal = localStorage.getItem('wendy')
+      const user = JSON.parse(wendyLocal).auth.login_user
+      if (user) {
+        this.result = result
+        console.log(resutlt);
+        console.log(this.$route.query.start);
+        console.log(this.$route.query.end);
+        console.log(this.$route.query.title);
+        console.log(user.uid);
+      } else {
+        alert('ログインしてください')
+      }
     },
 
     async onInit(promise) {
