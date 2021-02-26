@@ -17,6 +17,11 @@
 </template>
 
 <script>
+import firebase from '~/plugins/firebase'
+
+const db = firebase.firestore()
+const usersRef = db.collection('users')
+
 export default {
   data() {
     return {
@@ -35,6 +40,26 @@ export default {
         console.log(this.$route.query.end);
         console.log(this.$route.query.title);
         console.log(user.uid);
+
+        const title = this.$route.query.title
+        const start = this.$route.query.start
+        const end = this.$route.query.end
+
+        usersRef
+        .doc(user.uid)
+        .collection('visited_articles')
+        .doc(resutlt)
+        .set({
+          article_id: resutlt,
+          ref: db.doc('articles/' + resutlt),
+          create_time: FieldValue.serverTimestamp(),
+          used_coupon_title: title,
+          used_coupon_start: start,
+          used_coupon_end: end
+        })
+
+        // this.$router.push({ name: "index" });
+
       } else {
         alert('ログインしてください')
       }
