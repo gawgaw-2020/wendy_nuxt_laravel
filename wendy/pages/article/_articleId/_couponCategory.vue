@@ -5,7 +5,7 @@
       class="coupon"
       :style="{ backgroundImage: 'url(/img/' + coupon.coupon_id + '-bg.png)' }"
     >
-      <router-link :to="{ path: '/article/scan/', query: { start: coupon.coupon_start, end: coupon.coupon_end, title: coupon.coupon_title }}">
+      <router-link :to="{ path: '/article/scan', query: { start: coupon.coupon_start, end: coupon.coupon_end, title: coupon.coupon_title }}">
         <div class="coupon__content">
           <p class="coupon__category">{{ coupon.coupon_category }}</p>
           <p class="coupon__time">
