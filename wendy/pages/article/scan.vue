@@ -4,14 +4,8 @@
       class="coupon-scan__section-title"
       :coupon-detail-section-title="'店員さんのQRコードを読み取って下さい'"
     />
-    <div>
-      <p class="error">{{ error }}</p>
-
-      <p class="decode-result">
-        Last result: <b>{{ result }}</b>
-      </p>
-
-      <qrcode-stream @decode="onDecode" @init="onInit" :camera="camera"/>
+    <div class="coupon-scan__window">
+      <qrcode-stream @decode="onDecode" @init="onInit"/>
     </div>
   </div>
 </template>
@@ -27,43 +21,56 @@ export default {
     return {
       result: '',
       error: '',
-      camera: 'front'
     }
   },
   methods: {
     onDecode(result) {
       let wendyLocal = localStorage.getItem('wendy')
       const user = JSON.parse(wendyLocal).auth.login_user
-      if (user) {
-        this.result = result
-        console.log(resutlt);
-        console.log(this.$route.query.start);
-        console.log(this.$route.query.end);
-        console.log(this.$route.query.title);
-        console.log(user.uid);
 
-        const title = this.$route.query.title
-        const start = this.$route.query.start
-        const end = this.$route.query.end
+      if(result) {
 
-        usersRef
-        .doc(user.uid)
-        .collection('visited_articles')
-        .doc(resutlt)
-        .set({
-          article_id: resutlt,
-          ref: db.doc('articles/' + resutlt),
-          create_time: FieldValue.serverTimestamp(),
-          used_coupon_title: title,
-          used_coupon_start: start,
-          used_coupon_end: end
-        })
+        if (user) {
+          this.result = result
+          console.log(result);
+          console.log(this.$route.query.article_id);
+          console.log(this.$route.query.start);
+          console.log(this.$route.query.end);
+          console.log(this.$route.query.title);
+          console.log(user.uid);
+  
+          const title = this.$route.query.title
+          const start = this.$route.query.start
+          const end = this.$route.query.end
+          const id = this.$route.query.article_id
 
-        // this.$router.push({ name: "index" });
+          if(id !== result) {
+            alert('読み取りエラー：店舗が違います')
+            return
+          }
+  
+          usersRef
+          .doc(user.uid)
+          .collection('visited_articles')
+          .add({
+            article_id: result,
+            ref: db.doc('articles/' + result),
+            create_time: firebase.firestore.FieldValue.serverTimestamp(),
+            used_coupon_title: title,
+            used_coupon_start: start,
+            used_coupon_end: end
+          })
+          .then(() => {
+            this.$router.push({ name: "article-scan-success" });
+          })
+  
+  
+        } else {
+          alert('ログインしてください')
+        }
 
-      } else {
-        alert('ログインしてください')
       }
+
     },
 
     async onInit(promise) {
@@ -85,7 +92,12 @@ export default {
         }
       }
     }
-  }
+  },
+  mounted() {
+    const video = document.querySelector('.qrcode-stream-camera')
+    console.log(video)
+    video.style.borderRadius = "20px"
+  },
 }
 </script>
 
@@ -93,6 +105,11 @@ export default {
 .coupon-scan {
   &__section-title {
     padding: 3.2rem 0;
+  }
+  &__window {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
   }
 }
 </style>
