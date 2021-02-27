@@ -2,33 +2,33 @@
   <div class="article-detail">
     <div class="modal" v-show="isShow">
       <div class="modal__inner animate__animated animate__fadeIn">
-      <div class="modal__image" :style="{ backgroundImage: 'url(' + article.store_main_image + ')' }"></div>
-      <p class="modal__title">{{ article.store_name }}</p>
+      <div class="modal__image" :style="{ backgroundImage: 'url(' + article.main_image + ')' }"></div>
+      <p class="modal__title">{{ article.name }}</p>
       <p class="modal__info">予約・お問い合わせの際は<br>「WENDYのクーポンを使いたい」<br>とお伝え下さい。</p>
       <ul class="link-list">
         <li class="link-list__item">
           <i class="fas fa-external-link-alt"></i>
-          <a class="link-list__link" target="_blank" :href="article.store_url_official">店舗ホームページ</a>
+          <a class="link-list__link" target="_blank" :href="article.url_official">店舗ホームページ</a>
         </li>
-        <li class="link-list__item" v-if="article.store_url_hotpepper">
+        <li class="link-list__item" v-if="article.url_hotpepper">
           <i class="fas fa-external-link-alt"></i>
-          <a class="link-list__link" target="_blank" :href="article.store_url_hotpepper">ホットペッパーグルメ</a>
+          <a class="link-list__link" target="_blank" :href="article.url_hotpepper">ホットペッパーグルメ</a>
         </li>
-        <li class="link-list__item" v-if="article.store_url_tabelog">
+        <li class="link-list__item" v-if="article.url_tabelog">
           <i class="fas fa-external-link-alt"></i>
-          <a class="link-list__link" target="_blank" :href="article.store_url_tabelog">食べログ</a>
+          <a class="link-list__link" target="_blank" :href="article.url_tabelog">食べログ</a>
         </li>
-        <li class="link-list__item" v-if="article.store_url_gnavi">
+        <li class="link-list__item" v-if="article.url_gnavi">
           <i class="fas fa-external-link-alt"></i>
-          <a class="link-list__link" target="_blank" :href="article.store_url_gnavi">ぐるなび</a>
+          <a class="link-list__link" target="_blank" :href="article.url_gnavi">ぐるなび</a>
         </li>
-        <li class="link-list__item" v-if="article.store_url_twitter">
+        <li class="link-list__item" v-if="article.url_twitter">
           <i class="fas fa-external-link-alt"></i>
-          <a class="link-list__link" target="_blank" :href="article.store_url_twitter">Twitter</a>
+          <a class="link-list__link" target="_blank" :href="article.url_twitter">Twitter</a>
         </li>
-        <li class="link-list__item" v-if="article.store_url_instagram">
+        <li class="link-list__item" v-if="article.url_instagram">
           <i class="fas fa-external-link-alt"></i>
-          <a class="link-list__link" target="_blank" :href="article.store_url_instagram">Instagram</a>
+          <a class="link-list__link" target="_blank" :href="article.url_instagram">Instagram</a>
         </li>
         <li class="link-list__item">
           <i class="fas fa-times"></i>
@@ -38,7 +38,7 @@
       </div>
       <div class="modal__background animate__animated animate__fadeIn" @click="modalToggle"></div>
     </div>
-    <div class="gallery" :style="{ backgroundImage: 'url(' + article.store_main_image + ')' }">
+    <div class="gallery" :style="{ backgroundImage: 'url(' + article.main_image + ')' }">
       <p class="gallery__area"><i class="fas fa-home"></i>> 東京都 > {{ article.area }}</p>
       <div class="gallery__share"><p><i class="fas fa-share-square"></i></p></div>
       <div v-if="user" class="gallery__like" :class="{ 'active animate__animated animate__bounceIn': likeActive === true }" @click="likeToggle"><p><i class="fas fa-heart"></i></p></div>
@@ -46,13 +46,11 @@
     <div class="content">
       <div class="content-header">
         <div class="content-header__inner">
-          <p class="content-header__title">{{ article.store_name }}</p>
-          <p class="content-header__category">{{ article.store_category }}</p>
+          <p class="content-header__title">{{ article.name }}</p>
+          <p class="content-header__category">{{ article.category }}</p>
           <div  class="business-hours">
             <ul class="business-hours__list">
-              <li class="business-hours__item" v-if="article.store_business_hours_lunch">{{ article.store_business_hours_lunch }}</li>
-              <li class="business-hours__item" v-if="article.store_business_hours_cafe">{{ article.store_business_hours_cafe }}</li>
-              <li class="business-hours__item" v-if="article.store_business_hours_dinner">{{ article.store_business_hours_dinner }}</li>
+              <li class="business-hours__item" >{{ article.business_hour }}</li>
             </ul>
           </div>
         </div>
@@ -61,9 +59,9 @@
         <ul class="coupons-list">
           <li class="coupon" v-for="(coupon, index) in article.coupons" :key="index" :style="{ backgroundImage: 'url(/img/' + coupon.coupon_id + '-bg.png)' }">
             <div  class="coupon__content">
-              <p class="coupon__category">{{ coupon.coupon_category }}</p>
-              <p class="coupon__time">{{ coupon.coupon_start }}~{{ coupon.coupon_end }}の入店で</p>
-              <p class="coupon__title">{{ coupon.coupon_title }}</p>
+              <p class="coupon__category">{{ coupon.category }}</p>
+              <p class="coupon__time">{{ coupon.start }}~{{ coupon.end }}の入店で</p>
+              <p class="coupon__title">{{ coupon.title }}</p>
             </div>
             <p class="coupon__link"><nuxt-link :to="`/article/${article.article_id}/${coupon.coupon_id}`"></nuxt-link></p>
           </li>
@@ -71,8 +69,8 @@
       </div>
       <div class="content-map">
         <div class="content-map__inner">
-            <p class="content-map__address">{{ article.store_address }}</p>
-          <a target="_blank" :href="`https://www.google.com/maps/search/?api=1&query=${article.store_address}`">
+            <p class="content-map__address">{{ article.address }}</p>
+          <a target="_blank" :href="`https://www.google.com/maps/search/?api=1&query=${article.address}`">
             <p class="content-map__image"><img src="/img/store-map.png" alt=""></p>
             <p class="content-map__link">別ウィンドウで開く >></p>
           </a>
@@ -86,12 +84,12 @@
       <div class="content-info">
         <div class="content-info__inner">
           <ArticleSectionTitle class="content-info__title" :section-title="'お店情報'"/>
-          <p class="content-info__description" v-for="(str, index) in (article.store_main_text).split('\\n')" :key="index">{{str}}</p>
+          <p class="content-info__description" v-for="(str, index) in (article.main_text).split('\\n')" :key="index">{{str}}</p>
           <div class="content-info__tags">
-            <div class="content-info__tag" v-if="article.store_cashless">
+            <div class="content-info__tag" v-if="article.cashless">
               <p><i class="fas fa-credit-card"></i>キャッシュレス</p>
             </div>
-            <div class="content-info__tag" v-if="article.store_non_smoke">
+            <div class="content-info__tag" v-if="article.non_smoke">
               <p><i class="fas fa-smoking-ban"></i>完全禁煙</p>
             </div>
           </div>
@@ -101,16 +99,16 @@
         <div class="content-pictures__inner">
           <ArticleSectionTitle class="content-info__title" :section-title="'お店の雰囲気'"/>
         </div>
-        <ArticleStorePicturesSlider :store-pictures="article.store_pictures"/>
+        <ArticleStorePicturesSlider :store-pictures="article.pictures"/>
       </div>
       <div class="content-payment">
         <div class="content-payment__inner">
           <ArticleSectionTitle class="content-payment__title" :section-title="'お店の情報'"/>
           <dl class="payment-list">
             <dt class="payment-list__title">クレジットカード</dt>
-            <dd class="payment-list__data">{{ article.store_credit_card }}</dd>
+            <dd class="payment-list__data">{{ article.credit_card }}</dd>
             <dt class="payment-list__title">電子マネー</dt>
-            <dd class="payment-list__data">{{ article.store_e_money }}</dd>
+            <dd class="payment-list__data">{{ article.e_money }}</dd>
           </dl>
           <p class="content-payment__info">※その他のお支払い方法については店舗にお問い合わせください</p>
         </div>
@@ -120,25 +118,25 @@
           <ArticleSectionTitle class="content-menu__title" :section-title="'メニュー'"/>
           <p class="content-menu__category-title">おすすめ料理</p>
           <dl class="menu-list">
-            <dt class="menu-list__title">マルゲリータ</dt>
-            <dd class="menu-list__data">1,500 円</dd>
-            <dt class="menu-list__title">マルゲリータ</dt>
-            <dd class="menu-list__data">1,500 円</dd>
-            <dt class="menu-list__title">マルゲリータ</dt>
-            <dd class="menu-list__data">1,500 円</dd>
-            <dt v-if="false" class="menu-list__title"></dt>
-            <dd v-if="false" class="menu-list__data"></dd>
-            <dt class="menu-list__title">マルゲリータ</dt>
-            <dd class="menu-list__data">1,500 円</dd>
+            <dt class="menu-list__title">{{ article.food01_name }}</dt>
+            <dd class="menu-list__data">{{ article.food01_price.toLocaleString() }} 円</dd>
+            <dt class="menu-list__title">{{ article.food02_name }}</dt>
+            <dd class="menu-list__data">{{ article.food02_price.toLocaleString() }} 円</dd>
+            <dt class="menu-list__title">{{ article.food03_name }}</dt>
+            <dd class="menu-list__data">{{ article.food03_price.toLocaleString() }} 円</dd>
+            <dt class="menu-list__title">{{ article.food04_name }}</dt>
+            <dd class="menu-list__data">{{ article.food04_price.toLocaleString() }} 円</dd>
+            <dt class="menu-list__title">{{ article.food05_name }}</dt>
+            <dd class="menu-list__data">{{ article.food05_price.toLocaleString() }} 円</dd>
           </dl>
           <p class="content-menu__category-title">おすすめドリンク</p>
           <dl class="menu-list">
-            <dt class="menu-list__title">プレミアム・モルツ（生）</dt>
-            <dd class="menu-list__data">500 円</dd>
-            <dt class="menu-list__title">デトックスモヒート</dt>
-            <dd class="menu-list__data">680 円</dd>
-            <dt class="menu-list__title">デトックスモヒート</dt>
-            <dd class="menu-list__data">680 円</dd>
+            <dt class="menu-list__title">{{ article.drink01_name }}</dt>
+            <dd class="menu-list__data">{{ article.drink01_price.toLocaleString() }} 円</dd>
+            <dt class="menu-list__title">{{ article.drink02_name }}</dt>
+            <dd class="menu-list__data">{{ article.drink02_price.toLocaleString() }} 円</dd>
+            <dt class="menu-list__title">{{ article.drink03_name }}</dt>
+            <dd class="menu-list__data">{{ article.drink03_price.toLocaleString() }} 円</dd>
           </dl>
         </div>
       </div>
@@ -178,7 +176,7 @@ export default {
       article_id.article_id = doc.id
       const articleData = {...article_id, ...doc.data()}
       article = articleData
-      const subCollection = await doc.ref.collection('coupons').orderBy('coupon_start').get();
+      const subCollection = await doc.ref.collection('coupons').orderBy('start').get();
       subCollection.forEach(doc => {
         coupon_id.coupon_id = doc.id
         const allData = {...coupon_id, ...doc.data()}

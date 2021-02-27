@@ -11,7 +11,7 @@
             <li class="history__item"  v-for="(article, index) in historyArticles" :key="index">
               <div class="history__content">
                 <p class="history__date">{{ article.create_time | format-date}}</p>
-                <p class="history__title">{{ article.store_name }}</p>
+                <p class="history__title">{{ article.name }}</p>
                 <p class="history__coupon-time">{{ article.used_coupon_start }}~{{ article.used_coupon_end }}</p>
                 <p class="history__coupon-content">{{ article.used_coupon_title }}</p>
               </div>
@@ -50,7 +50,7 @@ export default {
     this.getHistoryArticles()
   },
   mounted() {
-    const page = document.querySelector('.mypage-history')
+    const page = document.querySelector('.mypage-history__container')
     const bodyHeight = document.body.clientHeight
     if (bodyHeight > page.clientHeight) {
       page.style.height = `${bodyHeight}px`
@@ -62,13 +62,12 @@ export default {
 <style lang="scss" scoped>
   .mypage-history__container {
     background-color: #efefef;
-    padding-bottom: 80px;
   }
   .mypage-history {
     color: #2e6171;
     &__inner {
       max-width: 1366px;
-      padding: 0 16px;
+      padding: 0 16px 80px;
       margin: 0 auto;
     }
     &__title {

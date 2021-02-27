@@ -3,13 +3,13 @@
     <li class="allArticles__item store-card" v-for="(article, index) in favoriteArticles" :key="index">
       <nuxt-link :to="`/article/${article.store_id}`">
         <div  class="store-card__header">
-          <p class="store-card__main-image" :style="{ backgroundImage: 'url(' + article.store_main_image + ')' }"></p>
-          <p class="store-card__name">{{ article.store_name }}</p>
-          <p class="store-card__category">{{ article.store_category }}</p>
+          <p class="store-card__main-image" :style="{ backgroundImage: 'url(' + article.main_image + ')' }"></p>
+          <p class="store-card__name">{{ article.name }}</p>
+          <p class="store-card__category">{{ article.category }}</p>
         </div>
         <div  class="store-card__content">
           <p class="store-card__nearest_station">最寄り駅：{{ article.nearest_station }}</p>
-          <p class="store-card__small_text">{{ article.store_small_text }}</p>
+          <p class="store-card__small_text">{{ article.small_text }}</p>
         </div>
       </nuxt-link>
       <div  class="store-card__footer">
@@ -18,14 +18,14 @@
             <a  href="#" @click.prevent="activate(coupon.coupon_id)">
               <div class="store-card__tab-inner">
                 <p class="store-card__coupon-time-image"><img :src="'/img/' + coupon.coupon_id + '-time-image@2x.png'" alt=""></p>
-                <p class="store-card__coupon-category">{{ coupon.coupon_category }}</p>
+                <p class="store-card__coupon-category">{{ coupon.category }}</p>
               </div>
             </a>
           </li>
         </ul>
         <div class="store-card__tab-content" v-show="active === coupon.coupon_id" v-for="(coupon, index) in article.coupons" :key="index">
-          <p class="store-card__coupon-time animate__animated animate__fadeIn animate__faster">{{ coupon.coupon_start }} ~ {{ coupon.coupon_end }}の入店</p>
-          <p class="store-card__coupon-title animate__animated animate__fadeIn animate__faster">{{ coupon.coupon_title }}</p>
+          <p class="store-card__coupon-time animate__animated animate__fadeIn animate__faster">{{ coupon.start }} ~ {{ coupon.end }}の入店</p>
+          <p class="store-card__coupon-title animate__animated animate__fadeIn animate__faster">{{ coupon.title }}</p>
         </div>
       </div>
     </li>

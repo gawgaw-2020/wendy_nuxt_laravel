@@ -186,7 +186,7 @@
             </li>
           </ul>
         </div>
-        <p class="appeal__view-more">もっと見る ＞</p>
+        <p class="appeal__view-more"><nuxt-link :to="`/add_article_data/`">もっと見る ＞</nuxt-link></p>
       </div>
     </div>
   </div>

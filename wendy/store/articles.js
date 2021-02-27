@@ -30,7 +30,7 @@ export const actions = {
         id.id = doc.id
         storeData = { ...id, ...doc.data() }
 
-        const subCollection = await doc.ref.collection('coupons').orderBy('coupon_start').get()
+        const subCollection = await doc.ref.collection('coupons').orderBy('start').get()
         subCollection.forEach(doc => {
           coupon_id.coupon_id = doc.id
           const couponData = { ...coupon_id, ...doc.data() }

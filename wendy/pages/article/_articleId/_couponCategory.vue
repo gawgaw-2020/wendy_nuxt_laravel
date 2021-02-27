@@ -6,24 +6,24 @@
       :style="{ backgroundImage: 'url(/img/' + coupon.coupon_id + '-bg.png)' }"
     >
       <div class="coupon__content">
-        <p class="coupon__category">{{ coupon.coupon_category }}</p>
+        <p class="coupon__category">{{ coupon.category }}</p>
         <p class="coupon__time">
-          {{ coupon.coupon_start }}~{{ coupon.coupon_end }}の入店で
+          {{ coupon.start }}~{{ coupon.end }}の入店で
         </p>
-        <p class="coupon__title">{{ coupon.coupon_title }}</p>
+        <p class="coupon__title">{{ coupon.title }}</p>
       </div>
       <p class="coupon__link">
       </p>
     </div>
     <CouponDetailSectionTitle class="coupon-detail__section-title" :coupon-detail-section-title="'利用条件とお店からのメッセージ'"/>
-    <p class="coupon-detail__message">{{ coupon.coupon_use }}</p>
-    <p class="coupon-detail__message">{{ coupon.coupon_rule }}</p>
-    <p class="coupon-detail__message">{{ coupon.coupon_information }}</p>
+    <p class="coupon-detail__message">{{ coupon.how_to_use }}</p>
+    <p class="coupon-detail__message">{{ coupon.rule }}</p>
+    <p class="coupon-detail__message">{{ coupon.information }}</p>
     <!-- <p class="coupon-detail__sub-title">今日は何人で利用しますか</p>
     <p class="coupon-detail__sub-title">お店のQRコードを読み取ってお食事スタート!!</p> -->
     <CouponDetailSectionTitle class="coupon-detail__section-title" :coupon-detail-section-title="'お店のQRコードを読み取ってお食事スタート'"/>
     <div class="scan-btn">
-      <router-link :to="{ path: '/article/scan', query: { start: coupon.coupon_start, end: coupon.coupon_end, title: coupon.coupon_title, article_id: coupon.article_id }}">
+      <router-link :to="{ path: '/article/scan', query: { start: coupon.start, end: coupon.end, title: coupon.title, article_id: coupon.article_id }}">
         <p class="scan-btn__icon"><img src="/img/qr-code@2x.png" alt=""></p>
         <p class="scan-btn__texr">店舗での掲示クーポン発行<br>QRコードスキャンはこちら</p>
       </router-link>

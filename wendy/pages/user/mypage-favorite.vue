@@ -49,13 +49,12 @@ export default {
 <style lang="scss" scoped>
   .mypage-favorite__container {
     background-color: #efefef;
-    padding-bottom: 80px;
   }
   .mypage-favorite {
     color: #2e6171;
     &__inner {
       max-width: 1366px;
-      padding: 0 16px;
+      padding: 0 16px 80px;
       margin: 0 auto;
     }
     &__title {
