@@ -44,7 +44,8 @@ export default {
   plugins: [
     { src: "~plugins/persistedstate.js", ssr: false },
     { src: '@/plugins/vue-awesome-swiper', ssr: false },
-    { src: '~/plugins/vue-qrcode-reader', ssr: false }
+    { src: '~/plugins/vue-qrcode-reader', ssr: false },
+    { src: '~/plugins/my-filter.js', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -59,7 +60,8 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    ['@nuxtjs/moment', ['ja']]
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

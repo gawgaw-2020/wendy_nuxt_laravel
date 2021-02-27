@@ -9,7 +9,7 @@
           <ul class="history__list">
             <li class="history__item"  v-for="(article, index) in historyArticles" :key="index">
               <div class="history__content">
-                <p class="history__date">{{ article.create_time }}</p>
+                <p class="history__date">{{ article.create_time | format-date}}</p>
                 <p class="history__title">{{ article.store_name }}</p>
                 <p class="history__coupon-time">{{ article.used_coupon_start }}~{{ article.used_coupon_end }}</p>
                 <p class="history__coupon-content">{{ article.used_coupon_title }}</p>
@@ -84,8 +84,6 @@ export default {
       }
       &__icon {
         padding: 2.6rem 1.6rem 1.6rem;
-      }
-      &__link {
         img {
           width: 46px;
           margin: 0 auto 0.4rem;
