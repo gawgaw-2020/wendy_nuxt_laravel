@@ -18,24 +18,24 @@ export default {
       published: true,
       access_count: 0,
       area: '新宿・代々木',
-      name: 'NEW NEW NEW',
+      name: '居酒屋 兎',
       address: '広島県広島市美鈴が丘西4-11-4',
       map_image: 'https://firebasestorage.googleapis.com/v0/b/wendy-nuxt-firebase.appspot.com/o/article_images%2FMzcZn7ie00dYig8YWlZ1%2Fmap_image%2Fstore-map.png?alt=media&token=a032f30f-2691-4137-8fcd-5c3040c4725b',
-      nearest_station: '八丁堀駅',
-      business_hour: 'LUNCH TIME: 11:00 ~ 14:00  DINNER TIME: 17:00 ~ 23:00',
+      nearest_station: 'JR山陽本線 橋本駅',
+      business_hour: 'LUNCH TIME: 11:00 ~ 14:00\\nDINNER TIME: 17:00 ~ 23:00\\n不定休',
       cashless: false,
       non_smoke: true,
-      category: '創作料理',
+      category: '魚介系居酒屋',
       credit_card: 'VISA MASTER',
       e_money: '交通系電子マネー メルペイ iD',
-      main_image: 'https://firebasestorage.googleapis.com/v0/b/wendy-nuxt-firebase.appspot.com/o/stefan-johnson-xIFbDeGcy44-unsplash.jpg?alt=media&token=d74ef460-fbdf-4dda-9b06-282edd74525c',
-      main_text: '「Ba Lat (バラッ)」はハイセンスで高級感溢れるエリア・狎鴎亭(アックジョン)にあり、芸能事務所が集まる場所柄、有名人も頻繁に訪れる人気の海鮮料理専門店です。落ち着いた雰囲気の中でゆっくりと食事を味わうことが出来ます。日本からの観光客に人気のメニューは「カニ身ビビンバ」で、カニ身と濃厚なカニ味噌がたっぷり入った一般のビビンバとは一味違うリッチな一品。野菜もたっぷり入っていてシャキシャキした食感も食べ応えがあります。その他にも、４～10月にはウニをふんだんに使用した「ウニビビンバ」、冬には石鍋でぐつぐつ煮込まれたピリ辛味の「太刀魚の煮物」、夏には新鮮な旬の魚介類をシャーベット氷入りの酢コチュジャンスープでいただく「名品盛合せ水刺身」も人気です。',
+      main_image: 'https://firebasestorage.googleapis.com/v0/b/wendy-nuxt-firebase.appspot.com/o/jakub-kapusnak-4f4YZfDMLeU-unsplash.jpg?alt=media&token=de8808b5-be0e-4658-ab9a-07410254e7af',
+      main_text: '「Ba Lat (バラッ)」はハイセンスで高級感溢れるエリア・狎鴎亭(アックジョン)にあり、芸能事務所が集まる場所柄、有名人も頻繁に訪れる人気の海鮮料理専門店です。\\n落ち着いた雰囲気の中でゆっくりと食事を味わうことが出来ます。\\n日本からの観光客に人気のメニューは「カニ身ビビンバ」で、カニ身と濃厚なカニ味噌がたっぷり入った一般のビビンバとは一味違うリッチな一品。\\n野菜もたっぷり入っていてシャキシャキした食感も食べ応えがあります。\\nその他にも、４～10月にはウニをふんだんに使用した「ウニビビンバ」、冬には石鍋でぐつぐつ煮込まれたピリ辛味の「太刀魚の煮物」、夏には新鮮な旬の魚介類をシャーベット氷入りの酢コチュジャンスープでいただく「名品盛合せ水刺身」も人気です。',
       pictures: [
         'https://firebasestorage.googleapis.com/v0/b/wendy-nuxt-firebase.appspot.com/o/nick-karvounis-Ciqxn7FE4vE-unsplash.jpg?alt=media&token=89845930-8de6-4115-a6b3-18781650f802',
         'https://firebasestorage.googleapis.com/v0/b/wendy-nuxt-firebase.appspot.com/o/jay-wennington-N_Y88TWmGwA-unsplash.jpg?alt=media&token=6d3c2727-cdb6-4ec2-956a-66a48cf8701a',
-        'https://firebasestorage.googleapis.com/v0/b/wendy-nuxt-firebase.appspot.com/o/jakub-kapusnak-4f4YZfDMLeU-unsplash.jpg?alt=media&token=de8808b5-be0e-4658-ab9a-07410254e7af'
+        'https://firebasestorage.googleapis.com/v0/b/wendy-nuxt-firebase.appspot.com/o/stefan-johnson-xIFbDeGcy44-unsplash.jpg?alt=media&token=d74ef460-fbdf-4dda-9b06-282edd74525c'
       ],
-      small_text: '日本からの観光客に人気のメニューは「カニ身ビビンバ」で、カニ身と濃厚なカニ味噌がたっぷり入った一般のビビンバとは一味違うリッチな一品。',
+      small_text: '夏には新鮮な旬の魚介類をシャーベット氷入りの酢コチュジャンスープでいただく「名品盛合せ水刺身」も人気です。',
       url_gnavi: 'https://r.gnavi.co.jp/954k73zg0000/',
       url_hotpepper: 'https://www.hotpepper.jp/strJ001155200/',
       url_instagram: 'https://www.instagram.com/miobar_hiroshima/',
@@ -67,9 +67,10 @@ export default {
   computed: {},
   methods: {
     add() {
-      articlesRef
-      .add({
-      store_id: this.store_id,
+      const createdID = articlesRef.doc().id
+      articlesRef.doc(createdID)
+      .set({
+      store_id: createdID,
       owner_id: this.owner_id,
       published: this.published,
       access_count: this.access_count,
@@ -117,9 +118,9 @@ export default {
       create_time: firebase.firestore.FieldValue.serverTimestamp()
     })
       .then((docRef) => {
-          console.log("Document written with ID: ", docRef.id);
-          articlesRef.doc(docRef.id).collection('coupons').doc('oso-lunch').set({
-            article_id: docRef.id,
+          console.log("Document written with ID: ", createdID);
+          articlesRef.doc(createdID).collection('coupons').doc('oso-lunch').set({
+            article_id: createdID,
             category: '遅ランチ',
             end: '16:30',
             start: '14:00',
@@ -128,8 +129,8 @@ export default {
             rule: '席利用２時間まで',
             how_to_use: '予約時・来店時・注文時・会計時に掲示'
           })
-          articlesRef.doc(docRef.id).collection('coupons').doc('haya-dinner').set({
-            article_id: docRef.id,
+          articlesRef.doc(createdID).collection('coupons').doc('haya-dinner').set({
+            article_id: createdID,
             category: '早ディナー',
             end: '17:30',
             start: '18:00',
@@ -138,8 +139,8 @@ export default {
             rule: '席利用２時間まで',
             how_to_use: '予約時・来店時・注文時・会計時に掲示'
           })
-          articlesRef.doc(docRef.id).collection('coupons').doc('oso-dinner').set({
-            article_id: docRef.id,
+          articlesRef.doc(createdID).collection('coupons').doc('oso-dinner').set({
+            article_id: createdID,
             category: '遅ディナー',
             end: '22:30',
             start: '21:00',
