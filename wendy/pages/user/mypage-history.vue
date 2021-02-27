@@ -47,6 +47,7 @@ export default {
 
   },
   created: function() {
+    this.setLinePosition('history')
     this.getHistoryArticles()
   },
   mounted() {
