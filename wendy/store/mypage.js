@@ -6,7 +6,8 @@ const usersRef = db.collection('users')
 
 export const state = () => ({
   linePosition: 'login',
-  favoriteArticles: []
+  favoriteArticles: [],
+  historyArticles: []
 })
 
 export const mutations = {
@@ -19,6 +20,10 @@ export const mutations = {
   setFavoriteArticles(state, favoriteArticles) {
     state.favoriteArticles.splice(0)
     state.favoriteArticles.push(...favoriteArticles)
+  },
+  setHistoryArticles(state, historyArticles) {
+    state.historyArticles.splice(0)
+    state.historyArticles.push(...historyArticles)
   }
 }
 
@@ -68,6 +73,45 @@ export const actions = {
             if (i == 0) {
               commit('setFavoriteArticles', favoriteArticles)
             }  
+        });
+      })
+      .catch(function(error) {
+          console.log("Error getting documents: ", error);
+      });
+    }
+  },
+  getHistoryArticles({ commit }) {
+    let wendyLocal = localStorage.getItem('wendy')
+    const user = JSON.parse(wendyLocal).auth.login_user
+    if (user) {
+      usersRef.doc(`${user.uid}`).collection('visited_articles').get()
+      .then(function(querySnapshot) {
+  
+        let i = querySnapshot.size
+        let historyArticles = [];
+        let articleCount = 0;
+  
+        querySnapshot.forEach(async doc => {
+    
+          const addData = {
+            used_coupon_title: doc.data().used_coupon_title,
+            used_coupon_start: doc.data().used_coupon_start,
+            used_coupon_end: doc.data().used_coupon_end,
+            create_time: doc.data().create_time.toDate(),
+            article_id: doc.data().article_id
+          }
+
+          historyArticles.push(addData)
+
+          // 名前だけreferenceする
+          const articleSnapshot = await doc.data().ref.get();
+          historyArticles[articleCount].store_name = articleSnapshot.get('store_name')
+          articleCount++
+
+          i--
+          if (i == 0) {
+            commit('setHistoryArticles', historyArticles)
+          }  
         });
       })
       .catch(function(error) {

@@ -7,104 +7,19 @@
         <h3 class="mypage-history__title">WENDYクーポン利用履歴</h3>
         <div class="history">
           <ul class="history__list">
-            <li class="history__item">
+            <li class="history__item"  v-for="(article, index) in historyArticles" :key="index">
               <div class="history__content">
-                <p class="history__date">2021/01/30 17:14</p>
-                <p class="history__title">ZONA ITALIA 古田台店</p>
-                <p class="history__coupon-time">17:00~17:30</p>
-                <p class="history__coupon-content">窓側のお席確約★誕生日や記念日のディナーでぜひご利用ください！！</p>
+                <p class="history__date">{{ article.create_time }}</p>
+                <p class="history__title">{{ article.store_name }}</p>
+                <p class="history__coupon-time">{{ article.used_coupon_start }}~{{ article.used_coupon_end }}</p>
+                <p class="history__coupon-content">{{ article.used_coupon_title }}</p>
               </div>
-              <p class="history__icon"><a class="history__link" href="#"><img src="/img/history-icon.png" alt=""><span>店舗ページへ</span></a></p>
-            </li>
-            <li class="history__item">
-              <div class="history__content">
-                <p class="history__date">2021/01/30 17:14</p>
-                <p class="history__title">ZONA ITALIA 古田台店</p>
-                <p class="history__coupon-time">17:00~17:30</p>
-                <p class="history__coupon-content">窓側のお席確約★誕生日や記念日のディナーでぜひご利用ください！！</p>
-              </div>
-              <p class="history__icon"><a class="history__link" href="#"><img src="/img/history-icon.png" alt=""><span>店舗ページへ</span></a></p>
-            </li>
-            <li class="history__item">
-              <div class="history__content">
-                <p class="history__date">2021/01/30 17:14</p>
-                <p class="history__title">ZONA ITALIA 古田台店</p>
-                <p class="history__coupon-time">17:00~17:30</p>
-                <p class="history__coupon-content">窓側のお席確約★誕生日や記念日のディナーでぜひご利用ください！！</p>
-              </div>
-              <p class="history__icon"><a class="history__link" href="#"><img src="/img/history-icon.png" alt=""><span>店舗ページへ</span></a></p>
-            </li>
-            <li class="history__item">
-              <div class="history__content">
-                <p class="history__date">2021/01/30 17:14</p>
-                <p class="history__title">ZONA ITALIA 古田台店</p>
-                <p class="history__coupon-time">17:00~17:30</p>
-                <p class="history__coupon-content">窓側のお席確約★誕生日や記念日のディナーでぜひご利用ください！！</p>
-              </div>
-              <p class="history__icon"><a class="history__link" href="#"><img src="/img/history-icon.png" alt=""><span>店舗ページへ</span></a></p>
-            </li>
-            <li class="history__item">
-              <div class="history__content">
-                <p class="history__date">2021/01/30 17:14</p>
-                <p class="history__title">ZONA ITALIA 古田台店</p>
-                <p class="history__coupon-time">17:00~17:30</p>
-                <p class="history__coupon-content">窓側のお席確約★誕生日や記念日のディナーでぜひご利用ください！！</p>
-              </div>
-              <p class="history__icon"><a class="history__link" href="#"><img src="/img/history-icon.png" alt=""><span>店舗ページへ</span></a></p>
-            </li>
-            <li class="history__item">
-              <div class="history__content">
-                <p class="history__date">2021/01/30 17:14</p>
-                <p class="history__title">ZONA ITALIA 古田台店</p>
-                <p class="history__coupon-time">17:00~17:30</p>
-                <p class="history__coupon-content">窓側のお席確約★誕生日や記念日のディナーでぜひご利用ください！！</p>
-              </div>
-              <p class="history__icon"><a class="history__link" href="#"><img src="/img/history-icon.png" alt=""><span>店舗ページへ</span></a></p>
-            </li>
-            <li class="history__item">
-              <div class="history__content">
-                <p class="history__date">2021/01/30 17:14</p>
-                <p class="history__title">ZONA ITALIA 古田台店</p>
-                <p class="history__coupon-time">17:00~17:30</p>
-                <p class="history__coupon-content">窓側のお席確約★誕生日や記念日のディナーでぜひご利用ください！！</p>
-              </div>
-              <p class="history__icon"><a class="history__link" href="#"><img src="/img/history-icon.png" alt=""><span>店舗ページへ</span></a></p>
-            </li>
-            <li class="history__item">
-              <div class="history__content">
-                <p class="history__date">2021/01/30 17:14</p>
-                <p class="history__title">ZONA ITALIA 古田台店</p>
-                <p class="history__coupon-time">17:00~17:30</p>
-                <p class="history__coupon-content">窓側のお席確約★誕生日や記念日のディナーでぜひご利用ください！！</p>
-              </div>
-              <p class="history__icon"><a class="history__link" href="#"><img src="/img/history-icon.png" alt=""><span>店舗ページへ</span></a></p>
-            </li>
-            <li class="history__item">
-              <div class="history__content">
-                <p class="history__date">2021/01/30 17:14</p>
-                <p class="history__title">ZONA ITALIA 古田台店</p>
-                <p class="history__coupon-time">17:00~17:30</p>
-                <p class="history__coupon-content">窓側のお席確約★誕生日や記念日のディナーでぜひご利用ください！！</p>
-              </div>
-              <p class="history__icon"><a class="history__link" href="#"><img src="/img/history-icon.png" alt=""><span>店舗ページへ</span></a></p>
-            </li>
-            <li class="history__item">
-              <div class="history__content">
-                <p class="history__date">2021/01/30 17:14</p>
-                <p class="history__title">ZONA ITALIA 古田台店</p>
-                <p class="history__coupon-time">17:00~17:30</p>
-                <p class="history__coupon-content">窓側のお席確約★誕生日や記念日のディナーでぜひご利用ください！！</p>
-              </div>
-              <p class="history__icon"><a class="history__link" href="#"><img src="/img/history-icon.png" alt=""><span>店舗ページへ</span></a></p>
-            </li>
-            <li class="history__item">
-              <div class="history__content">
-                <p class="history__date">2021/01/30 17:14</p>
-                <p class="history__title">ZONA ITALIA 古田台店</p>
-                <p class="history__coupon-time">17:00~17:30</p>
-                <p class="history__coupon-content">窓側のお席確約★誕生日や記念日のディナーでぜひご利用ください！！</p>
-              </div>
-              <p class="history__icon"><a class="history__link" href="#"><img src="/img/history-icon.png" alt=""><span>店舗ページへ</span></a></p>
+              <p class="history__icon">
+                <nuxt-link :to="`/article/${article.article_id}`">
+                  <img src="/img/history-icon.png" alt="">
+                  <span>店舗ページへ</span>
+                </nuxt-link>
+              </p>
             </li>
           </ul>
         </div>
@@ -114,6 +29,8 @@
 </template>
 
 <script>
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
+
 export default {
   middleware: 'authenticated',
   data() {
@@ -122,10 +39,22 @@ export default {
     }
   },
   computed: {
-    
+    ...mapState('mypage', ['historyArticles']),
+  },
+  methods: {
+    ...mapActions('mypage', ['getHistoryArticles', 'setLinePosition']),
+
   },
   created: function() {
+    this.getHistoryArticles()
   },
+  mounted() {
+    const page = document.querySelector('.mypage-history')
+    const bodyHeight = document.body.clientHeight
+    if (bodyHeight > page.clientHeight) {
+      page.style.height = `${bodyHeight}px`
+    }
+  }
 }
 </script>
 
