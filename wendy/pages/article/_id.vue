@@ -50,7 +50,7 @@
           <p class="content-header__category">{{ article.category }}</p>
           <div  class="business-hours">
             <ul class="business-hours__list">
-              <li class="business-hours__item" >{{ article.business_hour }}</li>
+              <li class="business-hours__item" v-for="(str, index) in (article.business_hour).split('\\n')" :key="index">{{ str }}</li>
             </ul>
           </div>
         </div>
