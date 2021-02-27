@@ -6,6 +6,7 @@
       <div class="mypage-history__inner">
         <h3 class="mypage-history__title">WENDYクーポン利用履歴</h3>
         <div class="history">
+          <p class="mypage-history__empty-message" v-if="!historyArticles.length">まだクーポンの利用履歴がありません</p>
           <ul class="history__list">
             <li class="history__item"  v-for="(article, index) in historyArticles" :key="index">
               <div class="history__content">
@@ -74,6 +75,10 @@ export default {
       font-size: 1.4rem;
       text-align: center;
       padding: 3.2rem 0 1.2rem;
+    }
+    &__empty-message {
+      text-align: center;
+      padding: 3rem 0;
     }
     .history {
       &__item {

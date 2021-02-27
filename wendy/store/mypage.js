@@ -42,11 +42,15 @@ export const actions = {
     if (user) {
       usersRef.doc(`${user.uid}`).collection('favorite_articles').get()
       .then(function(querySnapshot) {
-  
+        
         let i = querySnapshot.size
         let favoriteArticles = [];
         let articleCount = 0;
-  
+
+        if(i === 0) {
+          commit('setFavoriteArticles', [])
+        }
+        
         querySnapshot.forEach(async doc => {
   
             const addData = {
@@ -75,9 +79,6 @@ export const actions = {
             }  
         });
       })
-      .catch(function(error) {
-          console.log("Error getting documents: ", error);
-      });
     }
   },
   getHistoryArticles({ commit }) {
@@ -90,6 +91,11 @@ export const actions = {
         let i = querySnapshot.size
         let historyArticles = [];
         let articleCount = 0;
+
+        if(i === 0) {
+          commit('setHistoryArticles', [])
+        }
+
   
         querySnapshot.forEach(async doc => {
     
@@ -114,9 +120,6 @@ export const actions = {
           }  
         });
       })
-      .catch(function(error) {
-          console.log("Error getting documents: ", error);
-      });
     }
   }
 }

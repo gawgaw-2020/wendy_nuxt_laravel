@@ -6,6 +6,7 @@
       <div class="mypage-favorite__inner">
         <h2 class="mypage-favorite__title">お気に入り店舗</h2>
         <div class="favorite">
+          <p class="mypage-favorite__empty-message" v-if="!favoriteArticles.length">お気に入りした店舗がありません</p>
           <StoreCard :favoriteArticles="favoriteArticles"/>
         </div>
       </div>
@@ -61,6 +62,10 @@ export default {
       font-size: 1.4rem;
       text-align: center;
       padding: 3.2rem 0 2.2rem;
+    }
+    &__empty-message {
+      text-align: center;
+      padding: 3rem 0;
     }
   }
 

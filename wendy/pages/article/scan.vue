@@ -32,12 +32,6 @@ export default {
 
         if (user) {
           this.result = result
-          console.log(result);
-          console.log(this.$route.query.article_id);
-          console.log(this.$route.query.start);
-          console.log(this.$route.query.end);
-          console.log(this.$route.query.title);
-          console.log(user.uid);
   
           const title = this.$route.query.title
           const start = this.$route.query.start
@@ -95,7 +89,6 @@ export default {
   },
   mounted() {
     const video = document.querySelector('.qrcode-stream-camera')
-    console.log(video)
     video.style.borderRadius = "20px"
   },
 }
