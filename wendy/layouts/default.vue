@@ -36,16 +36,26 @@
           <p><i class="fas fa-home"></i></p>
           <p>ホーム</p>
         </nuxt-link>
-        <nuxt-link to="#" class="footer__button">
-          <p><i class="fas fa-search"></i></p>
-          <p>検索</p>
-        </nuxt-link>
         <nuxt-link
           class="footer__button"
           to="/user/mypage-favorite"
         >
           <p><i class="fas fa-heart"></i></p>
           <p>お気に入り</p>
+        </nuxt-link>
+        <nuxt-link 
+          v-if="!userName"
+          class="footer__button"
+          to="/login/login">
+          <p><i class="fas fa-user"></i></p>
+          <p>ログイン</p>
+        </nuxt-link>
+        <nuxt-link
+          to="/user/mypage-history"
+          v-if="userName"
+          class="footer__button">
+          <p><i class="fas fa-utensils"></i></p>
+          <p>利用履歴</p>
         </nuxt-link>
       </div>
     </footer>
