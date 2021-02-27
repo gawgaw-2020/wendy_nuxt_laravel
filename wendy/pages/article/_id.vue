@@ -39,7 +39,7 @@
       <div class="modal__background animate__animated animate__fadeIn" @click="modalToggle"></div>
     </div>
     <div class="gallery" :style="{ backgroundImage: 'url(' + article.store_main_image + ')' }">
-      <p class="gallery__area"><i class="fas fa-home"></i>> 東京都 > 渋谷・原宿・表参道 > 渋谷</p>
+      <p class="gallery__area"><i class="fas fa-home"></i>> 東京都 > {{ article.area }}</p>
       <div class="gallery__share"><p><i class="fas fa-share-square"></i></p></div>
       <div v-if="user" class="gallery__like" :class="{ 'active animate__animated animate__bounceIn': likeActive === true }" @click="likeToggle"><p><i class="fas fa-heart"></i></p></div>
     </div>

@@ -8,7 +8,7 @@
           <p class="store-card__category">{{ article.store_category }}</p>
         </div>
         <div  class="store-card__content">
-          <p class="store-card__area">最寄り駅：{{ article.store_area }}</p>
+          <p class="store-card__nearest_station">最寄り駅：{{ article.nearest_station }}</p>
           <p class="store-card__small_text">{{ article.store_small_text }}</p>
         </div>
       </nuxt-link>
@@ -108,7 +108,7 @@ export default {
     &__content {
       padding: 1rem 1rem 1.6rem;
     }
-    &__area {
+    &__nearest_station {
       font-size: 1.2rem;
       color: #838383;
       margin-bottom: 0.8rem;

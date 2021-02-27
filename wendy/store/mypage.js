@@ -56,7 +56,7 @@ export const actions = {
             const addData = {
               store_name: '',
               store_category: '',
-              store_area: '',
+              nearest_station: '',
               store_small_text: '',
               store_main_image: '',
               store_id: ''
@@ -67,7 +67,7 @@ export const actions = {
             const articleSnapshot = await doc.data().ref.get();
             favoriteArticles[articleCount].store_name = articleSnapshot.get('store_name')
             favoriteArticles[articleCount].store_category = articleSnapshot.get('store_category')
-            favoriteArticles[articleCount].store_area = articleSnapshot.get('store_area')
+            favoriteArticles[articleCount].nearest_station = articleSnapshot.get('nearest_station')
             favoriteArticles[articleCount].store_small_text = articleSnapshot.get('store_small_text')
             favoriteArticles[articleCount].store_main_image = articleSnapshot.get('store_main_image')
             favoriteArticles[articleCount].store_id = articleSnapshot.get('store_id')
