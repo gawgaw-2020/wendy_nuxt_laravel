@@ -1,5 +1,33 @@
 <template>
   <div class="top">
+    <div class="time-modal" v-show="timeModal">
+      <div class="time-modal__inner animate__animated animate__fadeIn">
+        <p @click="selectTime" data-time="遅ランチ">遅ランチ</p>
+        <p @click="selectTime" data-time="早ディナー">早ディナー</p>
+        <p @click="selectTime" data-time="遅ディナー">遅ディナー</p>
+      </div>
+      <div class="time-modal__background animate__animated animate__fadeIn" @click="timeModalToggle"></div>
+    </div>
+    <div class="area-modal" v-show="areaModal">
+      <div class="area-modal__inner animate__animated animate__fadeIn">
+        <p @click="selectArea" data-area="新宿・代々木">新宿・代々木</p>
+        <p @click="selectArea" data-area="渋谷・原宿・表参道">渋谷・原宿・表参道</p>
+        <p @click="selectArea" data-area="恵比寿・代官山・目黒">恵比寿・代官山・目黒</p>
+        <p @click="selectArea" data-area="五反田・品川">五反田・品川</p>
+        <p @click="selectArea" data-area="六本木・広尾・赤坂">六本木・広尾・赤坂</p>
+        <p @click="selectArea" data-area="浜松町・三田・田町">浜松町・三田・田町</p>
+        <p @click="selectArea" data-area="新橋・有楽町・銀座">新橋・有楽町・銀座</p>
+        <p @click="selectArea" data-area="東京・日本橋・茅場町">東京・日本橋・茅場町</p>
+        <p @click="selectArea" data-area="池袋・目白・高田馬場">池袋・目白・高田馬場</p>
+        <p @click="selectArea" data-area="四谷・神楽坂・飯田橋">四谷・神楽坂・飯田橋</p>
+        <p @click="selectArea" data-area="上野・御徒町・浅草">上野・御徒町・浅草</p>
+        <p @click="selectArea" data-area="水道橋・神田・秋葉原">水道橋・神田・秋葉原</p>
+        <p @click="selectArea" data-area="中野・吉祥寺・三鷹">中野・吉祥寺・三鷹</p>
+        <p @click="selectArea" data-area="その他">その他</p>
+      </div>
+      <div class="area-modal__background animate__animated animate__fadeIn" @click="areaModalToggle"></div>
+    </div>
+
     <div class="search-top">
       <div class="search-top__inner">
         <form class="search-top__container" action="#" method="#">
@@ -21,7 +49,7 @@
         </div>
       </div>
     </div>
-    <SearchModal/>
+    <SearchModal @timeModal='openTimeModal' @areaModal='openAreaModal' :selectedTime="this.selectedTime" :selectedArea="this.selectedArea"/>
     <div class="content">
       <div class="appeal">
         <p class="appeal__title">お気に入りしたお店</p>
@@ -87,105 +115,6 @@
             </li>
           </ul>
         </div>
-        <p class="appeal__view-more">もっと見る ＞</p>
-      </div>
-      <div class="appeal">
-        <p class="appeal__title">お気に入りしたお店</p>
-        <p class="appeal__sub-title">お気に入りしたお店をチェックしよう😍</p>
-        <div class="appeal-stores">
-          <ul class="appeal-stores__inner">
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-          </ul>
-        </div>
-        <p class="appeal__view-more">もっと見る ＞</p>
-      </div>
-      <div class="appeal">
-        <p class="appeal__title">お気に入りしたお店</p>
-        <p class="appeal__sub-title">お気に入りしたお店をチェックしよう😍</p>
-        <div class="appeal-stores">
-          <ul class="appeal-stores__inner">
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-          </ul>
-        </div>
-        <p class="appeal__view-more">もっと見る ＞</p>
-      </div>
-      <div class="appeal">
-        <p class="appeal__title">お気に入りしたお店</p>
-        <p class="appeal__sub-title">お気に入りしたお店をチェックしよう😍</p>
-        <div class="appeal-stores">
-          <ul class="appeal-stores__inner">
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-          </ul>
-        </div>
         <p class="appeal__view-more"><nuxt-link :to="`/add_article_data/`">もっと見る ＞</nuxt-link></p>
       </div>
     </div>
@@ -195,14 +124,94 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      timeModal: false,
+      areaModal: false,
+      selectedTime: '早ディナー',
+      selectedArea: '東京・日本橋・茅場町',
+    };
   },
   computed: {},
+  methods: {
+    timeModalToggle() {
+      this.timeModal = !this.timeModal
+    },
+    areaModalToggle() {
+      this.areaModal = !this.areaModal
+    },
+    openTimeModal(payload) {
+      this.timeModal = payload
+    },
+    openAreaModal(payload) {
+      this.areaModal = payload
+    },
+    selectTime(e) {
+      this.selectedTime = e.currentTarget.getAttribute('data-time')
+      this.timeModal = !this.timeModal
+    },
+    selectArea(e) {
+      this.selectedArea = e.currentTarget.getAttribute('data-area')
+      this.areaModal = !this.areaModal
+    }
+  },
   created: function () {},
 };
 </script>
 
 <style lang="scss" scoped>
+.time-modal {
+  text-align: center;
+  color: #fff;
+  &__inner{
+    overflow: scroll;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    background: transparent linear-gradient(180deg, #ff427a 0%, #EAE5E6 300%) 0% 0% no-repeat padding-box;
+    opacity: 1;
+    z-index: 10000;
+    border-radius: 20px;
+  }
+  &__background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.8);
+    z-index: 9999;
+    cursor: pointer;
+  }
+}
+.area-modal {
+  text-align: center;
+  color: #fff;
+  &__inner{
+    overflow: scroll;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    background: transparent linear-gradient(180deg, #ff427a 0%, #EAE5E6 300%) 0% 0% no-repeat padding-box;
+    opacity: 1;
+    z-index: 10000;
+    border-radius: 20px;
+  }
+  &__background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.8);
+    z-index: 9999;
+    cursor: pointer;
+  }
+}
+
 .test {
   font-size: 1.6rem;
   line-height: 2;

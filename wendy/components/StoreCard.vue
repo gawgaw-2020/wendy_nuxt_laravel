@@ -41,13 +41,17 @@
 <script>
 export default {
   props: [
-    'favoriteArticles'
+    'favoriteArticles',
+    'selectedTime'
   ],
   data() {
     return {
       active: "haya-dinner",
       background: ''
     }
+  },
+  created() {
+    
   },
   methods: {
     activate(id) {

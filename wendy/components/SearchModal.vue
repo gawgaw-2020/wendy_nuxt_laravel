@@ -4,11 +4,10 @@
       <div class="search-box">
         <div class="search-box__inner" action="#">
           <div class="search-box__search">
-            <p><i class="search-box__icon fas fa-search"></i></p>
-            <p class="search-box__trigger search-box__trigger--left">行きたい時間</p>
-            <p class="search-box__trigger search-box__trigger--right">エリア</p>
+            <p class="search-box__trigger search-box__trigger--left" @click="selectTime">{{ selectedTime }}</p>
+            <p class="search-box__trigger search-box__trigger--right" @click="selectArea">{{ selectedArea }}</p>
           </div>
-          <button class="search-box__submit" type="submit">お店を探す</button>
+          <div class="search-box__submit" @click="search">お店を探す</div>
         </div>
       </div>
     </div>
@@ -17,7 +16,33 @@
 
 <script>
 export default {
-  
+  props: [
+    'selectedTime',
+    'selectedArea'
+  ],
+  data() {
+    return {
+      timeModal: true,
+      areaModal: true,
+    }
+  },
+  methods: {
+    selectTime() {
+      console.log('select time btn clicked!!')
+      this.$emit("timeModal", this.timeModal);
+    },
+    selectArea() {
+      console.log('select area btn clicked!!')
+      this.$emit("areaModal", this.areaModal);
+    },
+    search() {
+      console.log('検索開始!!');
+      console.log(this.selectedTime);
+      console.log(this.selectedArea);
+      // <router-link :to="{ path: '/article/scan', query: { start: coupon.start, end: coupon.end, title: coupon.title, article_id: coupon.article_id }}">
+      this.$router.push( { path: '/article/articles', query: { selectedTime: this.selectedTime, selectedArea: this.selectedArea } } )
+    }
+  },
 }
 </script>
 
@@ -40,13 +65,6 @@ export default {
       display: flex;
       position: relative;
     }
-    &__icon {
-      font-size: 2.4rem;
-      position: absolute;
-      color: #aaa;
-      top: 16px;
-      left: 20px;
-    }
     &__trigger {
       height: 55px;
       font-size: 1.6rem;
@@ -57,20 +75,21 @@ export default {
       cursor: pointer;
     }
     &__trigger--left {
-      text-align: right;
-      width: 58%;
+      text-align: center;
+      width: 38%;
       border-radius: 28px 0 0 28px;
     }
     &__trigger--left::after {
       content: '|';
-      margin-left: 2rem;
+      margin-left: 0.5rem;
     }
     &__trigger--right {
-      padding-left: 3rem;
-      width: 42%;
+      text-align: left;
+      width: 62%;
       border-radius: 0 28px 28px 0;
     }
     &__submit {
+      text-align: center;
       font-size: 1.6rem;
       font-weight: bold;
       width: 100%;
