@@ -28,18 +28,12 @@ export default {
   },
   methods: {
     selectTime() {
-      console.log('select time btn clicked!!')
       this.$emit("timeModal", this.timeModal);
     },
     selectArea() {
-      console.log('select area btn clicked!!')
       this.$emit("areaModal", this.areaModal);
     },
     search() {
-      console.log('検索開始!!');
-      console.log(this.selectedTime);
-      console.log(this.selectedArea);
-      // <router-link :to="{ path: '/article/scan', query: { start: coupon.start, end: coupon.end, title: coupon.title, article_id: coupon.article_id }}">
       this.$router.push( { path: '/article/articles', query: { selectedTime: this.selectedTime, selectedArea: this.selectedArea } } )
     }
   },

@@ -51,7 +51,21 @@ export default {
     }
   },
   created() {
-    
+    if(this.$route.query.selectedTime === '遅ランチ') {
+      this.active = 'oso-lunch'
+      this.background = 'rgba(154, 212, 248, 0.2)'
+      this.$emit("background-color", this.background);
+    }
+    if(this.$route.query.selectedTime === '早ディナー') {
+      this.active = 'haya-dinner'
+      this.background = 'rgba(236, 103, 63, 0.15)'
+      this.$emit("background-color", this.background);
+    }
+    if(this.$route.query.selectedTime === '遅ディナー') {
+      this.active = 'oso-dinner'
+      this.background = 'rgba(66, 58, 141, 0.1)'
+      this.$emit("background-color", this.background);
+    }
   },
   methods: {
     activate(id) {
