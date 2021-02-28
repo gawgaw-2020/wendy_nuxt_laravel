@@ -189,11 +189,9 @@ export default {
   computed: {
     activeCoupons: function() {
       const allCoupons = this.article.coupons
-      console.log(allCoupons);
       const activeCoupons = allCoupons.filter((obj) => {
         return obj['active'] === true;
       })
-      console.log(activeCoupons);
       return activeCoupons
     }
   },

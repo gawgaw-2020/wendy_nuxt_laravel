@@ -24,8 +24,14 @@
           </li>
         </ul>
         <div class="store-card__tab-content" v-show="active === coupon.coupon_id" v-for="(coupon, index) in article.coupons" :key="index">
-          <p class="store-card__coupon-time animate__animated animate__fadeIn animate__faster">{{ coupon.start }} ~ {{ coupon.end }}の入店</p>
-          <p class="store-card__coupon-title animate__animated animate__fadeIn animate__faster">{{ coupon.title }}</p>
+          <div v-if="coupon.active">
+            <p class="store-card__coupon-time animate__animated animate__fadeIn animate__faster">{{ coupon.start }} ~ {{ coupon.end }}の入店</p>
+            <p class="store-card__coupon-title animate__animated animate__fadeIn animate__faster">{{ coupon.title }}</p>
+          </div>
+          <div v-else>
+            <p class="store-card__no-coupon-time">クーポン検討中です。</p>
+            <p class="store-card__no-coupon-title">他の時間帯のクーポンをご覧下さい。店舗をお気に入り登録して、クーポンの追加を待ちましょう★</p>
+          </div>
         </div>
       </div>
     </li>
@@ -166,6 +172,15 @@ export default {
     &__coupon-title {
       font-size: 1.4rem;
       font-weight: bold;
+      padding: 0 1rem;
+      text-align: left;
+    }
+    &__no-coupon-time {
+      font-size: 1.4rem;
+      padding: 1rem 0 0.6rem;
+    }
+    &__no-coupon-title {
+      font-size: 1.4rem;
       padding: 0 1rem;
       text-align: left;
     }
