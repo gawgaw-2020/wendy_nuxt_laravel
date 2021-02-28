@@ -57,7 +57,7 @@
       </div>
       <div class="content-coupons">
         <ul class="coupons-list">
-          <li class="coupon" v-for="(coupon, index) in article.coupons" :key="index" :style="{ backgroundImage: 'url(/img/' + coupon.coupon_id + '-bg.png)' }">
+          <li class="coupon" v-for="(coupon, index) in activeCoupons" :key="index" :style="{ backgroundImage: 'url(/img/' + coupon.coupon_id + '-bg.png)' }">
             <div  class="coupon__content">
               <p class="coupon__category">{{ coupon.category }}</p>
               <p class="coupon__time">{{ coupon.start }}~{{ coupon.end }}の入店で</p>
@@ -187,6 +187,15 @@ export default {
     return { article }
   },
   computed: {
+    activeCoupons: function() {
+      const allCoupons = this.article.coupons
+      console.log(allCoupons);
+      const activeCoupons = allCoupons.filter((obj) => {
+        return obj['active'] === true;
+      })
+      console.log(activeCoupons);
+      return activeCoupons
+    }
   },
   methods: {
     modalToggle() {
