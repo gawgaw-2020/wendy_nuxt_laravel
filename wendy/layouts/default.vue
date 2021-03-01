@@ -169,12 +169,13 @@ export default {
 
 <style lang="scss" scoped>
 .header {
+  width: 375px;
   height: 50px;
-  width: 100vw;
   background-color: #fff;
   position: fixed;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 9999;
   box-shadow: nome;
   &.addShadow {
@@ -210,12 +211,13 @@ export default {
 }
 
 .footer {
+  width: 375px;
   height: 75px;
-  width: 100vw;
   background-color: #fff;
   position: fixed;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.2);
   color: #000;
   z-index: 9999;

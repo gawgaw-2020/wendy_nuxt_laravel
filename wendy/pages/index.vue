@@ -52,8 +52,8 @@
     <SearchModal @timeModal='openTimeModal' @areaModal='openAreaModal' :selectedTime="this.selectedTime" :selectedArea="this.selectedArea"/>
     <div class="content">
       <div class="appeal">
-        <p class="appeal__title">お気に入りしたお店</p>
-        <p class="appeal__sub-title">お気に入りしたお店をチェックしよう😍</p>
+        <p class="appeal__title">全てのお店をチェックする</p>
+        <p class="appeal__sub-title">どのお店もお得がいっぱい😍</p>
         <div class="appeal-stores">
           <ul class="appeal-stores__inner">
             <li class="mini-store-card">
