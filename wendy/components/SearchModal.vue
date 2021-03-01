@@ -70,7 +70,7 @@ export default {
     }
     &__trigger--left {
       text-align: center;
-      width: 38%;
+      width: 40%;
       border-radius: 28px 0 0 28px;
     }
     &__trigger--left::after {
@@ -78,9 +78,10 @@ export default {
       margin-left: 0.5rem;
     }
     &__trigger--right {
-      text-align: left;
-      width: 62%;
+      text-align: center;
+      width: 60%;
       border-radius: 0 28px 28px 0;
+      padding-right: 1.6rem;
     }
     &__submit {
       text-align: center;

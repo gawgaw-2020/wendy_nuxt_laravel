@@ -2,28 +2,30 @@
   <div class="top">
     <div class="time-modal" v-show="timeModal">
       <div class="time-modal__inner animate__animated animate__fadeIn">
-        <p @click="selectTime" data-time="遅ランチ">遅ランチ</p>
-        <p @click="selectTime" data-time="早ディナー">早ディナー</p>
-        <p @click="selectTime" data-time="遅ディナー">遅ディナー</p>
+        <p class="time-modal__message">時間帯を選択してください</p>
+        <p class="time-modal__item" @click="selectTime" data-time="遅ランチ">遅ランチ</p>
+        <p class="time-modal__item" @click="selectTime" data-time="早ディナー">早ディナー</p>
+        <p class="time-modal__item" @click="selectTime" data-time="遅ディナー">遅ディナー</p>
       </div>
       <div class="time-modal__background animate__animated animate__fadeIn" @click="timeModalToggle"></div>
     </div>
     <div class="area-modal" v-show="areaModal">
       <div class="area-modal__inner animate__animated animate__fadeIn">
-        <p @click="selectArea" data-area="新宿・代々木">新宿・代々木</p>
-        <p @click="selectArea" data-area="渋谷・原宿・表参道">渋谷・原宿・表参道</p>
-        <p @click="selectArea" data-area="恵比寿・代官山・目黒">恵比寿・代官山・目黒</p>
-        <p @click="selectArea" data-area="五反田・品川">五反田・品川</p>
-        <p @click="selectArea" data-area="六本木・広尾・赤坂">六本木・広尾・赤坂</p>
-        <p @click="selectArea" data-area="浜松町・三田・田町">浜松町・三田・田町</p>
-        <p @click="selectArea" data-area="新橋・有楽町・銀座">新橋・有楽町・銀座</p>
-        <p @click="selectArea" data-area="東京・日本橋・茅場町">東京・日本橋・茅場町</p>
-        <p @click="selectArea" data-area="池袋・目白・高田馬場">池袋・目白・高田馬場</p>
-        <p @click="selectArea" data-area="四谷・神楽坂・飯田橋">四谷・神楽坂・飯田橋</p>
-        <p @click="selectArea" data-area="上野・御徒町・浅草">上野・御徒町・浅草</p>
-        <p @click="selectArea" data-area="水道橋・神田・秋葉原">水道橋・神田・秋葉原</p>
-        <p @click="selectArea" data-area="中野・吉祥寺・三鷹">中野・吉祥寺・三鷹</p>
-        <p @click="selectArea" data-area="その他">その他</p>
+        <p class="area-modal__message">エリアを選択してください</p>
+        <p class="area-modal__item" @click="selectArea" data-area="新宿・代々木">新宿・代々木</p>
+        <p class="area-modal__item" @click="selectArea" data-area="渋谷・原宿・表参道">渋谷・原宿・表参道</p>
+        <p class="area-modal__item" @click="selectArea" data-area="恵比寿・代官山・目黒">恵比寿・代官山・目黒</p>
+        <p class="area-modal__item" @click="selectArea" data-area="五反田・品川">五反田・品川</p>
+        <p class="area-modal__item" @click="selectArea" data-area="六本木・広尾・赤坂">六本木・広尾・赤坂</p>
+        <p class="area-modal__item" @click="selectArea" data-area="浜松町・三田・田町">浜松町・三田・田町</p>
+        <p class="area-modal__item" @click="selectArea" data-area="新橋・有楽町・銀座">新橋・有楽町・銀座</p>
+        <p class="area-modal__item" @click="selectArea" data-area="東京・日本橋・茅場町">東京・日本橋・茅場町</p>
+        <p class="area-modal__item" @click="selectArea" data-area="池袋・目白・高田馬場">池袋・目白・高田馬場</p>
+        <p class="area-modal__item" @click="selectArea" data-area="四谷・神楽坂・飯田橋">四谷・神楽坂・飯田橋</p>
+        <p class="area-modal__item" @click="selectArea" data-area="上野・御徒町・浅草">上野・御徒町・浅草</p>
+        <p class="area-modal__item" @click="selectArea" data-area="水道橋・神田・秋葉原">水道橋・神田・秋葉原</p>
+        <p class="area-modal__item" @click="selectArea" data-area="中野・吉祥寺・三鷹">中野・吉祥寺・三鷹</p>
+        <p class="area-modal__item" @click="selectArea" data-area="その他">その他</p>
       </div>
       <div class="area-modal__background animate__animated animate__fadeIn" @click="areaModalToggle"></div>
     </div>
@@ -133,25 +135,45 @@ export default {
   },
   computed: {},
   methods: {
+    toggleFixedBackground() {
+      if(document.body.style.overflow === '') {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    },
+    areaModalMoveToTop() {
+      const obj = document.querySelector('.area-modal__inner');
+      obj.scrollTop = 0
+    },
     timeModalToggle() {
       this.timeModal = !this.timeModal
+      this.toggleFixedBackground()
     },
     areaModalToggle() {
       this.areaModal = !this.areaModal
+      this.toggleFixedBackground()
+      this.areaModalMoveToTop()
     },
     openTimeModal(payload) {
       this.timeModal = payload
+      this.toggleFixedBackground()
+
     },
     openAreaModal(payload) {
       this.areaModal = payload
+      this.toggleFixedBackground()
     },
     selectTime(e) {
       this.selectedTime = e.currentTarget.getAttribute('data-time')
       this.timeModal = !this.timeModal
+      this.toggleFixedBackground()
     },
     selectArea(e) {
       this.selectedArea = e.currentTarget.getAttribute('data-area')
       this.areaModal = !this.areaModal
+      this.toggleFixedBackground()
+      this.areaModalMoveToTop()
     }
   },
   created: function () {},
@@ -184,6 +206,15 @@ export default {
     z-index: 9999;
     cursor: pointer;
   }
+  &__message {
+    font-size: 1.4rem;
+    padding: 1.4rem 0;
+  }
+  &__item {
+    border-top: 1px solid #bbb;
+    padding: 1.5rem 0;
+    font-weight: bold;
+  }
 }
 .area-modal {
   text-align: center;
@@ -199,6 +230,7 @@ export default {
     opacity: 1;
     z-index: 10000;
     border-radius: 20px;
+    max-height: 480px;
   }
   &__background{
     position: fixed;
@@ -210,6 +242,21 @@ export default {
     z-index: 9999;
     cursor: pointer;
   }
+  &__message {
+    font-size: 1.2rem;
+    padding: 1.2rem 0;
+    background: #ff427a;
+    position: sticky;
+    top: 0;
+    width: 100%;
+  }
+  &__item {
+    font-size: 1.4rem;
+    border-top: 1px solid #bbb;
+    padding: 1rem 0;
+    // font-weight: bold;
+  }
+
 }
 
 .test {
