@@ -169,7 +169,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  width: 375px;
+  width: 100%;
   height: 50px;
   background-color: #fff;
   position: fixed;
@@ -211,7 +211,7 @@ export default {
 }
 
 .footer {
-  width: 375px;
+  width: 100%;
   height: 75px;
   background-color: #fff;
   position: fixed;

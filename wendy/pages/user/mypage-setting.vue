@@ -44,6 +44,14 @@ export default {
   },
   created: function() {
   },
+  mounted() {
+  const page = document.querySelector('.mypage-setting-section')
+  const bodyHeight = document.body.clientHeight
+  if (bodyHeight > page.clientHeight) {
+    page.style.height = `${bodyHeight}px`
+  }
+}
+
 }
 </script>
 
@@ -55,8 +63,8 @@ export default {
   .mypage-setting {
     color: #2e6171;
     &__inner {
-      max-width: 1366px;
-      padding: 0 16px;
+      max-width: 768px;
+      padding: 0 16px 120px;
       margin: 0 auto;
     }
     &__title {

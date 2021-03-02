@@ -19,6 +19,7 @@ export default {
   data() {
     return {
       swiperOption: {
+        slidesPerView: 1,
         speed: 1000,//スライドの切り替わりスピード
         spaceBetween: 0,//各スライドの余白
         centeredSlides: true,//スライダーを真ん中に
@@ -30,6 +31,8 @@ export default {
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
+        },
+        breakpoints: {
         }
       }
     }
@@ -40,6 +43,13 @@ export default {
 <style  scoped  lang="scss">
 .swiper-slide {
   height: 170px;
+  @include mq() {
+    height: 340px;
+  }
+}
+.swiper-container {
+  max-width: 768px;
+  margin: 0 auto;
 }
 .swiper-slide img {
   margin-top: -40px;

@@ -56,6 +56,7 @@
         </div>
       </div>
       <div class="content-coupons">
+        <p class="content-coupons__title">＼ 詳細と利用方法はクーポンをクリック ／</p>
         <ul class="coupons-list">
           <li class="coupon" v-for="(coupon, index) in activeCoupons" :key="index" :style="{ backgroundImage: 'url(/img/' + coupon.coupon_id + '-bg.png)' }">
             <div  class="coupon__content">
@@ -363,8 +364,13 @@ export default {
 }
 .gallery {
   height: 170px;
+  max-width: 768px;
+  margin: 0 auto;
   background-size: cover;
   position: relative;
+  @include mq() {
+    height: 340px;
+  }
   &__area {
     font-size: 1rem;
     color: #fff;
@@ -419,9 +425,10 @@ export default {
     &__inner {
       width: 93%;
       margin: 0 auto;
+      max-width: 768px;
     }
     &__title {
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       font-weight: bold;
       margin-bottom: 0.4rem;
     }
@@ -437,7 +444,7 @@ export default {
         padding-top: 0.8rem;
       }
       &__item {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
       }
       &__item:not(:last-child) {
         margin-bottom: 0.4rem;
@@ -447,6 +454,14 @@ export default {
   .content-coupons {
     background-color: #efefef;
     padding: 2rem 0 2rem;
+    overflow: scroll;
+    &__title {
+      font-size: 1.4rem;
+      text-align: center;
+      color: #2E6171;
+      font-weight: bold;
+      margin-bottom: 1.6rem;
+    }
     .coupon {
       width: 340px;
       height: 112px;
@@ -493,6 +508,7 @@ export default {
     &__inner {
       width: 93%;
       margin: 0 auto;
+      max-width: 768px;
     }
     &__address {
       margin-bottom: 0.8rem;
@@ -519,12 +535,14 @@ export default {
     &__inner {
       width: 93%;
       margin: 0 auto;
+      max-width: 768px;
     }
     &__title {
       margin-bottom: 2.4rem;
     }
     &__description {
       font-size: 1.4rem;
+      line-height: 1.8;
       white-space: pre-wrap;
     }
     &__tags {
@@ -533,31 +551,37 @@ export default {
       padding: 2.4rem 0;
     }
     &__tag {
-      width: 160px;
+      color: #2E6171;
+      background-color: #eee;
+      font-size: 1.4rem;
+      width: calc((100% / 2) - 4px);
       height: 35px;
       line-height: 35px;
       text-align: center;
-      border-radius: 10px;
-      border: 1px solid #707070;
-      margin-right: 1.4rem;
+      border-radius: 999px;
       margin-bottom: 0.8rem;
       .fas {
         margin-right: 0.8rem;
       }
     }
+    &__tag:nth-child(odd) {
+      margin-right: 0.8rem;
+    }
   }
   .content-pictures {
     &__inner {
+      max-width: 768px;
       width: 93%;
       margin: 0 auto;
     }
   }
   .content-payment {
     padding: 4rem 0 2.4rem;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     &__inner {
       width: 93%;
       margin: 0 auto;
+      max-width: 768px;
     }
     &__title {
       margin-bottom: 2.4rem;
@@ -581,10 +605,11 @@ export default {
   }
   .content-menu {
     padding: 0 0 2.4rem;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     &__inner {
       width: 93%;
       margin: 0 auto;
+      max-width: 768px;
     }
     &__title {
       margin-bottom: 2.4rem;

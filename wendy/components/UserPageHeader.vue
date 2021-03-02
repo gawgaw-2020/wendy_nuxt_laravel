@@ -1,12 +1,14 @@
 <template>
   <div class="mypage-header">
-    <h2 class="mypage-header__title">マイページ</h2>
-    <div class="mypage-header__icon-name">
-      <p class="mypage-header__icon">
-        <img v-if="userPhotoURL" :src="userPhotoURL" alt="">
-        <img v-if="!userPhotoURL" src="/img/user-icon.png" alt="">
-      </p>
-      <p class="mypage-header__name">{{ userName }} 様</p>
+    <div class="mypage-header__inner">
+      <h2 class="mypage-header__title">マイページ</h2>
+      <div class="mypage-header__icon-name">
+        <p class="mypage-header__icon">
+          <img v-if="userPhotoURL" :src="userPhotoURL" alt="">
+          <img v-if="!userPhotoURL" src="/img/user-icon.png" alt="">
+        </p>
+        <p class="mypage-header__name">{{ userName }} 様</p>
+      </div>
     </div>
   </div>
 </template>
@@ -31,6 +33,10 @@ export default {
   background-color: #ff427a;
   color: #fff;
   padding: 2.8rem 4.6rem;
+  &__inner {
+    max-width: 768px;
+    margin: 0 auto;
+  }
   &__title {
     font-size: 1.8rem;
     text-align: center;

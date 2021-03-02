@@ -58,8 +58,9 @@ export default {
   }
   .mypage-info {
     color: #2e6171;
+    padding-bottom: 12rem;
     &__inner {
-      max-width: 1366px;
+      max-width: 768px;
       padding: 0 16px;
       margin: 0 auto;
     }

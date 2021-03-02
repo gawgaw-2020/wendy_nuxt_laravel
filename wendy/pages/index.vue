@@ -54,7 +54,7 @@
     <SearchModal @timeModal='openTimeModal' @areaModal='openAreaModal' :selectedTime="this.selectedTime" :selectedArea="this.selectedArea"/>
     <div class="content">
       <div class="appeal">
-        <p class="appeal__title">全てのお店をチェックする</p>
+        <p class="appeal__title">＊全てのお店をチェックする＊</p>
         <p class="appeal__sub-title">どのお店もお得がいっぱい😍</p>
         <div class="appeal-stores">
           <ul class="appeal-stores__inner">
@@ -70,7 +70,7 @@
       </div>
       <div class="appeal">
         <p class="appeal__title">遅い時間のランチでお得なお店</p>
-        <p class="appeal__sub-title">今日は遅ランチで元気をチャージ🍴</p>
+        <p class="appeal__sub-title">今日は<span class="oso-lunch">遅ランチ</span>で元気をチャージ🍴</p>
         <div class="appeal-stores">
           <ul class="appeal-stores__inner">
             <li class="mini-store-card" v-for="(article, index) in osoLunchArticles" :key="index">
@@ -85,7 +85,7 @@
       </div>
       <div class="appeal">
         <p class="appeal__title">早めの晩ごはんでお得なお店</p>
-        <p class="appeal__sub-title">今日は早めの入店でゆったりお食事</p>
+        <p class="appeal__sub-title">今日は<span class="haya-dinner">早ディナー</span>でゆったりお食事</p>
         <div class="appeal-stores">
           <ul class="appeal-stores__inner">
             <li class="mini-store-card" v-for="(article, index) in hayaDinnerArticles" :key="index">
@@ -99,8 +99,8 @@
         <p class="appeal__view-more"><nuxt-link :to="`/article/hayaDinnerArticles/?selectedTime=早ディナー`">もっと見る ＞</nuxt-link></p>
       </div>
       <div class="appeal">
-        <p class="appeal__title">遅い時間のディナーでお得なお店</p>
-        <p class="appeal__sub-title">実は遅い時間もお得がいっぱい🌙</p>
+        <p class="appeal__title">遅い時間の入店でお得なお店</p>
+        <p class="appeal__sub-title">実は<span class="oso-dinner">遅ディナー</span>もお得がいっぱい🌙</p>
         <div class="appeal-stores">
           <ul class="appeal-stores__inner">
             <li class="mini-store-card" v-for="(article, index) in osoDinnerArticles" :key="index">
@@ -192,6 +192,7 @@ export default {
   text-align: center;
   color: #fff;
   &__inner{
+    max-width: 768px;
     overflow: scroll;
     position: fixed;
     top: 50%;
@@ -202,6 +203,9 @@ export default {
     opacity: 1;
     z-index: 10000;
     border-radius: 20px;
+    @include mq() {
+      top: 40%;
+    }
   }
   &__background{
     position: fixed;
@@ -227,9 +231,10 @@ export default {
   text-align: center;
   color: #fff;
   &__inner{
+    max-width: 768px;
     overflow: scroll;
     position: fixed;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 85%;
@@ -237,7 +242,7 @@ export default {
     opacity: 1;
     z-index: 10000;
     border-radius: 20px;
-    max-height: 480px;
+    max-height: 435px;
   }
   &__background{
     position: fixed;
@@ -250,18 +255,18 @@ export default {
     cursor: pointer;
   }
   &__message {
-    font-size: 1.2rem;
-    padding: 1.2rem 0;
+    font-size: 1.4rem;
+    padding: 1.4rem 0;
     background: #ff427a;
     position: sticky;
     top: 0;
     width: 100%;
   }
   &__item {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     border-top: 1px solid #bbb;
     padding: 1rem 0;
-    // font-weight: bold;
+    font-weight: bold;
   }
 
 }
@@ -277,7 +282,7 @@ export default {
 }
 
 .search-top {
-  padding-bottom: 0.6rem;
+  padding-bottom: 0.8rem;
   &__inner {
     max-width: 1366px;
     padding: 0 16px;
@@ -292,6 +297,7 @@ export default {
     left: 35px;
   }
   &__search {
+    font-size: 1.4rem;
     width: 100%;
     height: 36px;
     padding: 0 0 0 6rem;
@@ -309,6 +315,8 @@ export default {
 
 .hero {
   background-image: url('/img/hero.png');
+  background-size: cover;
+  background-position: center;
   height: 320px;
   &__mask {
     background-color: rgba(56, 56, 56, 0.4);
@@ -343,12 +351,22 @@ export default {
   margin-bottom: 2.2rem;
   padding-left: 1.6rem;
   &__title {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin-bottom: 0.4rem;
   }
   &__sub-title {
+    font-weight: bold;
     font-size: 1.2rem;
     margin-bottom: 1.2rem;
+    .oso-lunch {
+      color: rgb(72, 179, 245);
+    }
+    .haya-dinner {
+      color: rgba(236, 103, 63, 1);
+    }
+    .oso-dinner {
+      color: rgba(66, 58, 141, 1);
+    }
   }
   .appeal-stores {
     &__inner {
@@ -362,16 +380,23 @@ export default {
     margin-right: 2rem;
     &__image {
       width: 140px;
-      max-height: 93px;
+      max-height: 90px;
       overflow: hidden;
       margin-bottom: 0.4rem;
+      @include mq() { // 引数を個別に指定
+        width: 280px;
+        max-height: 180px;
+      }
     }
     &__image img {
       border-radius: 5px;
     }
     &__title {
       width: 140px;
-      font-size: 1.2rem;
+      @include mq() { // 引数を個別に指定
+        width: 280px;
+      }
+      font-size: 1.4rem;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -379,7 +404,7 @@ export default {
   }
   &__view-more {
     display: block;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     text-align: right;
     padding-right: 2rem;
     cursor: pointer;

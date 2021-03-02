@@ -51,6 +51,8 @@ export default {
   }
   .search-box {
     width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
     background-color: #fff;
     padding: 1.6rem 2rem;
     border-radius: 20px;
@@ -70,18 +72,25 @@ export default {
     }
     &__trigger--left {
       text-align: center;
-      width: 40%;
+      width: 34%;
       border-radius: 28px 0 0 28px;
+      position: relative;
     }
     &__trigger--left::after {
       content: '|';
       margin-left: 0.5rem;
+      position: absolute;
+      right: 0;
     }
     &__trigger--right {
+      line-height: 1;
       text-align: center;
-      width: 60%;
+      width: 66%;
       border-radius: 0 28px 28px 0;
       padding-right: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     &__submit {
       text-align: center;

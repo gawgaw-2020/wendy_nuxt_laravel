@@ -67,10 +67,12 @@ export default {
 
 <style lang="scss" scoped>
 .coupon-detail {
+  padding-bottom: 8rem;
   &__section-title {
     padding: 3.2rem 0;
   }
   &__message {
+    text-align: center;
     color: #2e6171;
     font-weight: bold;
     margin-bottom: 0.4rem;

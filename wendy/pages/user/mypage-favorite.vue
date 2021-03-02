@@ -53,7 +53,7 @@ export default {
   .mypage-favorite {
     color: #2e6171;
     &__inner {
-      max-width: 1366px;
+      max-width: 768px;
       padding: 0 16px 80px;
       margin: 0 auto;
     }

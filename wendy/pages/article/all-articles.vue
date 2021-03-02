@@ -36,6 +36,7 @@ export default {
   &__inner {
     width: 93%;
     margin: 0 auto;
+    max-width: 768px;
   }
   &__title {
     display: inline-block;

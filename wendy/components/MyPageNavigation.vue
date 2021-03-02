@@ -1,18 +1,20 @@
 <template>
   <div class="mypage-navigation">
-    <span id="slide-line" :class="linePosition"></span>
-    <p @click="setLinePosition('info')" class="mypage-navigation__item" :class="{current: linePosition === 'info'}">
-      お知らせ
-    </p>
-    <p @click="setLinePosition('favorite')" class="mypage-navigation__item" :class="{current: linePosition === 'favorite'}">
-      お気に入り店舗
-    </p>
-    <p @click="setLinePosition('history')" class="mypage-navigation__item" :class="{current: linePosition === 'history'}">
-      利用履歴
-    </p>
-    <p @click="setLinePosition('setting')" class="mypage-navigation__item" :class="{current: linePosition === 'setting'}">
-      ユーザー情報
-    </p>
+    <div class="mypage-navigation__inner">
+      <span id="slide-line" :class="linePosition"></span>
+      <p @click="setLinePosition('info')" class="mypage-navigation__item" :class="{current: linePosition === 'info'}">
+        お知らせ
+      </p>
+      <p @click="setLinePosition('favorite')" class="mypage-navigation__item" :class="{current: linePosition === 'favorite'}">
+        お気に入り
+      </p>
+      <p @click="setLinePosition('history')" class="mypage-navigation__item" :class="{current: linePosition === 'history'}">
+        利用履歴
+      </p>
+      <p @click="setLinePosition('setting')" class="mypage-navigation__item" :class="{current: linePosition === 'setting'}">
+        ユーザー情報
+      </p>
+    </div>
   </div>
 </template>
 
@@ -57,8 +59,12 @@ export default {
 }
 .mypage-navigation {
   background-color: #fff;
-  display: flex;
-  position: relative;
+  &__inner {
+    max-width: 768px;
+    margin: 0 auto;
+    display: flex;
+    position: relative;
+  }
   &__item {
     font-size: 1.2rem;
     width: 25%;

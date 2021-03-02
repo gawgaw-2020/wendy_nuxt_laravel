@@ -87,11 +87,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .allArticles__list {
+    @include mq(sm) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+  .store-card:nth-child(odd) {
+    @include mq(sm) {
+      margin-right: 24px;
+    }
+  }
   .store-card {
     background-color: #fff;
     margin-bottom: 2.4rem;
     border-radius: 10px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    @include mq(sm) {
+      width: calc((100% / 2) - 12px);
+    }
     &__header {
       height: 155px;
       position: relative;
@@ -109,14 +123,14 @@ export default {
       top: 0;
       left: 0;
       background: rgb(0,0,0);
-      background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.196516106442577) 20%, rgba(255,255,255,0) 100%);
+      background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.196516106442577) 30%, rgba(255,255,255,0) 100%);
     }
     &__name {
       position: absolute;
       bottom: 0;
       color: #fff;
       font-weight: bold;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       padding: 0.8rem 1rem;
     }
     &__category {

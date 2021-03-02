@@ -7,11 +7,11 @@
           <div class="login-link">
             <div class="user-input">
               <p class="user-input__input"><input type="email" v-model="email" placeholder="メールアドレス"></p>
-              <p class="user-input__error">※メールアドレスは正しい形式で入力して下さい</p>
+              <p class="user-input__error"></p>
             </div>
             <div class="user-input">
               <p class="user-input__input"><input type="password" v-model="password" placeholder="パスワード"></p>
-              <p class="user-input__error">※メールアドレスは正しい形式で入力して下さい</p>
+              <p class="user-input__error"></p>
             </div>
             <button class="login-link__btn btn btn-primary" @click="login">ログイン</button>
             <p class="login-link__social-title">他サイトIDで簡単ログイン</p>
@@ -62,12 +62,17 @@ export default {
   color: #2E6171;
   background-image: url(/img/login-background.png);
   background-size: cover;
+  @include mq() {
+    background-image: none;
+  }
   &__inner {
     width: 90%;
     padding: 3.2rem 0;
     margin: 0 auto;
   }
   .login-form-card {
+    max-width: 480px;
+    margin: 0 auto;
     background-color: #fff;
     border-radius: 20px;
     padding: 5rem 0;
@@ -93,6 +98,7 @@ export default {
       }
       &__social-btn {
         width: 80%;
+        max-width: 220px;
         margin: 0 auto 1rem;
       }
     }
