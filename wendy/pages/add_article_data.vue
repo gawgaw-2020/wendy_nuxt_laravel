@@ -1,9 +1,6 @@
 <template>
   <div class="add_article_data">
-    <button @click="add">登録する</button>
-    <ul>
-      <li v-for="(image, index) in imageList" :key="index" ><img :src="image" alt=""></li>
-    </ul>
+    <button @click="add">ダミーデータを登録する</button>
   </div>
 </template>
 
@@ -294,20 +291,6 @@ export default {
     }
   },
   created: function () {
-    const storage = firebase.storage()
-    const pathReference = storage.ref('/article_images/MzcZn7ie00dYig8YWlZ1/pictures') //ディレクトリ直下を参照
-
-    const temp = []
-    pathReference.listAll().then(function (result) { // listAllメソッド
-        result.items.forEach(fileRef => {
-          fileRef.getDownloadURL()
-          .then(function(url){
-            temp.push(url) // URLの入った配列がでけた
-          })
-        });
-    }).then(()=>{
-      this.imageList = temp
-    })
   }
 };
 </script>

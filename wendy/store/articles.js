@@ -5,6 +5,9 @@ const articlesRef = db.collection('articles')
 
 export const state = () => ({
   allArticles: [],
+  osoLunchArticles: [],
+  hayaDinnerArticles: [],
+  osoDinnerArticles: [],
   searchedArticles: []
 })
 
@@ -12,6 +15,18 @@ export const mutations = {
   setAllArticles(state, allArticles) {
     state.allArticles.splice(0)
     state.allArticles.push(...allArticles)
+  },
+  setOsoLunchArticles(state, osoLunchArticles) {
+    state.osoLunchArticles.splice(0)
+    state.osoLunchArticles.push(...osoLunchArticles)
+  },
+  setHayaDinnerArticles(state, hayaDinnerArticles) {
+    state.hayaDinnerArticles.splice(0)
+    state.hayaDinnerArticles.push(...hayaDinnerArticles)
+  },
+  setOsoDinnerArticles(state, osoDinnerArticles) {
+    state.osoDinnerArticles.splice(0)
+    state.osoDinnerArticles.push(...osoDinnerArticles)
   },
   setSearchedArticles(state, searchedArticles) {
     state.searchedArticles.splice(0)
@@ -22,7 +37,7 @@ export const mutations = {
 export const actions = {
 
   async getAllArticles({ commit }) {
-    await articlesRef.get()
+    await articlesRef.limit(10).get()
     .then(snapshot => {
 
       let i = snapshot.size
@@ -88,11 +103,123 @@ export const actions = {
         }
       })
     })
-  }
+  },
+  async getOsoLunchArticles({ commit }, payload) {
+    await articlesRef
+    .where('coupon_oso_lunch_active', "==", true)
+    .limit(10).get()
+    .then(snapshot => {
+
+      let i = snapshot.size
+      let osoLunchArticlesData = []
+      if(i === 0) {
+        commit('setOsoLunchArticles', [])
+      }
+      snapshot.forEach(async (doc) => {
+        let id = {}
+        let coupon_id = {}
+        let storeData = {}
+        let coupons = []
+        id.id = doc.id
+        storeData = { ...id, ...doc.data() }
+
+        const subCollection = await doc.ref.collection('coupons').orderBy('start').get()
+        subCollection.forEach(doc => {
+          coupon_id.coupon_id = doc.id
+          const couponData = { ...coupon_id, ...doc.data() }
+          coupons.push(couponData)
+        })
+
+        storeData['coupons'] = coupons
+        osoLunchArticlesData.push(storeData)
+        
+        i--
+        if (i == 0) {
+          commit('setOsoLunchArticles', osoLunchArticlesData)
+        }
+      })
+    })
+  },
+  async getHayaDinnerArticles({ commit }, payload) {
+    console.log('test');
+    await articlesRef
+    .where('coupon_haya_dinner_active', "==", true)
+    .limit(10).get()
+    .then(snapshot => {
+
+      let i = snapshot.size
+      let hayaDinnerArticlesData = []
+      if(i === 0) {
+        commit('setHayaDinnerArticles', [])
+      }
+      snapshot.forEach(async (doc) => {
+        let id = {}
+        let coupon_id = {}
+        let storeData = {}
+        let coupons = []
+        id.id = doc.id
+        storeData = { ...id, ...doc.data() }
+
+        const subCollection = await doc.ref.collection('coupons').orderBy('start').get()
+        subCollection.forEach(doc => {
+          coupon_id.coupon_id = doc.id
+          const couponData = { ...coupon_id, ...doc.data() }
+          coupons.push(couponData)
+        })
+
+        storeData['coupons'] = coupons
+        hayaDinnerArticlesData.push(storeData)
+        
+        i--
+        if (i == 0) {
+          commit('setHayaDinnerArticles', hayaDinnerArticlesData)
+        }
+      })
+    })
+  },
+  async getOsoDinnerArticles({ commit }, payload) {
+    await articlesRef
+    .where('coupon_oso_dinner_active', "==", true)
+    .limit(10).get()
+    .then(snapshot => {
+
+      let i = snapshot.size
+      let osoDinnerArticlesData = []
+      if(i === 0) {
+        commit('setOsoDinnerArticles', [])
+      }
+      snapshot.forEach(async (doc) => {
+        let id = {}
+        let coupon_id = {}
+        let storeData = {}
+        let coupons = []
+        id.id = doc.id
+        storeData = { ...id, ...doc.data() }
+
+        const subCollection = await doc.ref.collection('coupons').orderBy('start').get()
+        subCollection.forEach(doc => {
+          coupon_id.coupon_id = doc.id
+          const couponData = { ...coupon_id, ...doc.data() }
+          coupons.push(couponData)
+        })
+
+        storeData['coupons'] = coupons
+        osoDinnerArticlesData.push(storeData)
+        
+        i--
+        if (i == 0) {
+          commit('setOsoDinnerArticles', osoDinnerArticlesData)
+        }
+      })
+    })
+  },
 
 }
 
 export const getters = {
   allArticles: state => state.allArticles,
+  osoLunchArticles: state => state.osoLunchArticles,
+  hayaDinnerArticles: state => state.hayaDinnerArticles,
+  osoDinnerArticles: state => state.osoDinnerArticles,
   searchedArticles: state => state.searchedArticles,
 }

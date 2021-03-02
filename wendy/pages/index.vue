@@ -58,72 +58,71 @@
         <p class="appeal__sub-title">どのお店もお得がいっぱい😍</p>
         <div class="appeal-stores">
           <ul class="appeal-stores__inner">
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
+            <li class="mini-store-card" v-for="(article, index) in allArticles" :key="index">
+              <nuxt-link :to="`/article/${article.store_id}`">
+                <p class="mini-store-card__image"><img :src="article.main_image" alt=""></p>
+                <p class="mini-store-card__title">{{ article.name }}</p>
+              </nuxt-link>
             </li>
           </ul>
         </div>
         <p class="appeal__view-more"><nuxt-link :to="`/article/all-articles/`">もっと見る ＞</nuxt-link></p>
       </div>
       <div class="appeal">
-        <p class="appeal__title">お気に入りしたお店</p>
-        <p class="appeal__sub-title">お気に入りしたお店をチェックしよう😍</p>
+        <p class="appeal__title">遅い時間のランチでお得なお店</p>
+        <p class="appeal__sub-title">今日は遅ランチで元気をチャージ🍴</p>
         <div class="appeal-stores">
           <ul class="appeal-stores__inner">
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
-            </li>
-            <li class="mini-store-card">
-              <p class="mini-store-card__image"><img src="/img/store-image01.png" alt=""></p>
-              <p class="mini-store-card__title">レストランGOSUGE</p>
+            <li class="mini-store-card" v-for="(article, index) in osoLunchArticles" :key="index">
+              <nuxt-link :to="`/article/${article.store_id}`">
+                <p class="mini-store-card__image"><img :src="article.main_image" alt=""></p>
+                <p class="mini-store-card__title">{{ article.name }}</p>
+              </nuxt-link>
             </li>
           </ul>
         </div>
-        <p class="appeal__view-more"><nuxt-link :to="`/add_article_data/`">もっと見る ＞</nuxt-link></p>
+        <p class="appeal__view-more"><nuxt-link :to="`/article/osoLunchArticles/?selectedTime=遅ランチ`">もっと見る ＞</nuxt-link></p>
+      </div>
+      <div class="appeal">
+        <p class="appeal__title">早めの晩ごはんでお得なお店</p>
+        <p class="appeal__sub-title">今日は早めの入店でゆったりお食事</p>
+        <div class="appeal-stores">
+          <ul class="appeal-stores__inner">
+            <li class="mini-store-card" v-for="(article, index) in hayaDinnerArticles" :key="index">
+              <nuxt-link :to="`/article/${article.store_id}`">
+                <p class="mini-store-card__image"><img :src="article.main_image" alt=""></p>
+                <p class="mini-store-card__title">{{ article.name }}</p>
+              </nuxt-link>
+            </li>
+          </ul>
+        </div>
+        <p class="appeal__view-more"><nuxt-link :to="`/article/hayaDinnerArticles/?selectedTime=早ディナー`">もっと見る ＞</nuxt-link></p>
+      </div>
+      <div class="appeal">
+        <p class="appeal__title">遅い時間のディナーでお得なお店</p>
+        <p class="appeal__sub-title">実は遅い時間もお得がいっぱい🌙</p>
+        <div class="appeal-stores">
+          <ul class="appeal-stores__inner">
+            <li class="mini-store-card" v-for="(article, index) in osoDinnerArticles" :key="index">
+              <nuxt-link :to="`/article/${article.store_id}`">
+                <p class="mini-store-card__image"><img :src="article.main_image" alt=""></p>
+                <p class="mini-store-card__title">{{ article.name }}</p>
+              </nuxt-link>
+            </li>
+          </ul>
+        </div>
+        <p class="appeal__view-more"><nuxt-link :to="`/article/osoDinnerArticles/?selectedTime=遅ディナー`">もっと見る ＞</nuxt-link></p>
+      </div>
+      <div class="appeal">
+        <p class="appeal__view-more"><nuxt-link :to="`/add_article_data/`">管理用リンク ＞</nuxt-link></p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -133,8 +132,11 @@ export default {
       selectedArea: '東京・日本橋・茅場町',
     };
   },
-  computed: {},
+  computed: {
+    ...mapGetters('articles', ['allArticles', 'osoLunchArticles', 'hayaDinnerArticles', 'osoDinnerArticles'])
+  },
   methods: {
+    ...mapActions('articles', ['getAllArticles', 'getOsoLunchArticles', 'getHayaDinnerArticles', 'getOsoDinnerArticles']),
     toggleFixedBackground() {
       if(document.body.style.overflow === '') {
         document.body.style.overflow = 'hidden';
@@ -176,7 +178,12 @@ export default {
       this.areaModalMoveToTop()
     }
   },
-  created: function () {},
+  created: function () {
+    this.getAllArticles()
+    this.getOsoLunchArticles()
+    this.getHayaDinnerArticles()
+    this.getOsoDinnerArticles()
+  },
 };
 </script>
 
@@ -354,10 +361,20 @@ export default {
     display: inline-block;
     margin-right: 2rem;
     &__image {
+      width: 140px;
+      max-height: 93px;
+      overflow: hidden;
       margin-bottom: 0.4rem;
     }
+    &__image img {
+      border-radius: 5px;
+    }
     &__title {
+      width: 140px;
       font-size: 1.2rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
   &__view-more {
