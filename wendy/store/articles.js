@@ -4,16 +4,23 @@ const db = firebase.firestore()
 const articlesRef = db.collection('articles')
 
 export const state = () => ({
+  lastVisible: 'null',
   allArticles: [],
   osoLunchArticles: [],
   hayaDinnerArticles: [],
   osoDinnerArticles: [],
-  searchedArticles: []
+  searchedArticles: [],
 })
 
 export const mutations = {
+  setLastVisible(state, lastVisible) {
+    state.lastVisible = lastVisible
+  },
   setAllArticles(state, allArticles) {
     state.allArticles.splice(0)
+    state.allArticles.push(...allArticles)
+  },
+  setAddAllArticles(state, allArticles) {
     state.allArticles.push(...allArticles)
   },
   setOsoLunchArticles(state, osoLunchArticles) {
@@ -37,7 +44,49 @@ export const mutations = {
 export const actions = {
 
   async getAllArticles({ commit }) {
-    await articlesRef.limit(10).get()
+    await articlesRef
+    .orderBy("create_time", 'desc')
+    .limit(3)
+    .get()
+    .then(snapshot => {
+      
+      
+      let i = snapshot.size
+      let allArticlesData = []
+      snapshot.forEach(async (doc) => {
+        let id = {}
+        let coupon_id = {}
+        let storeData = {}
+        let coupons = []
+        id.id = doc.id
+        storeData = { ...id, ...doc.data() }
+        
+        const subCollection = await doc.ref.collection('coupons').orderBy('start').get()
+        subCollection.forEach(doc => {
+          coupon_id.coupon_id = doc.id
+          const couponData = { ...coupon_id, ...doc.data() }
+          coupons.push(couponData)
+        })
+        
+        storeData['coupons'] = coupons
+        allArticlesData.push(storeData)
+        
+        i--
+        if (i == 0) {
+          const lastVisible = doc.data()
+          commit('setLastVisible', lastVisible)
+          commit('setAllArticles', allArticlesData)
+        }
+      })
+    })
+  },
+  async addAllArticles({ commit, state },) {
+    const last = state.lastVisible
+    await articlesRef
+    .orderBy("create_time", 'desc')
+    .startAfter(last.create_time)
+    .limit(3)
+    .get()
     .then(snapshot => {
 
       let i = snapshot.size
@@ -62,7 +111,9 @@ export const actions = {
         
         i--
         if (i == 0) {
-          commit('setAllArticles', allArticlesData)
+          const lastVisible = doc.data()
+          commit('setLastVisible', lastVisible)
+          commit('setAddAllArticles', allArticlesData)
         }
       })
     })
@@ -141,7 +192,6 @@ export const actions = {
     })
   },
   async getHayaDinnerArticles({ commit }, payload) {
-    console.log('test');
     await articlesRef
     .where('coupon_haya_dinner_active', "==", true)
     .limit(10).get()

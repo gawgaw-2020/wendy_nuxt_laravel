@@ -51,7 +51,7 @@ export default {
   }
   .search-box {
     width: 100%;
-    max-width: 768px;
+    max-width: 480px;
     margin: 0 auto;
     background-color: #fff;
     padding: 1.6rem 2rem;

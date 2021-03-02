@@ -72,7 +72,8 @@
         <div class="content-map__inner">
             <p class="content-map__address">{{ article.address }}</p>
           <a target="_blank" :href="`https://www.google.com/maps/search/?api=1&query=${article.address}`">
-            <p class="content-map__image"><img src="/img/store-map.png" alt=""></p>
+            <p class="content-map__image"><iframe :src="`http://maps.google.co.jp/maps?&output=embed&q=${article.address}&z=16`"></iframe></p>
+            <!-- <p class="content-map__image"><img src="/img/store-map.png" alt=""></p> -->
             <p class="content-map__link">別ウィンドウで開く >></p>
           </a>
         </div>
@@ -368,8 +369,11 @@ export default {
   margin: 0 auto;
   background-size: cover;
   position: relative;
-  @include mq() {
+  @include mq(sm) {
     height: 340px;
+  }
+  @include mq() {
+    border-radius: 0 0  8px 8px;
   }
   &__area {
     font-size: 1rem;
@@ -514,7 +518,18 @@ export default {
       margin-bottom: 0.8rem;
     }
     &__image {
+      overflow: hidden;
+      border-radius: 8px;
       margin-bottom: 0.4rem;
+    }
+    &__image iframe {
+      height: 170px;
+      border: none;
+      width: 100%;
+      @include mq() {
+        padding: 0 120px;
+        height: 380px;
+      }
     }
     &__link {
       font-size: 1.2rem;

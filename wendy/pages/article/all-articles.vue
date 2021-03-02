@@ -4,6 +4,7 @@
       <p class="allArticles__title">全店舗一覧</p>
       <StoreCard :favoriteArticles="allArticles" @background-color='background = $event'/>
     </div>
+    <div><button @click="loadAllArticles">追加の読み込み</button></div>
   </section>
 </template>
 
@@ -20,7 +21,10 @@ export default {
     ...mapGetters('articles', ['allArticles'])
   },
   methods: {
-    ...mapActions('articles', ['getAllArticles']),
+    ...mapActions('articles', ['getAllArticles', 'addAllArticles']),
+    loadAllArticles() {
+      this.addAllArticles()
+    }
   },
   created: function(){
     this.getAllArticles()

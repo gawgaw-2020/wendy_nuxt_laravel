@@ -284,7 +284,7 @@ export default {
 .search-top {
   padding-bottom: 0.8rem;
   &__inner {
-    max-width: 1366px;
+    max-width: 768px;
     padding: 0 16px;
     margin: 0 auto;
     position: relative;
@@ -317,11 +317,19 @@ export default {
   background-image: url('/img/hero.png');
   background-size: cover;
   background-position: center;
+  max-width: 768px;
   height: 320px;
+  margin: 0 auto;
+  @include mq() {
+    border-radius: 8px;
+  } 
   &__mask {
     background-color: rgba(56, 56, 56, 0.4);
     height: 100%;
     position: relative;
+    @include mq() {
+      border-radius: 8px;
+    } 
   }
   &__catch {
     width: 100%;
@@ -345,6 +353,8 @@ export default {
 .content {
   padding-top: 10rem;
   padding-bottom: 8.8rem;
+  max-width: 768px;
+  margin: 0 auto;
 }
 
 .appeal {
@@ -383,6 +393,7 @@ export default {
       max-height: 90px;
       overflow: hidden;
       margin-bottom: 0.4rem;
+      border-radius: 5px;
       @include mq() { // 引数を個別に指定
         width: 280px;
         max-height: 180px;

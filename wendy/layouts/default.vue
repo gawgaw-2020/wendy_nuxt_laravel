@@ -182,7 +182,7 @@ export default {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   }
   &__inner {
-    max-width: 1366px;
+    max-width: 768px;
     padding: 0 16px;
     margin: 0 auto;
     display: flex;

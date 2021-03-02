@@ -43,8 +43,12 @@ export default {
 <style  scoped  lang="scss">
 .swiper-slide {
   height: 170px;
-  @include mq() {
+  @include mq(sm) {
     height: 340px;
+  }
+  @include mq() {
+    border-radius: 8px;
+    overflow: hidden;
   }
 }
 .swiper-container {
