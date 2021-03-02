@@ -46,7 +46,7 @@ export const actions = {
   async getAllArticles({ commit }) {
     await articlesRef
     .orderBy("create_time", 'desc')
-    .limit(3)
+    .limit(4)
     .get()
     .then(snapshot => {
       
@@ -85,7 +85,7 @@ export const actions = {
     await articlesRef
     .orderBy("create_time", 'desc')
     .startAfter(last.create_time)
-    .limit(3)
+    .limit(4)
     .get()
     .then(snapshot => {
 

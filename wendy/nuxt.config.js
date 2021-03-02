@@ -45,7 +45,8 @@ export default {
     { src: "~plugins/persistedstate.js", ssr: false },
     { src: '@/plugins/vue-awesome-swiper', ssr: false },
     { src: '~/plugins/vue-qrcode-reader', ssr: false },
-    { src: '~/plugins/my-filter.js', ssr: false }
+    { src: '~/plugins/my-filter.js', ssr: false },
+    { src: '~/plugins/infiniteloading', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
