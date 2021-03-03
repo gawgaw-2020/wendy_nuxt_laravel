@@ -1,85 +1,65 @@
 <template>
-  <ul class="allArticles__list">
-    <li class="allArticles__item store-card" v-for="(article, index) in favoriteArticles" :key="index">
-      <nuxt-link :to="`/article/${article.store_id}`">
-        <div  class="store-card__header">
-          <p class="store-card__main-image" :style="{ backgroundImage: 'url(' + article.main_image + ')' }"></p>
-          <p class="store-card__name">{{ article.name }}</p>
-          <p class="store-card__category">{{ article.category }}</p>
+  <div class="store-card">
+    <nuxt-link :to="`/article/${article.store_id}`">
+      <div  class="store-card__header">
+        <p class="store-card__main-image" :style="{ backgroundImage: 'url(' + article.main_image + ')' }"></p>
+        <p class="store-card__name">{{ article.name }}</p>
+        <p class="store-card__category">{{ article.category }}</p>
+      </div>
+      <div  class="store-card__content">
+        <p class="store-card__nearest_station">最寄り駅：{{ article.nearest_station }}</p>
+        <p class="store-card__small_text">{{ article.small_text }}</p>
+      </div>
+    </nuxt-link>
+    <div  class="store-card__footer">
+      <ul class="store-card__tab-list">
+        <li :class="{ active: active === coupon.coupon_id }" class="store-card__tab-item" v-for="(coupon, index) in article.coupons" :key="index">
+          <a  href="#" @click.prevent="activate(coupon.coupon_id)">
+            <div class="store-card__tab-inner">
+              <p class="store-card__coupon-time-image"><img :src="'/img/' + coupon.coupon_id + '-time-image@2x.png'" alt=""></p>
+              <p class="store-card__coupon-category">{{ coupon.category }}</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <div class="store-card__tab-content" v-show="active === coupon.coupon_id" v-for="(coupon, index) in article.coupons" :key="index">
+        <div v-if="coupon.active">
+          <p class="store-card__coupon-time animate__animated animate__fadeIn animate__faster">{{ coupon.start }} ~ {{ coupon.end }}の入店</p>
+          <p class="store-card__coupon-title animate__animated animate__fadeIn animate__faster">{{ coupon.title }}</p>
         </div>
-        <div  class="store-card__content">
-          <p class="store-card__nearest_station">最寄り駅：{{ article.nearest_station }}</p>
-          <p class="store-card__small_text">{{ article.small_text }}</p>
-        </div>
-      </nuxt-link>
-      <div  class="store-card__footer">
-        <ul class="store-card__tab-list">
-          <li :class="{ active: active === coupon.coupon_id }" class="store-card__tab-item" v-for="(coupon, index) in article.coupons" :key="index">
-            <a  href="#" @click.prevent="activate(coupon.coupon_id)">
-              <div class="store-card__tab-inner">
-                <p class="store-card__coupon-time-image"><img :src="'/img/' + coupon.coupon_id + '-time-image@2x.png'" alt=""></p>
-                <p class="store-card__coupon-category">{{ coupon.category }}</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <div class="store-card__tab-content" v-show="active === coupon.coupon_id" v-for="(coupon, index) in article.coupons" :key="index">
-          <div v-if="coupon.active">
-            <p class="store-card__coupon-time animate__animated animate__fadeIn animate__faster">{{ coupon.start }} ~ {{ coupon.end }}の入店</p>
-            <p class="store-card__coupon-title animate__animated animate__fadeIn animate__faster">{{ coupon.title }}</p>
-          </div>
-          <div v-else>
-            <p class="store-card__no-coupon-time">クーポン検討中です。</p>
-            <p class="store-card__no-coupon-title">他の時間帯のクーポンをご覧下さい。店舗をお気に入り登録して、クーポンの追加を待ちましょう★</p>
-          </div>
+        <div v-else>
+          <p class="store-card__no-coupon-time">クーポン検討中です。</p>
+          <p class="store-card__no-coupon-title">他の時間帯のクーポンをご覧下さい。店舗をお気に入り登録して、クーポンの追加を待ちましょう★</p>
         </div>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   props: [
-    'favoriteArticles',
-    'selectedTime'
+    'article',
   ],
   data() {
     return {
       active: "haya-dinner",
-      background: ''
     }
   },
   created() {
     if(this.$route.query.selectedTime === '遅ランチ') {
       this.active = 'oso-lunch'
-      this.background = 'rgba(154, 212, 248, 0.2)'
-      this.$emit("background-color", this.background);
     }
     if(this.$route.query.selectedTime === '早ディナー') {
       this.active = 'haya-dinner'
-      this.background = 'rgba(236, 103, 63, 0.15)'
-      this.$emit("background-color", this.background);
     }
     if(this.$route.query.selectedTime === '遅ディナー') {
       this.active = 'oso-dinner'
-      this.background = 'rgba(66, 58, 141, 0.1)'
-      this.$emit("background-color", this.background);
     }
   },
   methods: {
     activate(id) {
       this.active = id
-      if (id === 'oso-lunch') {
-        this.background = 'rgba(154, 212, 248, 0.2)'
-      }
-      if (id === 'haya-dinner') {
-        this.background = 'rgba(236, 103, 63, 0.15)'
-      }
-      if (id === 'oso-dinner') {
-        this.background = 'rgba(66, 58, 141, 0.1)'
-      }
-      this.$emit("background-color", this.background);
     }
 
   }
@@ -143,7 +123,10 @@ export default {
       font-weight: bold;
       background-color: rgba(46, 97, 113, 0.7);
       padding: 0.4rem 2.2rem;
-      border-radius: 10px 0 4px 0;
+      border-radius: 0px 0 4px 0;
+      @include mq(sm) {
+        border-radius: 10px 0 4px 0;
+      }
     }
     &__content {
       padding: 1rem 1rem 1.6rem;

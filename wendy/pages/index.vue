@@ -54,23 +54,13 @@
     <SearchModal @timeModal='openTimeModal' @areaModal='openAreaModal' :selectedTime="this.selectedTime" :selectedArea="this.selectedArea"/>
     <div class="content">
       <div class="appeal">
-        <p class="appeal__title">＊全てのお店をチェックする＊</p>
-        <p class="appeal__sub-title">どのお店もお得がいっぱい😍</p>
-        <div class="appeal-stores">
-          <ul class="appeal-stores__inner">
-            <li class="mini-store-card" v-for="(article, index) in allArticles" :key="index">
-              <nuxt-link :to="`/article/${article.store_id}`">
-                <p class="mini-store-card__image"><img :src="article.main_image" alt=""></p>
-                <p class="mini-store-card__title">{{ article.name }}</p>
-              </nuxt-link>
-            </li>
-          </ul>
+        <div class="appeal__header">
+          <p class="appeal__header-image"><img src="/img/oso-lunch-time-image@2x.png" alt=""></p>
+          <div class="appeal__header-titles">
+            <p class="appeal__title">遅い時間のランチでお得なお店</p>
+            <p class="appeal__sub-title">今日は<span class="oso-lunch">遅ランチ</span>で元気をチャージ</p>
+          </div>
         </div>
-        <p class="appeal__view-more"><nuxt-link :to="`/article/all-articles/`">もっと見る ＞</nuxt-link></p>
-      </div>
-      <div class="appeal">
-        <p class="appeal__title">遅い時間のランチでお得なお店</p>
-        <p class="appeal__sub-title">今日は<span class="oso-lunch">遅ランチ</span>で元気をチャージ🍴</p>
         <div class="appeal-stores">
           <ul class="appeal-stores__inner">
             <li class="mini-store-card" v-for="(article, index) in osoLunchArticles" :key="index">
@@ -84,8 +74,13 @@
         <p class="appeal__view-more"><nuxt-link :to="`/article/osoLunchArticles/?selectedTime=遅ランチ`">もっと見る ＞</nuxt-link></p>
       </div>
       <div class="appeal">
-        <p class="appeal__title">早めの晩ごはんでお得なお店</p>
-        <p class="appeal__sub-title">今日は<span class="haya-dinner">早ディナー</span>でゆったりお食事</p>
+        <div class="appeal__header">
+          <p class="appeal__header-image"><img src="/img/haya-dinner-time-image@2x.png" alt=""></p>
+          <div class="appeal__header-titles">
+            <p class="appeal__title">早めの晩ごはんでお得なお店</p>
+            <p class="appeal__sub-title">今日は<span class="haya-dinner">早ディナー</span>でゆったりお食事</p>
+          </div>
+        </div>
         <div class="appeal-stores">
           <ul class="appeal-stores__inner">
             <li class="mini-store-card" v-for="(article, index) in hayaDinnerArticles" :key="index">
@@ -99,8 +94,13 @@
         <p class="appeal__view-more"><nuxt-link :to="`/article/hayaDinnerArticles/?selectedTime=早ディナー`">もっと見る ＞</nuxt-link></p>
       </div>
       <div class="appeal">
-        <p class="appeal__title">遅い時間の入店でお得なお店</p>
-        <p class="appeal__sub-title">実は<span class="oso-dinner">遅ディナー</span>もお得がいっぱい🌙</p>
+        <div class="appeal__header">
+          <p class="appeal__header-image"><img src="/img/oso-dinner-time-image@2x.png" alt=""></p>
+          <div class="appeal__header-titles">
+            <p class="appeal__title">遅い時間の入店でお得なお店</p>
+            <p class="appeal__sub-title">実は<span class="oso-dinner">遅ディナー</span>もお得がいっぱい</p>
+          </div>
+        </div>
         <div class="appeal-stores">
           <ul class="appeal-stores__inner">
             <li class="mini-store-card" v-for="(article, index) in osoDinnerArticles" :key="index">
@@ -112,6 +112,21 @@
           </ul>
         </div>
         <p class="appeal__view-more"><nuxt-link :to="`/article/osoDinnerArticles/?selectedTime=遅ディナー`">もっと見る ＞</nuxt-link></p>
+      </div>
+      <div class="appeal">
+        <p class="appeal__title">＊全てのお店をチェックする＊</p>
+        <p class="appeal__sub-title">どのお店もお得がいっぱい</p>
+        <div class="appeal-stores">
+          <ul class="appeal-stores__inner">
+            <li class="mini-store-card" v-for="(article, index) in allArticles" :key="index">
+              <nuxt-link :to="`/article/${article.store_id}`">
+                <p class="mini-store-card__image"><img :src="article.main_image" alt=""></p>
+                <p class="mini-store-card__title">{{ article.name }}</p>
+              </nuxt-link>
+            </li>
+          </ul>
+        </div>
+        <p class="appeal__view-more"><nuxt-link :to="`/article/all-articles/`">もっと見る ＞</nuxt-link></p>
       </div>
       <div class="appeal">
         <p class="appeal__view-more"><nuxt-link :to="`/add_article_data/`">管理用リンク ＞</nuxt-link></p>
@@ -360,6 +375,14 @@ export default {
 .appeal {
   margin-bottom: 2.2rem;
   padding-left: 1.6rem;
+  &__header {
+    display: flex;
+  }
+  &__header-image {
+    margin-left: -8px;
+    width: 55px;
+    margin-right: 0.4rem;
+  }
   &__title {
     font-size: 1.6rem;
     margin-bottom: 0.4rem;
