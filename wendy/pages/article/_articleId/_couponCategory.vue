@@ -28,6 +28,7 @@
         <p class="scan-btn__texr">店舗での掲示クーポン発行<br>QRコードスキャンはこちら</p>
       </router-link>
     </div>
+    <p class="scan"><button @click="scan">【開発用】選択店舗でスキャンしたことにする</button></p>
   </div>
 </template>
 
@@ -60,7 +61,44 @@ export default {
     return { coupon };
   },
   computed: {},
-  methods: {},
+  methods: {
+    scan() {
+      let wendyLocal = localStorage.getItem('wendy')
+      const user = JSON.parse(wendyLocal).auth.login_user
+      if (user) {
+        console.log(this.coupon);
+        this.result = this.coupon.article_id
+        const title = this.coupon.title
+        const start = this.coupon.start
+        const end = this.coupon.end
+        const id = this.coupon.article_id
+
+        if(id !== this.coupon.article_id) {
+          alert('読み取りエラー：店舗が違います')
+          return
+        }
+        const db = firebase.firestore()
+        const usersRef = db.collection('users')
+
+        usersRef
+        .doc(user.uid)
+        .collection('visited_articles')
+        .add({
+          article_id: this.coupon.article_id,
+          ref: db.doc('articles/' + this.coupon.article_id),
+          create_time: firebase.firestore.FieldValue.serverTimestamp(),
+          used_coupon_title: title,
+          used_coupon_start: start,
+          used_coupon_end: end
+        })
+        .then(() => {
+          this.$router.push({ name: "article-scan-success" });
+        })
+      } else {
+        alert('ログインしてください')
+      }
+    }
+  },
   created: function () {},
 };
 </script>
@@ -69,7 +107,7 @@ export default {
 .coupon-detail {
   padding-bottom: 8rem;
   &__section-title {
-    padding: 3.2rem 0;
+    padding: 3.2rem 0 1.6rem;
   }
   &__message {
     text-align: center;
@@ -135,6 +173,16 @@ export default {
     width: 100%;
     height: 100%;
     color: #fff;
+  }
+}
+
+.scan {
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 1.4rem;
+  button {
+    background-color: #fff;
+    padding: 0.5rem;
   }
 }
 
