@@ -50,7 +50,6 @@ export default {
   background-color: rgba(236, 103, 63, 0.15);
   padding-bottom: 7rem;
   &__inner {
-    width: 93%;
     margin: 0 auto;
     max-width: 768px;
   }
