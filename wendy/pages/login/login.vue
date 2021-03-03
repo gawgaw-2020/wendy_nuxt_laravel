@@ -25,6 +25,7 @@
           </div>
         </div>
       </div>
+      <p class="guestLogin"><button @click="guestLogin">【開発用】ゲストユーザーでログイン</button></p>
     </div>
   </div>
 </template>
@@ -48,6 +49,9 @@ export default {
     ...mapActions("login", ["setBoxPosition"]),
     async login() {
       await this.firebaseLogin({ email: this.email, password: this.password });
+    },
+    async guestLogin() {
+      await this.firebaseLogin({ email: 'user@user.user', password: 'password' });
     }
   },
   created: function() {
@@ -74,7 +78,7 @@ export default {
     max-width: 480px;
     margin: 0 auto;
     background-color: #fff;
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 5rem 0;
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
     &__inner {
@@ -112,6 +116,17 @@ export default {
         margin-bottom: 0.4rem;
       }
     }
+  }
+}
+
+// for dev
+.guestLogin {
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 1.4rem;
+  button {
+    background-color: #fff;
+    padding: 0.5rem;
   }
 }
 
