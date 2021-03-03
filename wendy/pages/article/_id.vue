@@ -39,7 +39,7 @@
       <div class="modal__background animate__animated animate__fadeIn" @click="modalToggle"></div>
     </div>
     <div class="gallery" :style="{ backgroundImage: 'url(' + article.main_image + ')' }">
-      <p class="gallery__area"><i class="fas fa-home"></i>> 東京都 > {{ article.area }}</p>
+      <p class="gallery__area"><i class="fas fa-home" @click="$router.push('/')"></i>> 東京都 > {{ article.area }}</p>
       <div class="gallery__share"><p><i class="fas fa-share-square"></i></p></div>
       <div v-if="user" class="gallery__like" :class="{ 'active animate__animated animate__bounceIn': likeActive === true }" @click="likeToggle"><p><i class="fas fa-heart"></i></p></div>
     </div>
@@ -508,7 +508,7 @@ export default {
     }
   }
   .content-map {
-    padding: 2.7rem 0 1.2rem;
+    padding: 2.7rem 0 2.7rem;
     &__inner {
       width: 93%;
       margin: 0 auto;
@@ -523,7 +523,7 @@ export default {
     &__image {
       overflow: hidden;
       border-radius: 8px;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.2rem;
     }
     &__image iframe {
       height: 170px;
@@ -547,7 +547,7 @@ export default {
   }
   .content-reservation {
     text-align: center;
-    padding: 0 0 2.4rem;
+    padding: 0 0 3.2rem;
     &__btn {
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
     }

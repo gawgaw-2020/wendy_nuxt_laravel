@@ -366,7 +366,7 @@ export default {
 }
 
 .content {
-  padding-top: 10rem;
+  padding-top: 9.6rem;
   padding-bottom: 8.8rem;
   max-width: 768px;
   margin: 0 auto;
