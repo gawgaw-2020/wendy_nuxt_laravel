@@ -10,7 +10,7 @@
           <ul class="history__list">
             <li class="history__item"  v-for="(article, index) in historyArticles" :key="index">
               <div class="history__content">
-                <p class="history__date">{{ article.create_time | format-date}}</p>
+                <p class="history__date">利用日時：{{ article.create_time | format-date}}</p>
                 <p class="history__title">{{ article.name }}</p>
                 <p class="history__coupon-time">{{ article.used_coupon_start }}~{{ article.used_coupon_end }}</p>
                 <p class="history__coupon-content">{{ article.used_coupon_title }}</p>
@@ -51,11 +51,11 @@ export default {
     this.getHistoryArticles()
   },
   mounted() {
-    const page = document.querySelector('.mypage-history__container')
-    const bodyHeight = document.body.clientHeight
-    if (bodyHeight > page.clientHeight) {
-      page.style.height = `${bodyHeight}px`
-    }
+    // const page = document.querySelector('.mypage-history__container')
+    // const bodyHeight = document.body.clientHeight
+    // if (bodyHeight > page.clientHeight) {
+    //   page.style.height = `${bodyHeight}px`
+    // }
   }
 }
 </script>
@@ -63,6 +63,7 @@ export default {
 <style lang="scss" scoped>
   .mypage-history__container {
     background-color: #efefef;
+    min-height: 100vh;
   }
   .mypage-history {
     color: #2e6171;
@@ -113,6 +114,7 @@ export default {
         margin-bottom: 0.4rem;
       }
       &__coupon-time {
+        font-size: 1.4rem;
         margin-bottom: 0.2rem;
       }
       &__coupon-content {

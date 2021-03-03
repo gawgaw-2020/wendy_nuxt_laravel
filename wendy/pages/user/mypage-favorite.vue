@@ -37,11 +37,11 @@ export default {
     this.getFavoriteArticles()
   },
   mounted() {
-    const page = document.querySelector('.mypage-favorite__container')
-    const bodyHeight = document.body.clientHeight
-    if (bodyHeight > page.clientHeight) {
-      page.style.height = `${bodyHeight}px`
-    }
+    // const page = document.querySelector('.mypage-favorite__container')
+    // const bodyHeight = document.body.clientHeight
+    // if (bodyHeight > page.clientHeight) {
+    //   page.style.height = `${bodyHeight}px`
+    // }
   }
 }
 </script>
@@ -49,12 +49,13 @@ export default {
 <style lang="scss" scoped>
   .mypage-favorite__container {
     background-color: #efefef;
+    min-height: 100vh;
   }
   .mypage-favorite {
     color: #2e6171;
     &__inner {
       max-width: 768px;
-      padding: 0 16px 80px;
+      padding: 0 0 80px;
       margin: 0 auto;
     }
     &__title {
