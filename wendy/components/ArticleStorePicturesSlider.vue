@@ -60,11 +60,11 @@ export default {
 }
 .swiper-button {
   color: #fff;
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   background-color:rgba(46, 97, 113, 0.87);
   border-radius: 50%;
-  font-size: 3.2rem;
+  font-size: 2.4rem;
   &-prev {
     .fas {
       transform: translateX(-2px);
