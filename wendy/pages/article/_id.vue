@@ -85,16 +85,8 @@
       </div>
       <div class="content-info">
         <div class="content-info__inner">
-          <ArticleSectionTitle class="content-info__title" :section-title="'お店情報'"/>
+          <ArticleSectionTitle class="content-info__title" :section-title="'お店の紹介'"/>
           <p class="content-info__description" v-for="(str, index) in (article.main_text).split('\\n')" :key="index">{{str}}</p>
-          <div class="content-info__tags">
-            <div class="content-info__tag" v-if="article.cashless">
-              <p><i class="fas fa-credit-card"></i>キャッシュレス</p>
-            </div>
-            <div class="content-info__tag" v-if="article.non_smoke">
-              <p><i class="fas fa-smoking-ban"></i>完全禁煙</p>
-            </div>
-          </div>
         </div>
       </div>
       <div class="content-pictures">
@@ -113,6 +105,14 @@
             <dd class="payment-list__data">{{ article.e_money }}</dd>
           </dl>
           <p class="content-payment__info">※その他のお支払い方法については店舗にお問い合わせください</p>
+          <div class="content-payment__tags">
+            <div class="content-payment__tag" v-if="article.cashless">
+              <p><i class="fas fa-credit-card"></i>キャッシュレス</p>
+            </div>
+            <div class="content-payment__tag" v-if="article.non_smoke">
+              <p><i class="fas fa-smoking-ban"></i>完全禁煙</p>
+            </div>
+          </div>
         </div>
       </div>
       <div class="content-menu">
@@ -516,6 +516,9 @@ export default {
     }
     &__address {
       margin-bottom: 0.8rem;
+      @include mq() {
+        padding: 5px 120px;
+      }
     }
     &__image {
       overflow: hidden;
@@ -532,8 +535,11 @@ export default {
       }
     }
     &__link {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       text-align: right;
+      @include mq() {
+        padding: 5px 120px;
+      }
     }
     &__link a {
       color: #2e6171;
@@ -547,6 +553,7 @@ export default {
     }
   }
   .content-info {
+    padding: 0 0 2.4rem;
     &__inner {
       width: 93%;
       margin: 0 auto;
@@ -559,28 +566,6 @@ export default {
       font-size: 1.4rem;
       line-height: 1.8;
       white-space: pre-wrap;
-    }
-    &__tags {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 2.4rem 0;
-    }
-    &__tag {
-      color: #2E6171;
-      background-color: #eee;
-      font-size: 1.4rem;
-      width: calc((100% / 2) - 4px);
-      height: 35px;
-      line-height: 35px;
-      text-align: center;
-      border-radius: 999px;
-      margin-bottom: 0.8rem;
-      .fas {
-        margin-right: 0.8rem;
-      }
-    }
-    &__tag:nth-child(odd) {
-      margin-right: 0.8rem;
     }
   }
   .content-pictures {
@@ -616,6 +601,28 @@ export default {
     &__info {
       font-size: 1.2rem;
       color: #838383;
+    }
+    &__tags {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 2.4rem 0;
+    }
+    &__tag {
+      color: #2E6171;
+      background-color: #eee;
+      font-size: 1.4rem;
+      width: calc((100% / 2) - 4px);
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      border-radius: 999px;
+      margin-bottom: 0.8rem;
+      .fas {
+        margin-right: 0.8rem;
+      }
+    }
+    &__tag:nth-child(odd) {
+      margin-right: 0.8rem;
     }
   }
   .content-menu {

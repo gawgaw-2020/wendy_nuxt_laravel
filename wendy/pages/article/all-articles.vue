@@ -33,7 +33,7 @@ export default {
     ...mapActions('articles', ['getAllArticles', 'addAllArticles']),
     loadAllArticles() {
       setTimeout(() => {
-        if(this.allArticles.length < 16) {
+        if(this.allArticles.length < 60) {
           this.addAllArticles()
           this.$refs.infiniteLoading.stateChanger.loaded()
         } else {
