@@ -75,7 +75,7 @@
         <div class="content-map__inner">
             <p class="content-map__address">{{ article.address }}</p>
           <a target="_blank" :href="`https://www.google.com/maps/search/?api=1&query=${article.address}`">
-            <p class="content-map__image"><iframe :src="`http://maps.google.co.jp/maps?&output=embed&q=${article.address}&z=16`"></iframe></p>
+            <p class="content-map__image"><iframe :src="`https://maps.google.co.jp/maps?&output=embed&q=${article.address}&z=16`"></iframe></p>
             <!-- <p class="content-map__image"><img src="/img/store-map.png" alt=""></p> -->
             <p class="content-map__link">別ウィンドウで開く >></p>
           </a>
