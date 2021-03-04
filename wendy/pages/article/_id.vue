@@ -56,17 +56,20 @@
         </div>
       </div>
       <div class="content-coupons">
-        <p class="content-coupons__title">＼ 詳細と利用方法はクーポンをクリック ／</p>
-        <ul class="coupons-list">
-          <li class="coupon" v-for="(coupon, index) in activeCoupons" :key="index" :style="{ backgroundImage: 'url(/img/' + coupon.coupon_id + '-bg.png)' }">
-            <div  class="coupon__content">
-              <p class="coupon__category">{{ coupon.category }}</p>
-              <p class="coupon__time">{{ coupon.start }}~{{ coupon.end }}の入店で</p>
-              <p class="coupon__title">{{ coupon.title }}</p>
-            </div>
-            <p class="coupon__link"><nuxt-link :to="`/article/${article.article_id}/${coupon.coupon_id}`"></nuxt-link></p>
-          </li>
-        </ul>
+        <div class="content-coupons__title" v-if="!activeCoupons.length">現在掲載されているクーポンはありません</div>
+        <div v-else>
+          <p class="content-coupons__title">＼ 詳細と利用方法はクーポンをクリック ／</p>
+          <ul class="coupons-list">
+            <li class="coupon" v-for="(coupon, index) in activeCoupons" :key="index" :style="{ backgroundImage: 'url(/img/' + coupon.coupon_id + '-bg.png)' }">
+              <div  class="coupon__content">
+                <p class="coupon__category">{{ coupon.category }}</p>
+                <p class="coupon__time">{{ coupon.start }}~{{ coupon.end }}の入店で</p>
+                <p class="coupon__title">{{ coupon.title }}</p>
+              </div>
+              <p class="coupon__link"><nuxt-link :to="`/article/${article.article_id}/${coupon.coupon_id}`"></nuxt-link></p>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="content-map">
         <div class="content-map__inner">
@@ -464,12 +467,11 @@ export default {
       text-align: center;
       color: #2E6171;
       font-weight: bold;
-      margin-bottom: 1.6rem;
     }
     .coupon {
       width: 340px;
       height: 112px;
-      margin: 0 auto 0.8rem;
+      margin: 1.6rem auto 0.8rem;
       color: #2e6171;
       font-weight: bold;
       position: relative;
