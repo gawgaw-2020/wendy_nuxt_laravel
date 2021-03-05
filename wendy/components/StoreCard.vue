@@ -1,6 +1,6 @@
 <template>
   <ul class="allArticles__list">
-    <li class="allArticles__item store-card" v-for="(article, index) in favoriteArticles" :key="index">
+    <li class="allArticles__item" v-for="(article, index) in favoriteArticles" :key="index">
       <StoreCardBody :article="article"/>
     </li>
   </ul>
@@ -29,4 +29,16 @@ export default {
       flex-wrap: wrap;
     }
   }
+  .allArticles__item {
+    @include mq(sm) {
+      border-radius: 10px;
+      width: calc((100% / 2) - 12px);
+    }
+  }
+  .allArticles__item:nth-child(odd) {
+    @include mq(sm) {
+      margin-right: 24px;
+    }
+  }
+
 </style>

@@ -67,25 +67,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .allArticles__list {
-    @include mq(sm) {
-      display: flex;
-      flex-wrap: wrap;
-    }
-  }
-  .store-card:nth-child(odd) {
-    @include mq(sm) {
-      margin-right: 24px;
-    }
-  }
   .store-card {
     background-color: #fff;
     margin-bottom: 3.2rem;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-    @include mq(sm) {
-      border-radius: 10px;
-      width: calc((100% / 2) - 12px);
-    }
     &__header {
       height: 155px;
       position: relative;
