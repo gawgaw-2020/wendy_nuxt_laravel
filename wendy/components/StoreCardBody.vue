@@ -23,11 +23,21 @@
         </li>
       </ul>
       <div class="store-card__tab-content" v-show="active === coupon.coupon_id" v-for="(coupon, index) in article.coupons" :key="index">
-        <div v-if="coupon.active">
-          <p class="store-card__coupon-time animate__animated animate__fadeIn animate__faster">{{ coupon.start }} ~ {{ coupon.end }}の入店</p>
-          <p class="store-card__coupon-title animate__animated animate__fadeIn animate__faster">{{ coupon.title }}</p>
+        <div v-if="coupon.active" class="store-card__coupon-content animate__animated animate__fadeIn animate__faster">
+          <p class="store-card__coupon-title">{{ coupon.title }}</p>
+          <div  class="store-card__content-footer">
+            <div class="store-card__coupon-content-left">
+              <p class="store-card__badge"><img :src="`/img/discount-badge/discount-badge${coupon.discount_rate}.png`" alt=""></p>
+              <p class="store-card__thumbnail"><img :src="coupon.image" alt=""></p>
+            </div>
+            <div class="store-card__coupon-content-right">
+              <p class="store-card__coupon-time">{{ coupon.start }} ~ {{ coupon.end }}の入店限定</p>
+              <p class="store-card__normal-price">通常価格 {{ coupon.normal_price.toLocaleString() }}円</p>
+              <p class="store-card__discount-price">Wendy特別価格 <span>{{ Math.floor(coupon.normal_price * ((100 - coupon.discount_rate) / 100)).toLocaleString() }}円</span></p>
+            </div>
+          </div>
         </div>
-        <div v-else>
+        <div v-else class="animate__animated animate__fadeIn animate__faster">
           <p class="store-card__no-coupon-time">クーポン検討中です。</p>
           <p class="store-card__no-coupon-title">他の時間帯のクーポンをご覧下さい。店舗をお気に入り登録して、クーポンの追加を待ちましょう★</p>
         </div>
@@ -163,21 +173,62 @@ export default {
       min-height: 112px;
       background-color: #efefef;
       color: #2E6171;
-      padding-bottom: 1.2rem;
+      min-height: 14.5rem;
       @include mq(sm) {
         border-radius: 0 0 10px 10px;
       }
     }
-    &__coupon-time {
-      font-size: 1.4rem;
-      font-weight: bold;
-      padding: 1rem 0 0.6rem;
-    }
     &__coupon-title {
       font-size: 1.4rem;
       font-weight: bold;
-      padding: 0 1rem;
       text-align: left;
+      padding: 0.8rem 1rem 1rem;
+      min-height: 6rem;
+    }
+    &__content-footer {
+      display: flex;
+    }
+    &__coupon-content-left {
+      width: 40%;
+      position: relative;
+    }
+    &__thumbnail img {
+      border-radius: 0 4px 0 0;
+    }
+    &__badge {
+      width: 40px;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    &__badge img {
+      border-radius: 50%;
+    }
+    &__coupon-content-right {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-top: -1rem;
+    }
+    &__coupon-time {
+      font-size: 1.4rem;
+      font-weight: bold;
+      padding-bottom: 0.4rem;
+    }
+    &__normal-price {
+      font-size: 1.2rem;
+      text-decoration: line-through;
+      margin-bottom: -0.4rem;
+    }
+    &__discount-price {
+      font-size: 1.2rem;
+      span {
+        margin-left: 0.8rem;
+        font-size: 2.4rem;
+        color: #ff427a;
+        font-weight: bold;
+      }
     }
     &__no-coupon-time {
       font-size: 1.4rem;

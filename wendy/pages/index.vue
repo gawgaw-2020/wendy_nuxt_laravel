@@ -65,8 +65,18 @@
           <ul class="appeal-stores__inner">
             <li class="mini-store-card" v-for="(article, index) in osoLunchArticles" :key="index">
               <nuxt-link :to="`/article/${article.store_id}`">
-                <p class="mini-store-card__image"><img :src="article.main_image" alt=""></p>
-                <p class="mini-store-card__title">{{ article.name }}</p>
+                <div class="mini-store-card__image">
+                  <img :src="article.coupons[0].image" alt="">
+                  <p class="mini-store-card__badge"><img :src="`/img/discount-badge/discount-badge${article.coupons[0].discount_rate}.png`" alt=""></p>
+                </div>
+                <p class="mini-store-card__area">{{ article.area }}</p>
+                <div class="mini-store-card__content">
+                  <p class="mini-store-card__name">{{ article.name }}</p>
+                  <p class="mini-store-card__title">{{ article.coupons[0].title }}</p>
+                  <div class="mini-store-card__discount-rate"><p><span class="oso-lunch">遅ランチで{{ article.coupons[0].discount_rate }}%OFF</span></p></div>
+                  <p class="mini-store-card__normal-price">通常価格 {{ article.coupons[0].normal_price.toLocaleString() }}円</p>
+                  <p class="mini-store-card__discount-price">Wendy価格 <span>{{ Math.floor(article.coupons[0].normal_price * ((100 - article.coupons[0].discount_rate) / 100)).toLocaleString() }}円</span></p>
+                </div>
               </nuxt-link>
             </li>
           </ul>
@@ -85,8 +95,18 @@
           <ul class="appeal-stores__inner">
             <li class="mini-store-card" v-for="(article, index) in hayaDinnerArticles" :key="index">
               <nuxt-link :to="`/article/${article.store_id}`">
-                <p class="mini-store-card__image"><img :src="article.main_image" alt=""></p>
-                <p class="mini-store-card__title">{{ article.name }}</p>
+                <div class="mini-store-card__image">
+                  <img :src="article.coupons[1].image" alt="">
+                  <p class="mini-store-card__badge"><img :src="`/img/discount-badge/discount-badge${article.coupons[1].discount_rate}.png`" alt=""></p>
+                </div>
+                  <p class="mini-store-card__area">{{ article.area }}</p>
+                <div class="mini-store-card__content">
+                  <p class="mini-store-card__name">{{ article.name }}</p>
+                  <p class="mini-store-card__title">{{ article.coupons[1].title }}</p>
+                  <div class="mini-store-card__discount-rate"><p><span class="haya-dinner">早ディナーで{{ article.coupons[1].discount_rate }}%OFF</span></p></div>
+                  <p class="mini-store-card__normal-price">通常価格 {{ article.coupons[1].normal_price.toLocaleString() }}円</p>
+                  <p class="mini-store-card__discount-price">Wendy価格 <span>{{ Math.floor(article.coupons[1].normal_price * ((100 - article.coupons[1].discount_rate) / 100)).toLocaleString() }}円</span></p>
+                </div>
               </nuxt-link>
             </li>
           </ul>
@@ -105,8 +125,18 @@
           <ul class="appeal-stores__inner">
             <li class="mini-store-card" v-for="(article, index) in osoDinnerArticles" :key="index">
               <nuxt-link :to="`/article/${article.store_id}`">
-                <p class="mini-store-card__image"><img :src="article.main_image" alt=""></p>
-                <p class="mini-store-card__title">{{ article.name }}</p>
+                <div class="mini-store-card__image">
+                  <img :src="article.coupons[2].image" alt="">
+                  <p class="mini-store-card__badge"><img :src="`/img/discount-badge/discount-badge${article.coupons[2].discount_rate}.png`" alt=""></p>
+                </div>
+                <p class="mini-store-card__area">{{ article.area }}</p>
+                <div class="mini-store-card__content">
+                  <p class="mini-store-card__name">{{ article.name }}</p>
+                  <p class="mini-store-card__title">{{ article.coupons[2].title }}</p>
+                  <div class="mini-store-card__discount-rate"><p><span class="oso-dinner">遅ディナーで{{ article.coupons[2].discount_rate }}%OFF</span></p></div>
+                  <p class="mini-store-card__normal-price">通常価格 {{ article.coupons[2].normal_price.toLocaleString() }}円</p>
+                  <p class="mini-store-card__discount-price">Wendy価格 <span>{{ Math.floor(article.coupons[2].normal_price * ((100 - article.coupons[2].discount_rate) / 100)).toLocaleString() }}円</span></p>
+                </div>
               </nuxt-link>
             </li>
           </ul>
@@ -120,8 +150,18 @@
           <ul class="appeal-stores__inner">
             <li class="mini-store-card" v-for="(article, index) in allArticles" :key="index">
               <nuxt-link :to="`/article/${article.store_id}`">
-                <p class="mini-store-card__image"><img :src="article.main_image" alt=""></p>
-                <p class="mini-store-card__title">{{ article.name }}</p>
+                <div class="mini-store-card__image">
+                  <img :src="article.coupons[1].image" alt="">
+                  <p class="mini-store-card__badge"><img :src="`/img/discount-badge/discount-badge${article.coupons[1].discount_rate}.png`" alt=""></p>
+                </div>
+                  <p class="mini-store-card__area">{{ article.area }}</p>
+                <div class="mini-store-card__content">
+                  <p class="mini-store-card__name">{{ article.name }}</p>
+                  <p class="mini-store-card__title">{{ article.coupons[1].title }}</p>
+                  <div class="mini-store-card__discount-rate"><p><span class="haya-dinner">早ディナーで{{ article.coupons[1].discount_rate }}%OFF</span></p></div>
+                  <p class="mini-store-card__normal-price">通常価格 {{ article.coupons[1].normal_price.toLocaleString() }}円</p>
+                  <p class="mini-store-card__discount-price">Wendy価格 <span>{{ Math.floor(article.coupons[1].normal_price * ((100 - article.coupons[1].discount_rate) / 100)).toLocaleString() }}円</span></p>
+                </div>
               </nuxt-link>
             </li>
           </ul>
@@ -373,10 +413,12 @@ export default {
 }
 
 .appeal {
+  padding-bottom: 2.2rem;
   margin-bottom: 2.2rem;
-  padding-left: 1.6rem;
+  border-bottom: 16px solid #efefef;
   &__header {
     display: flex;
+    padding-left: 1.6rem;
   }
   &__header-image {
     margin-left: -8px;
@@ -403,37 +445,89 @@ export default {
   }
   .appeal-stores {
     &__inner {
-      overflow-x: auto;
-      white-space: nowrap;
-      margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+
     }
   }
+  .mini-store-card:nth-child(even) {
+    margin-left: 1.6rem;
+  }
   .mini-store-card {
-    display: inline-block;
-    margin-right: 2rem;
+    width: calc(100% / 2 - 0.8rem);
+    margin-bottom: 2.4rem;
     &__image {
-      width: 140px;
       max-height: 90px;
       overflow: hidden;
-      margin-bottom: 0.4rem;
-      border-radius: 5px;
-      @include mq() { // 引数を個別に指定
-        width: 280px;
+      position: relative;
+      @include mq() {
         max-height: 180px;
       }
     }
-    &__image img {
-      border-radius: 5px;
+    &__badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 45px;
     }
-    &__title {
-      width: 140px;
-      @include mq() { // 引数を個別に指定
-        width: 280px;
-      }
+    &__badge img {
+      border-radius: 50%;
+    }
+    &__area {
+      width: 13.6rem;
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 0.2rem 0.6rem;
+      border-radius: 0 0 4px 0;
+      background-color: #2e6171;
+      color: #fff;
+    }
+    &__content {
+      padding: 0.4rem 1rem 0 1rem;
+    }
+    &__name {
+      max-width: 100%;
       font-size: 1.4rem;
+      margin-bottom: 0.4rem;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+    &__title {
+      min-height: 7.2rem;
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+    &__normal-price {
+      text-align: right;
+      font-size: 1.2rem;
+      text-decoration: line-through;
+      color: #838383;
+      margin-bottom: -0.4rem;
+    }
+    &__discount-rate {
+      text-align: right;
+      font-size: 1.4rem;
+      margin-top: -0.8rem;
+      .oso-lunch {
+        color: rgb(72, 179, 245);
+      }
+      .haya-dinner {
+        color: rgba(236, 103, 63, 1);
+      }
+      .oso-dinner {
+        color: rgba(66, 58, 141, 1);
+      }
+    }
+    &__discount-price {
+      text-align: right;
+      font-size: 1rem;
+      span {
+        margin-left: 0.8rem;
+        font-size: 2.4rem;
+        color: #ff427a;
+        font-weight: bold;
+      }
     }
   }
   &__view-more {

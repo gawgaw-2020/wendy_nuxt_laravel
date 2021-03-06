@@ -126,8 +126,7 @@ const areaList = [
   '四谷・神楽坂・飯田橋',
   '上野・御徒町・浅草',
   '水道橋・神田・秋葉原',
-  '中野・吉祥寺・三鷹',
-  'その他'
+  '中野・吉祥寺・三鷹'
 ]
 
 
@@ -148,6 +147,75 @@ const mainImageList = [
   '/img/main-image-sample/main_image-sample14.jpg',
 ]
 
+const couponImageList = [
+  '/img/coupon-image-sample/coupon_image-sample1.jpg',
+  '/img/coupon-image-sample/coupon_image-sample2.jpg',
+  '/img/coupon-image-sample/coupon_image-sample3.jpg',
+  '/img/coupon-image-sample/coupon_image-sample4.jpg',
+  '/img/coupon-image-sample/coupon_image-sample5.jpg',
+  '/img/coupon-image-sample/coupon_image-sample6.jpg',
+  '/img/coupon-image-sample/coupon_image-sample7.jpg',
+  '/img/coupon-image-sample/coupon_image-sample8.jpg',
+  '/img/coupon-image-sample/coupon_image-sample9.jpg',
+  '/img/coupon-image-sample/coupon_image-sample10.jpg',
+  '/img/coupon-image-sample/coupon_image-sample11.jpg',
+  '/img/coupon-image-sample/coupon_image-sample12.jpg',
+  '/img/coupon-image-sample/coupon_image-sample13.jpg',
+  '/img/coupon-image-sample/coupon_image-sample14.jpg',
+  '/img/coupon-image-sample/coupon_image-sample15.jpg',
+  '/img/coupon-image-sample/coupon_image-sample16.jpg',
+  '/img/coupon-image-sample/coupon_image-sample17.jpg',
+  '/img/coupon-image-sample/coupon_image-sample18.jpg',
+  '/img/coupon-image-sample/coupon_image-sample19.jpg',
+  '/img/coupon-image-sample/coupon_image-sample20.jpg',
+  '/img/coupon-image-sample/coupon_image-sample21.jpg',
+  '/img/coupon-image-sample/coupon_image-sample22.jpg',
+  '/img/coupon-image-sample/coupon_image-sample23.jpg',
+  '/img/coupon-image-sample/coupon_image-sample24.jpg',
+  '/img/coupon-image-sample/coupon_image-sample25.jpg',
+  '/img/coupon-image-sample/coupon_image-sample26.jpg',
+]
+
+const couponTitleList = [
+  '遅ランチだからこの価格☆店主自慢の日替り定食（なくなり次第終了）',
+  '【平日限定】ディナービュッフェ+乾杯用グラスシャンパーニュ',
+  '★メレンゲコース利用者限定！飲み放題2時間が特別価格でお得に',
+  '飲み放題付オリジナルパーティープラン サプライズもOK！！',
+  '料理長厳選桜コース + ONEドリンクサービス デザートが自慢',
+  '選べるランチ 選べるデザート＋選べるドリンク＋アルコールに変更可',
+  'ブッフェ料金＋ワンドリンク（スパークリングワイン）が特別価格',
+  '月替わりのランチおすすめコース メイン料理は目の前で仕上げます',
+  '選べる5品のフルコース＋フリードリンク＋ 乾杯シャンパン付き★',
+  'レギュラードリンク or ミニソフトクリーム 何回注文してもOK',
+  'カジュアル飲み放題（2時間）LO30分前 当日でもOKなのでお気軽に',
+  '人気のお好み焼3種「ミックス焼」「道頓堀焼」「広島焼」',
+  'ランチカレーブッフェ 激戦区で５年連続NO1！！ しかも食べ放題',
+  '「梅の花 極（引き上げ湯葉コース）」飲み放題付 お土産付き',
+  '2時間飲み放題付き「9皿10品コース」 最後のお茶漬けまで絶品',
+  'ふかひれの姿煮やフォアグラなど豪華食材をふんだんに使用したコース',
+  '【とろとろ絶品チーズ！チーズダッカルビ or チーズダッカルえび】',
+  '月～木曜限定！デザート全品割引 遅い時間だと売り切れちゃうかも',
+  '【当店自慢】の焼き鳥盛り合わせ5本 まずはここから！！',
+  '「贅沢コース」メイン国産牛すき焼き全9品 一番美味しく仕上げます',
+  '『豪華厳選素材！もつ鍋or水炊きの宴』2H飲放付・全9品コース',
+  '人気上位で構成したディナーコース 今月末までの開催です!!',
+  '誰が食べても絶対美味しい！十和田バラ焼き これを食べなきゃ☆',
+  '辛味噌が後を引く美味しさ！仙台味噌ラーメン！ トッピングが割引',
+  '福島県のラーメンと言えば、やはり喜多方ラーメン！ 替え玉何回でもOK',
+  '野菜の味をしっかり引き出すさっぱりとした当店自慢の餃子',
+  'これがうどん？！たたんで食べる「桐生名物ひもかわうどん」',
+  '野菜たっぷり！とろとろアツアツの餡がクセになるスタミナラーメン',
+  '新鮮な海の幸が豊富な郷土料理「なめろう」 最初の１品におすすめ',
+  'のど越し＆腰の強さが魅力のへぎそばは海藻の香り！ボリュームも満点',
+  'ブラックな見た目も刺激的な味もインパクト大「ブラックラーメン」',
+  'ただのカツカレーとはちょっと違う！金沢カレー カレーの概念が変わる',
+  '広大な琵琶湖の畔で育まれた、その繊細な味わい、近江牛ステーキ',
+  '独自の伝統技術で作られた奈良県の三輪そうめん！自慢の薬味も取り放題',
+]
+
+const couponPriceList = [9800, 6600, 5400, 4999, 3800, 3500, 3000, 2800, 2500, 2450, 2200, 2100, 2000, 1999, 1980, 1900, 1450, 1200, 1000, 999, 980, 950, 900, 800, 780, 760, 750, 700, 680, 666, 555, 222, 111]
+
+const discountRateList = [90, 80, 70, 60, 50, 40, 30, 20, 10]
 
 
 export default {
@@ -206,9 +274,9 @@ export default {
   computed: {},
   methods: {
     add() {
-      const oso_lunch_is_active = Math.random() < 0.5
-      const haya_dinner_is_active = Math.random() < 0.5
-      const oso_dinner_is_active = Math.random() < 0.5
+      const oso_lunch_is_active = Math.random() < 0.8
+      const haya_dinner_is_active = Math.random() < 0.8
+      const oso_dinner_is_active = Math.random() < 0.8
 
       const createdID = articlesRef.doc().id
       articlesRef.doc(createdID)
@@ -222,8 +290,8 @@ export default {
       address: addressList[Math.floor(Math.random() * addressList.length)],
       nearest_station: nearestStationList[Math.floor(Math.random() * nearestStationList.length)],
       business_hour: this.business_hour,
-      cashless: Math.random() < 0.5,
-      non_smoke: Math.random() < 0.5,
+      cashless: Math.random() < 0.8,
+      non_smoke: Math.random() < 0.8,
       category: categoryList[Math.floor(Math.random() * categoryList.length)],
       credit_card: this.credit_card,
       e_money: this.e_money,
@@ -232,11 +300,11 @@ export default {
       pictures: this.pictures,
       small_text: smallTextList[Math.floor(Math.random() * smallTextList.length)],
       url_gnavi: this.url_gnavi,
-      url_hotpepper: Math.random() < 0.5 ? 'https://www.hotpepper.jp/strJ001155200/' : '',
+      url_hotpepper: Math.random() < 0.8 ? 'https://www.hotpepper.jp/strJ001155200/' : '',
       url_instagram: Math.random() < 0.5 ? 'https://www.instagram.com/miobar_hiroshima/' : '',
-      url_official: Math.random() < 0.5 ? 'http://maplecity.jp/zona/' : '',
-      url_tabelog: Math.random() < 0.5 ? 'https://tabelog.com/chiba/A1201/A120104/12020535/' : '',
-      url_twitter: Math.random() < 0.5 ? 'https://twitter.com/usagihirosima' : '',
+      url_official: Math.random() < 0.4 ? 'http://maplecity.jp/zona/' : '',
+      url_tabelog: Math.random() < 0.6 ? 'https://tabelog.com/chiba/A1201/A120104/12020535/' : '',
+      url_twitter: Math.random() < 0.2 ? 'https://twitter.com/usagihirosima' : '',
       food01_name: this.food01_name,
       food01_price: this.food01_price,
       food02_name: this.food02_name,
@@ -267,10 +335,13 @@ export default {
             category: '遅ランチ',
             end: '16:30',
             start: '14:00',
-            title: '14時以降限定★遅めのランチがお得★店主自慢の日替わり定食1,080円→800円（なくなり次第終了となります）',
+            title: couponTitleList[Math.floor(Math.random() * couponTitleList.length)],
             information: '当日でも使えますが、予約をしていただけると嬉しいです！',
             rule: '席利用２時間まで',
-            how_to_use: '予約時・来店時・注文時・会計時に掲示'
+            how_to_use: '予約時・来店時・注文時・会計時に掲示',
+            discount_rate : discountRateList[Math.floor(Math.random() * discountRateList.length)],
+            normal_price: couponPriceList[Math.floor(Math.random() * couponPriceList.length)],
+            image: couponImageList[Math.floor(Math.random() * couponImageList.length)],
           })
           articlesRef.doc(createdID).collection('coupons').doc('haya-dinner').set({
             active: haya_dinner_is_active,
@@ -278,10 +349,13 @@ export default {
             category: '早ディナー',
             end: '17:30',
             start: '18:00',
-            title: '窓側のお席確約！【誕生日・記念日に☆】 『主役へメッセージ入り特製デザート盛り合わせ』プレゼント♪',
+            title: couponTitleList[Math.floor(Math.random() * couponTitleList.length)],
             information: '当日でも使えますが、予約をしていただけると嬉しいです！',
             rule: '席利用２時間まで',
-            how_to_use: '予約時・来店時・注文時・会計時に掲示'
+            how_to_use: '予約時・来店時・注文時・会計時に掲示',
+            discount_rate : discountRateList[Math.floor(Math.random() * discountRateList.length)],
+            normal_price: couponPriceList[Math.floor(Math.random() * couponPriceList.length)],
+            image: couponImageList[Math.floor(Math.random() * couponImageList.length)],
           })
           articlesRef.doc(createdID).collection('coupons').doc('oso-dinner').set({
             active: oso_dinner_is_active,
@@ -289,10 +363,13 @@ export default {
             category: '遅ディナー',
             end: '22:30',
             start: '21:00',
-            title: '【星付きレストランををカフェとして利用OK】おまかせドルチェ３種盛りが900円!!１ドリンク付き★',
+            title: couponTitleList[Math.floor(Math.random() * couponTitleList.length)],
             information: '当日でも使えますが、予約をしていただけると嬉しいです！',
             rule: '席利用２時間まで',
-            how_to_use: '予約時・来店時・注文時・会計時に掲示'
+            how_to_use: '予約時・来店時・注文時・会計時に掲示',
+            discount_rate : discountRateList[Math.floor(Math.random() * discountRateList.length)],
+            normal_price: couponPriceList[Math.floor(Math.random() * couponPriceList.length)],
+            image: couponImageList[Math.floor(Math.random() * couponImageList.length)],
           })
       })
       .catch((error) => {
