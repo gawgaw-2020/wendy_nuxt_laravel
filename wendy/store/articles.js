@@ -158,7 +158,7 @@ export const actions = {
   async getOsoLunchArticles({ commit }, payload) {
     await articlesRef
     .where('coupon_oso_lunch_active', "==", true)
-    .limit(10).get()
+    .limit(6).get()
     .then(snapshot => {
 
       let i = snapshot.size
@@ -194,7 +194,7 @@ export const actions = {
   async getHayaDinnerArticles({ commit }, payload) {
     await articlesRef
     .where('coupon_haya_dinner_active', "==", true)
-    .limit(10).get()
+    .limit(6).get()
     .then(snapshot => {
 
       let i = snapshot.size
@@ -230,7 +230,7 @@ export const actions = {
   async getOsoDinnerArticles({ commit }, payload) {
     await articlesRef
     .where('coupon_oso_dinner_active', "==", true)
-    .limit(10).get()
+    .limit(6).get()
     .then(snapshot => {
 
       let i = snapshot.size
