@@ -126,8 +126,7 @@ const areaList = [
   '四谷・神楽坂・飯田橋',
   '上野・御徒町・浅草',
   '水道橋・神田・秋葉原',
-  '中野・吉祥寺・三鷹',
-  'その他'
+  '中野・吉祥寺・三鷹'
 ]
 
 
@@ -146,6 +145,35 @@ const mainImageList = [
   '/img/main-image-sample/main_image-sample12.jpg',
   '/img/main-image-sample/main_image-sample13.jpg',
   '/img/main-image-sample/main_image-sample14.jpg',
+]
+
+const couponImageList = [
+  '/img/coupon-image-sample/coupon_image-sample1.jpg',
+  '/img/coupon-image-sample/coupon_image-sample2.jpg',
+  '/img/coupon-image-sample/coupon_image-sample3.jpg',
+  '/img/coupon-image-sample/coupon_image-sample4.jpg',
+  '/img/coupon-image-sample/coupon_image-sample5.jpg',
+  '/img/coupon-image-sample/coupon_image-sample6.jpg',
+  '/img/coupon-image-sample/coupon_image-sample7.jpg',
+  '/img/coupon-image-sample/coupon_image-sample8.jpg',
+  '/img/coupon-image-sample/coupon_image-sample9.jpg',
+  '/img/coupon-image-sample/coupon_image-sample10.jpg',
+  '/img/coupon-image-sample/coupon_image-sample11.jpg',
+  '/img/coupon-image-sample/coupon_image-sample12.jpg',
+  '/img/coupon-image-sample/coupon_image-sample13.jpg',
+  '/img/coupon-image-sample/coupon_image-sample14.jpg',
+  '/img/coupon-image-sample/coupon_image-sample15.jpg',
+  '/img/coupon-image-sample/coupon_image-sample16.jpg',
+  '/img/coupon-image-sample/coupon_image-sample17.jpg',
+  '/img/coupon-image-sample/coupon_image-sample18.jpg',
+  '/img/coupon-image-sample/coupon_image-sample19.jpg',
+  '/img/coupon-image-sample/coupon_image-sample20.jpg',
+  '/img/coupon-image-sample/coupon_image-sample21.jpg',
+  '/img/coupon-image-sample/coupon_image-sample22.jpg',
+  '/img/coupon-image-sample/coupon_image-sample23.jpg',
+  '/img/coupon-image-sample/coupon_image-sample24.jpg',
+  '/img/coupon-image-sample/coupon_image-sample25.jpg',
+  '/img/coupon-image-sample/coupon_image-sample26.jpg',
 ]
 
 
@@ -267,12 +295,13 @@ export default {
             category: '遅ランチ',
             end: '16:30',
             start: '14:00',
-            title: '14時以降限定★遅めのランチがお得★店主自慢の日替わり定食（なくなり次第終了となります）',
+            title: '店主自慢の日替り定食（なくなり次第終了となります）',
             information: '当日でも使えますが、予約をしていただけると嬉しいです！',
             rule: '席利用２時間まで',
             how_to_use: '予約時・来店時・注文時・会計時に掲示',
-            discount_price : 800,
-            normal_price: 1080
+            discount_rate : 20,
+            normal_price: 1080,
+            image: couponImageList[Math.floor(Math.random() * couponImageList.length)],
           })
           articlesRef.doc(createdID).collection('coupons').doc('haya-dinner').set({
             active: haya_dinner_is_active,
@@ -280,12 +309,13 @@ export default {
             category: '早ディナー',
             end: '17:30',
             start: '18:00',
-            title: '窓側のお席確約！【誕生日・記念日に☆】 『主役へメッセージ入り特製デザート盛り合わせ』プレゼント♪',
+            title: '『主役へメッセージ入り特製デザート盛り合わせ』プレゼント♪',
             information: '当日でも使えますが、予約をしていただけると嬉しいです！',
             rule: '席利用２時間まで',
             how_to_use: '予約時・来店時・注文時・会計時に掲示',
-            discount_price : 800,
-            normal_price: 1080
+            discount_rate : 100,
+            normal_price: 1000,
+            image: couponImageList[Math.floor(Math.random() * couponImageList.length)],
           })
           articlesRef.doc(createdID).collection('coupons').doc('oso-dinner').set({
             active: oso_dinner_is_active,
@@ -293,12 +323,13 @@ export default {
             category: '遅ディナー',
             end: '22:30',
             start: '21:00',
-            title: '【星付きレストランををカフェとして利用OK】おまかせドルチェ３種盛りが900円!!１ドリンク付き★',
+            title: 'おまかせドルチェ３種盛り!!１ドリンク付き★',
             information: '当日でも使えますが、予約をしていただけると嬉しいです！',
             rule: '席利用２時間まで',
             how_to_use: '予約時・来店時・注文時・会計時に掲示',
-            discount_price : 800,
-            normal_price: 1080
+            discount_rate : 50,
+            normal_price: 1080,
+            image: couponImageList[Math.floor(Math.random() * couponImageList.length)],
           })
       })
       .catch((error) => {

@@ -65,12 +65,16 @@
           <ul class="appeal-stores__inner">
             <li class="mini-store-card" v-for="(article, index) in osoLunchArticles" :key="index">
               <nuxt-link :to="`/article/${article.store_id}`">
-                <p class="mini-store-card__image"><img :src="article.main_image" alt=""></p>
-                <p class="mini-store-card__title">{{ article.name }}</p>
-                <p>{{ article.area }}</p>
-                <p>{{ article.coupons[0].title }}</p>
-                <p>通常価格 {{ article.coupons[0].normal_price.toLocaleString() }}円</p>
-                <p>Wendy特別価格 {{ article.coupons[0].discount_price.toLocaleString() }}円</p>
+                <div class="mini-store-card__image">
+                  <img :src="article.coupons[0].image" alt="">
+                  <p class="mini-store-card__badge"><img src="/img/discount50off.png" alt=""></p>
+                </div>
+                <p class="mini-store-card__area">{{ article.area }}</p>
+                <p class="mini-store-card__name">{{ article.name }}</p>
+                <p class="mini-store-card__title">{{ article.coupons[0].title }}</p>
+                <div class="mini-store-card__discount-rate"><p>{{ article.coupons[0].discount_rate }}%OFF</p></div>
+                <p class="mini-store-card__normal-price">通常価格 {{ article.coupons[0].normal_price.toLocaleString() }}円</p>
+                <p class="mini-store-card__discount-price">Wendy特別価格 <span>{{ article.coupons[0].normal_price * ((100 - article.coupons[0].discount_rate) / 100).toLocaleString() }}円</span></p>
               </nuxt-link>
             </li>
           </ul>
@@ -380,6 +384,7 @@ export default {
   margin-bottom: 2.2rem;
   &__header {
     display: flex;
+    padding-left: 1.6rem;
   }
   &__header-image {
     margin-left: -8px;
@@ -413,28 +418,62 @@ export default {
     }
   }
   .mini-store-card {
-    width: 50%;
+    width: calc(100% / 2 - 0.8rem);
+    margin: 0.4rem;
     &__image {
       max-height: 90px;
       overflow: hidden;
-      margin-bottom: 0.4rem;
-      border-radius: 5px;
-      @include mq() { // 引数を個別に指定
-        width: 280px;
+      position: relative;
+      @include mq() {
         max-height: 180px;
       }
     }
     &__image img {
       border-radius: 5px;
     }
-    &__title {
-      @include mq() { // 引数を個別に指定
-        width: 280px;
-      }
+    &__badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50px;
+    }
+    &__area {
+      width: 12.6rem;
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 0.2rem 0.6rem;
+      border-radius: 0 0 4px 0;
+      background-color: #2e6171;
+      color: #fff;
+      font-weight: bold;
+    }
+    &__name {
       font-size: 1.4rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      padding: 0.4rem;
+    }
+    &__title {
+      font-size: 1.6rem;
+      padding: 0.4rem;
+    }
+    &__normal-price {
+      text-align: right;
+      font-size: 1.2rem;
+      text-decoration: line-through;
+      color: #838383;
+    }
+    &__discount-rate {
+      text-align: right;
+      color: #ff427a;
+    }
+    &__discount-price {
+      text-align: right;
+      font-size: 1.2rem;
+      span {
+        margin-left: 0.8rem;
+        font-size: 2.4rem;
+        color: #ff427a;
+        font-weight: bold;
+      }
     }
   }
   &__view-more {
