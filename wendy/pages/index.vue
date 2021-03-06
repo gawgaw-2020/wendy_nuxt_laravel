@@ -469,8 +469,11 @@ export default {
       top: 0;
       right: 0;
       width: 45px;
+      overflow: hidden;
+      border-radius: 50%;
     }
     &__badge img {
+      transform: scale(1.2);
       border-radius: 50%;
     }
     &__area {
