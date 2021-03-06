@@ -67,6 +67,10 @@
               <nuxt-link :to="`/article/${article.store_id}`">
                 <p class="mini-store-card__image"><img :src="article.main_image" alt=""></p>
                 <p class="mini-store-card__title">{{ article.name }}</p>
+                <p>{{ article.area }}</p>
+                <p>{{ article.coupons[0].title }}</p>
+                <p>通常価格 {{ article.coupons[0].normal_price.toLocaleString() }}円</p>
+                <p>Wendy特別価格 {{ article.coupons[0].discount_price.toLocaleString() }}円</p>
               </nuxt-link>
             </li>
           </ul>
@@ -374,7 +378,6 @@ export default {
 
 .appeal {
   margin-bottom: 2.2rem;
-  padding-left: 1.6rem;
   &__header {
     display: flex;
   }
@@ -403,16 +406,15 @@ export default {
   }
   .appeal-stores {
     &__inner {
-      overflow-x: auto;
-      white-space: nowrap;
       margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+
     }
   }
   .mini-store-card {
-    display: inline-block;
-    margin-right: 2rem;
+    width: 50%;
     &__image {
-      width: 140px;
       max-height: 90px;
       overflow: hidden;
       margin-bottom: 0.4rem;
@@ -426,7 +428,6 @@ export default {
       border-radius: 5px;
     }
     &__title {
-      width: 140px;
       @include mq() { // 引数を個別に指定
         width: 280px;
       }

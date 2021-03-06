@@ -267,10 +267,12 @@ export default {
             category: '遅ランチ',
             end: '16:30',
             start: '14:00',
-            title: '14時以降限定★遅めのランチがお得★店主自慢の日替わり定食1,080円→800円（なくなり次第終了となります）',
+            title: '14時以降限定★遅めのランチがお得★店主自慢の日替わり定食（なくなり次第終了となります）',
             information: '当日でも使えますが、予約をしていただけると嬉しいです！',
             rule: '席利用２時間まで',
-            how_to_use: '予約時・来店時・注文時・会計時に掲示'
+            how_to_use: '予約時・来店時・注文時・会計時に掲示',
+            discount_price : 800,
+            normal_price: 1080
           })
           articlesRef.doc(createdID).collection('coupons').doc('haya-dinner').set({
             active: haya_dinner_is_active,
@@ -281,7 +283,9 @@ export default {
             title: '窓側のお席確約！【誕生日・記念日に☆】 『主役へメッセージ入り特製デザート盛り合わせ』プレゼント♪',
             information: '当日でも使えますが、予約をしていただけると嬉しいです！',
             rule: '席利用２時間まで',
-            how_to_use: '予約時・来店時・注文時・会計時に掲示'
+            how_to_use: '予約時・来店時・注文時・会計時に掲示',
+            discount_price : 800,
+            normal_price: 1080
           })
           articlesRef.doc(createdID).collection('coupons').doc('oso-dinner').set({
             active: oso_dinner_is_active,
@@ -292,7 +296,9 @@ export default {
             title: '【星付きレストランををカフェとして利用OK】おまかせドルチェ３種盛りが900円!!１ドリンク付き★',
             information: '当日でも使えますが、予約をしていただけると嬉しいです！',
             rule: '席利用２時間まで',
-            how_to_use: '予約時・来店時・注文時・会計時に掲示'
+            how_to_use: '予約時・来店時・注文時・会計時に掲示',
+            discount_price : 800,
+            normal_price: 1080
           })
       })
       .catch((error) => {
