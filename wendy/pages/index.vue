@@ -416,6 +416,9 @@ export default {
   padding-bottom: 2.2rem;
   margin-bottom: 2.2rem;
   border-bottom: 16px solid #efefef;
+  @include mq() {
+    border-bottom: none;
+  }
   &__header {
     display: flex;
     padding-left: 1.6rem;
@@ -460,8 +463,9 @@ export default {
       max-height: 90px;
       overflow: hidden;
       position: relative;
-      @include mq() {
+      @include mq(sm) {
         max-height: 180px;
+        border-radius: 8px 8px 0 0;
       }
     }
     &__badge {
@@ -520,6 +524,9 @@ export default {
       }
       .oso-dinner {
         color: rgba(66, 58, 141, 1);
+      }
+      @include mq(sm) {
+        margin-top: -3.2rem;
       }
     }
     &__discount-price {

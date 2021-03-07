@@ -81,6 +81,9 @@ export default {
     background-color: #fff;
     margin-bottom: 3.2rem;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    @include mq() {
+      border-radius: 10px;
+    }
     &__header {
       height: 155px;
       position: relative;
@@ -88,7 +91,7 @@ export default {
     &__main-image {
       height: 100%;
       background-size: cover;
-      @include mq(sm) {
+      @include mq() {
         border-radius: 10px 10px 0 0;
       }
     }
@@ -194,6 +197,9 @@ export default {
     }
     &__thumbnail img {
       border-radius: 0 4px 0 0;
+      @include mq() {
+        border-radius: 0 10px 0 10px;
+      }
     }
     &__badge {
       width: 40px;

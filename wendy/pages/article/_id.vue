@@ -301,15 +301,14 @@ export default {
   text-align: center;
   color: #fff;
   &__inner{
-    // overflow: hidden;
     overflow: scroll;
     position: fixed;
     top: 0%;
     left: 50%;
     transform: translate(-50%, 0%);
     width: 85%;
+    max-width: 678px;
     height: calc(100vh - 75px);
-    // background: transparent linear-gradient(180deg, var(--unnamed-color-eb5276) 0%, #EAE5E6 100%) 0% 0% no-repeat padding-box;
     background: transparent linear-gradient(180deg, #ff427a 0%, #EAE5E6 300%) 0% 0% no-repeat padding-box;
     opacity: 1;
     z-index: 10000;
@@ -489,17 +488,20 @@ export default {
       @include mq() {
         padding: 2rem 12rem 2rem;
       }
-      &__header {
-        background-color: lightgreen;
-      }
       &__image {
         position: relative;
+      }
+      &__image img {
+        @include mq() {
+          border-radius: 10px;
+        }
       }
       &__tag {
         padding: 0.5rem 1rem;
         backdrop-filter: blur(4px);
         width: 100%;
         position: absolute;
+        border-radius: 10px 10px 0 0;
       }
       &__category {
         font-size: 1.4rem;
@@ -528,12 +530,13 @@ export default {
       }
       &__content {
         height: 120px;
-        max-width: 360px;
+        max-width: 375px;
         margin: -6px auto;
-        padding: 2rem 2.4rem 1.6rem;
+        padding: 2rem 2.4rem 1.4rem;
         position: relative;
         display: flex;
         flex-direction: column;
+        background-size: cover;
       }
       &__title {
         font-size: 1.2rem;
@@ -560,7 +563,7 @@ export default {
       }
       &__discount-price {
         position: absolute;
-        bottom: 13px;
+        bottom: 10px;
         right: 88px;
         font-size: 1.2rem;
         font-weight: normal;

@@ -24,19 +24,19 @@ export default {
 
 <style lang="scss" scoped>
   .allArticles__list {
-    @include mq(sm) {
+    @include mq() {
       display: flex;
       flex-wrap: wrap;
     }
   }
   .allArticles__item {
-    @include mq(sm) {
+    @include mq() {
       border-radius: 10px;
       width: calc((100% / 2) - 12px);
     }
   }
   .allArticles__item:nth-child(odd) {
-    @include mq(sm) {
+    @include mq() {
       margin-right: 24px;
     }
   }
