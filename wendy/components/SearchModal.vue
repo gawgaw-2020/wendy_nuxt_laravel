@@ -44,7 +44,7 @@ export default {
 .search-modal {
   width: 100%;
   position: absolute;
-  top: 285px;
+  top: 255px;
   &__inner {
     width: 90%;
     margin: 0 auto;

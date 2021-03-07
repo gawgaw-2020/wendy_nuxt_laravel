@@ -30,7 +30,7 @@
       <div class="area-modal__background animate__animated animate__fadeIn" @click="areaModalToggle"></div>
     </div>
 
-    <div class="search-top">
+    <!-- <div class="search-top">
       <div class="search-top__inner">
         <form class="search-top__container" action="#" method="#">
           <p><i class="search-top__icon fas fa-search"></i></p>
@@ -41,7 +41,7 @@
           />
         </form>
       </div>
-    </div>
+    </div> -->
     <div class="hero">
       <div class="hero__mask">
         <div class="hero__catch">
@@ -406,7 +406,7 @@ export default {
 }
 
 .content {
-  padding-top: 9.6rem;
+  padding-top: 13.6rem;
   padding-bottom: 8.8rem;
   max-width: 768px;
   margin: 0 auto;
