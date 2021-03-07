@@ -1,7 +1,7 @@
 <template>
   <div class="top">
     <div class="time-modal" v-show="timeModal">
-      <div class="time-modal__inner animate__animated animate__fadeIn">
+      <div class="area-modal__inner animate__animated animate__fadeIn">
         <p class="time-modal__message">時間帯を選択してください</p>
         <p class="time-modal__item" @click="selectTime" data-time="遅ランチ">遅ランチ</p>
         <p class="time-modal__item" @click="selectTime" data-time="早ディナー">早ディナー</p>

@@ -1,19 +1,24 @@
 <template>
   <div class="coupon-detail">
     <CouponDetailSectionTitle class="coupon-detail__section-title" :coupon-detail-section-title="'こちらのクーポンを利用します'"/>
-    <div
-      class="coupon"
-      :style="{ backgroundImage: 'url(/img/' + coupon.coupon_id + '-bg.png)' }"
-    >
-      <div class="coupon__content">
-        <p class="coupon__category">{{ coupon.category }}</p>
-        <p class="coupon__time">
-          {{ coupon.start }}~{{ coupon.end }}の入店で
-        </p>
-        <p class="coupon__title">{{ coupon.title }}</p>
+    <div class="coupon">
+      <div class="coupon__header">
+        <div class="coupon__image">
+          <div class="coupon__tag">
+            <p class="coupon__category">{{ coupon.category }}</p>
+            <p class="coupon__time">{{ coupon.start }}~{{ coupon.end }}の入店限定</p>
+          </div>
+          <img :src="coupon.image" alt="">
+          <p class="coupon__badge"><img :src="`/img/discount-badge/discount-badge${coupon.discount_rate}.png`" alt=""></p>
+        </div>
       </div>
-      <p class="coupon__link">
-      </p>
+      <div  class="coupon__content" :style="{ backgroundImage: 'url(/img/' + coupon.coupon_id + '-bg.png)' }">
+        <p class="coupon__title">{{ coupon.title }}</p>
+        <div class="coupon__discount-rate"><p><span :class="coupon.coupon_id">{{ coupon.category }}で{{ coupon.discount_rate }}%OFF</span></p></div>
+        <p class="coupon__normal-price">通常 {{ coupon.normal_price.toLocaleString() }}円</p>
+        <p class="coupon__discount-price">Wendy特別価格 <span>{{ Math.floor(coupon.normal_price * ((100 - coupon.discount_rate) / 100)).toLocaleString() }}円</span></p>
+        <div class="cover"></div>
+      </div>
     </div>
     <CouponDetailSectionTitle class="coupon-detail__section-title" :coupon-detail-section-title="'利用条件とお店からのメッセージ'"/>
     <p class="coupon-detail__message">{{ coupon.how_to_use }}</p>
@@ -136,43 +141,102 @@ export default {
   }
 }
 .coupon {
-  width: 340px;
-  height: 112px;
+  max-width: 768px;
   margin: 0 auto 0.8rem;
   color: #2e6171;
   font-weight: bold;
-  position: relative;
-  display: flex;
-  background-position: center;
-  &__content {
-    width: 75%;
+  @include mq() {
+    padding: 0rem 12rem;
+  }
+  &__header {
+    background-color: lightgreen;
+  }
+  &__image {
+    position: relative;
+  }
+  &__tag {
+    padding: 0.5rem 1rem;
+    backdrop-filter: blur(4px);
+    width: 100%;
+    position: absolute;
   }
   &__category {
     font-size: 1.4rem;
     color: #ff427a;
-    position: absolute;
-    left: 16px;
-    top: 10px;
+    display: inline-block;
+    margin-right: 0.8rem;
+    text-shadow:0 0 5px #888;
   }
   &__time {
     font-size: 1.2rem;
-    padding: 1.2rem 0 0.6rem 6rem;
-    text-align: center;
+    color: #fff;
+    display: inline-block;
+    text-shadow:0 0 5px #000;
+  }
+  &__badge {
+    width: 80px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  &__badge img {
+    border-radius: 50%;
+    transform: scale(1.2);
+  }
+  &__content {
+    height: 120px;
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 2rem 2.4rem 1.6rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
   }
   &__title {
     font-size: 1.2rem;
-    padding-left: 1.5rem;
-    line-height: 1.7;
+    width: 240px;
   }
-  &__link {
-    width: 25%;
+  &__normal-price {
+    margin-top: auto;
+    font-weight: normal;
+    font-size: 1.2rem;
+    text-decoration: line-through;
+    color: #838383;
   }
-  &__link a {
-    font-size: 1rem;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    color: #fff;
+  &__discount-rate {
+    font-size: 1.4rem;
+    .oso-lunch {
+      color: rgb(72, 179, 245);
+    }
+    .haya-dinner {
+      color: rgba(236, 103, 63, 1);
+    }
+    .oso-dinner {
+      color: rgba(66, 58, 141, 1);
+    }
+  }
+  &__discount-price {
+    position: absolute;
+    bottom: 13px;
+    right: 88px;
+    font-size: 1.2rem;
+    font-weight: normal;
+    span {
+      margin-left: 0.2rem;
+      font-size: 2.4rem;
+      color: #ff427a;
+      font-weight: bold;
+    }
+  }
+  .cover {
+    width: 45px;
+    height: 30px;
+    background-color: #ff427a;
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
   }
 }
 

@@ -200,8 +200,11 @@ export default {
       position: absolute;
       top: 0;
       right: 0;
+      overflow: hidden;
+      border-radius: 50%;
     }
     &__badge img {
+      transform: scale(1.2);
       border-radius: 50%;
     }
     &__coupon-content-right {
@@ -231,10 +234,12 @@ export default {
       }
     }
     &__no-coupon-time {
+      min-height: 60px;
       font-size: 1.4rem;
       padding: 1rem 0 0.6rem;
     }
     &__no-coupon-title {
+      min-height: 100px;
       font-size: 1.4rem;
       padding: 0 1rem;
       text-align: left;
