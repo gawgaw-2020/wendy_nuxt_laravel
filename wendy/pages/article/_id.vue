@@ -501,7 +501,9 @@ export default {
         backdrop-filter: blur(4px);
         width: 100%;
         position: absolute;
-        border-radius: 10px 10px 0 0;
+        @include mq() {
+          border-radius: 10px 10px 0 0;
+        }
       }
       &__category {
         font-size: 1.4rem;
