@@ -71,7 +71,6 @@ export default {
       let wendyLocal = localStorage.getItem('wendy')
       const user = JSON.parse(wendyLocal).auth.login_user
       if (user) {
-        console.log(this.coupon);
         this.result = this.coupon.article_id
         const title = this.coupon.title
         const start = this.coupon.start

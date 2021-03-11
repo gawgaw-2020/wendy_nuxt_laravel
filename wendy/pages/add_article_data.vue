@@ -282,7 +282,9 @@ export default {
       articlesRef.doc(createdID)
       .set({
       store_id: createdID,
-      owner_id: this.owner_id,
+      email: 'store@store.store',
+      tell: '09012345678',
+      nam_kana: 'サンプルテンポデータ',
       published: this.published,
       access_count: this.access_count,
       area: areaList[Math.floor(Math.random() * areaList.length)],
