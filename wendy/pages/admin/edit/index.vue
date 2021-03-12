@@ -9,6 +9,7 @@ import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
 
 export default {
+  middleware: 'storeAuthenticated',
   layout: 'admin',
   data() {
     return {

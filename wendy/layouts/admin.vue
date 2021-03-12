@@ -4,7 +4,7 @@
       <div class="header__inner">
         <h1
           class="header__title"
-          @click="$router.push('/')"
+          @click="$router.push('/admin/edit/')"
           v-text="title"
         ></h1>
         <div class="header__buttons">

@@ -5,17 +5,17 @@ const articlesRef = db.collection('suspended_articles')
 
 export const state = () => ({
   login_store: null,
-  authenticated: false
+  storeAuthenticated: false
 })
 
 export const mutations = {
   setLoginStore(state, store) {
     state.login_store = store
-    state.authenticated = true
+    state.storeAuthenticated = true
   },
   deleteLoginStore(state) {
     state.login_store = null
-    state.authenticated = false
+    state.storeAuthenticated = false
   }
 }
 
