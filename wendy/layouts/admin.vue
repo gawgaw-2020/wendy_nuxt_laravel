@@ -1,14 +1,19 @@
 <template>
   <div>
     <header class="header">
+      <div id="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <h1
+        class="header__title"
+        @click="$router.push('/admin/edit/')"
+        v-text="title"
+      ></h1>
       <div class="header__inner">
-        <h1
-          class="header__title"
-          @click="$router.push('/admin/edit/')"
-          v-text="title"
-        ></h1>
         <div class="header__buttons">
-          <p class="header__logout-button" v-if="storeName">{{ storeName }}様</p>
+          <p class="header__store-name" v-if="storeName">{{ storeName }}様</p>
         </div>
         <div class="header__buttons">
           <p class="header__logout-button" v-if="storeName" @click="logout">
@@ -17,11 +22,24 @@
         </div>
       </div>
     </header>
-    <main>
-      <div>
-        <nuxt />
-      </div>
-    </main>
+    <div class="main-container">
+      <aside id="sidebar">
+        <nav id="global-nav">
+          <ul class="link-list">
+            <li class="link-list__item"><a href="#">クーポン編集</a></li>
+            <li class="link-list__item"><a href="#">店舗ページ編集</a></li>
+            <li class="link-list__item"><a href="#">外部リンク編集</a></li>
+            <li class="link-list__item"><a href="#">基本情報編集</a></li>
+            <li class="link-list__item"><a href="#">掲載の停止・再開</a></li>
+          </ul>
+        </nav>
+      </aside>
+      <main>
+        <div>
+          <nuxt />
+        </div>
+      </main>
+    </div>
   </div>
 </template>
 
@@ -38,22 +56,21 @@ export default {
     };
   },
   created() {
-
     firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
         let { uid, email } = user;
-        let store_name = ''
+        let store_name = "";
 
         await firebase
-        .firestore()
-        .collection("suspended_articles")
-        .doc(uid)
-        .get()
-        .then(function (doc) {
-          if (doc.exists) {
-            store_name = doc.data().name;
-          }
-        });
+          .firestore()
+          .collection("suspended_articles")
+          .doc(uid)
+          .get()
+          .then(function (doc) {
+            if (doc.exists) {
+              store_name = doc.data().name;
+            }
+          });
 
         await this.setLoginStore({ uid, email, store_name });
 
@@ -61,15 +78,14 @@ export default {
         if (this.$router.currentRoute.name === "admin-login") {
           this.$router.push({ name: "admin-edit" });
         }
-
       } else {
         // 以下ログアウト時 ＆ ログアウト時にリロードした時の処理
         this.deleteLoginStore();
         localStorage.removeItem("wendy");
 
         // admin/edit/以下のディレクトリにいた場合のみ、管理画面のログインへ遷移させる
-        const str = this.$router.currentRoute.name
-        const pattern = 'admin-edit'
+        const str = this.$router.currentRoute.name;
+        const pattern = "admin-edit";
         if (str.startsWith(pattern)) {
           this.$router.push({ name: "admin-login" });
         }
@@ -80,56 +96,73 @@ export default {
     ...mapGetters("store-auth", ["storeName"]),
   },
   methods: {
-    ...mapMutations("store-auth", [
-      "setLoginStore",
-      "deleteLoginStore",
-    ]),
-    ...mapActions("store-auth", [
-      "logout",
-    ]),
-
-  }
+    ...mapMutations("store-auth", ["setLoginStore", "deleteLoginStore"]),
+    ...mapActions("store-auth", ["logout"]),
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+#nav-toggle {
+  width: 70px;
+  height: 60px;
+  margin-right: auto;
+  padding: 1.6rem 2rem;
+}
+#nav-toggle:hover {
+  background-color: red;
+}
+#nav-toggle span {
+  display: inline-block;
+  height: 3px;
+  width: 30px;
+  background-color: #707070;
+  position: absolute;
+}
+#nav-toggle span:first-child {
+  top: 27px;
+}
+#nav-toggle span:last-child {
+  top: 38px;
+}
+
 .header {
-  width: 100%;
-  height: 50px;
   background-color: #fff;
+  width: calc(100% - 190px);
+  height: 60px;
   position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
-  box-shadow: none;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   &__inner {
-    max-width: 768px;
-    padding: 0 16px;
-    margin: 0 auto;
     display: flex;
-    justify-content: flex-end;
-    position: relative;
-  }
-  &__title {
-    font-size: 3.2rem;
-    font-family: "nicomoji";
-    font-weight: normal;
-    cursor: pointer;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  &__buttons {
-    font-size: 1.4rem;
-    cursor: pointer;
-  }
-  &__login-button {
-    line-height: 50px;
-  }
-  &__logout-button {
-    line-height: 50px;
   }
 }
+
+.main-container {
+  display: flex;
+  padding-top: 10px;
+  padding-left: 190px;
+  #sidebar {
+    background-color: skyblue;
+    width: 190px;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 60px;
+    .link-list {
+      &__item {
+        height: 60px;
+      }
+    }
+  }
+  main {
+    width: 100%;
+  }
+}
+
 
 </style>
