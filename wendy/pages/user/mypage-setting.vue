@@ -7,7 +7,9 @@
         <h2 class="mypage-setting__title">ユーザー情報</h2>
         <div class="user-profile">
           <div class="user-data">
-            <p class="user-data__title">ユーザーネーム<span class="user-data__edit">変更する</span></p>
+            <p class="user-data__title">ユーザーネーム
+              <!-- <span class="user-data__edit">変更する</span> -->
+            </p>
             <p class="user-data__content">{{ userName }}</p>
           </div>
         </div>
@@ -21,9 +23,9 @@
             <p class="user-data__content">*************</p>
           </div>
         </div>
-        <p class="mypage-setting__change-button">
+        <!-- <p class="mypage-setting__change-button">
           <button class="btn btn-additional">メール・パスワードを変更する</button>
-        </p>
+        </p> -->
       </div>
     </div>
   </div>

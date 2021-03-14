@@ -1,36 +1,57 @@
 <template>
   <div>
-    <header class="header">
-      <div id="nav-toggle">
+    <header class="header" v-if="storeName">
+      <div id="nav-toggle" @click="open">
         <span></span>
         <span></span>
         <span></span>
       </div>
       <h1
         class="header__title"
-        @click="$router.push('/admin/edit/')"
+        @click="$router.push('/admin/edit/coupon/')"
         v-text="title"
       ></h1>
       <div class="header__inner">
-        <div class="header__buttons">
-          <p class="header__store-name" v-if="storeName">{{ storeName }}様</p>
-        </div>
-        <div class="header__buttons">
-          <p class="header__logout-button" v-if="storeName" @click="logout">
-            ログアウト
-          </p>
-        </div>
+        <p class="header__store-name" v-if="storeName">{{ storeName }}様</p>
+        <p class="header__logout-button" v-if="storeName" @click="logout">ログアウト</p>
       </div>
     </header>
-    <div class="main-container">
-      <aside id="sidebar">
+    <div class="main-container" :class="{active: sidebar === true}">
+      <aside id="sidebar" v-if="storeName">
+        <div class="close" @click="close"><i class="fas fa-times"></i></div>
         <nav id="global-nav">
+          <div class="global-nav__header"></div>
           <ul class="link-list">
-            <li class="link-list__item"><a href="#">クーポン編集</a></li>
-            <li class="link-list__item"><a href="#">店舗ページ編集</a></li>
-            <li class="link-list__item"><a href="#">外部リンク編集</a></li>
-            <li class="link-list__item"><a href="#">基本情報編集</a></li>
-            <li class="link-list__item"><a href="#">掲載の停止・再開</a></li>
+            <li class="link-list__item">
+              <nuxt-link class="link-list__link" to="/admin/edit/coupon/">
+                <span><i class="fas fa-ticket-alt"></i></span>
+                <span class="link-list__text">クーポン編集</span>
+              </nuxt-link>
+            </li>
+            <li class="link-list__item">
+              <nuxt-link class="link-list__link" to="/admin/edit/store/">
+                <span><i class="fas fa-store-alt"></i></span>
+                <span class="link-list__text">店舗ページ編集</span>
+              </nuxt-link>
+            </li>
+            <li class="link-list__item">
+              <nuxt-link class="link-list__link" to="/admin/edit/link/">
+                <span><i class="fas fa-external-link-alt"></i></span>
+                <span class="link-list__text">外部リンク編集</span>
+              </nuxt-link>
+            </li>
+            <li class="link-list__item">
+              <nuxt-link class="link-list__link" to="/admin/edit/store-data/">
+                <span><i class="fas fa-th-list"></i></span>
+                <span class="link-list__text">基本情報編集</span>
+              </nuxt-link>
+            </li>
+            <li class="link-list__item">
+              <nuxt-link class="link-list__link" to="/admin/edit/suspend/">
+                <span><i class="fas fa-toggle-on"></i></span>
+                <span class="link-list__text">掲載の停止・再開</span>
+              </nuxt-link>
+            </li>
           </ul>
         </nav>
       </aside>
@@ -53,6 +74,7 @@ export default {
   data() {
     return {
       title: "管理画面",
+      sidebar: false
     };
   },
   created() {
@@ -74,9 +96,8 @@ export default {
 
         await this.setLoginStore({ uid, email, store_name });
 
-        // ログイン時（currentページが「ログインページ」か「新規登録ページ」だった場合）にマイページの「お気に入り画面」へリダイレクトさせる
         if (this.$router.currentRoute.name === "admin-login") {
-          this.$router.push({ name: "admin-edit" });
+          this.$router.push({ name: "admin-edit-coupon" });
         }
       } else {
         // 以下ログアウト時 ＆ ログアウト時にリロードした時の処理
@@ -98,69 +119,135 @@ export default {
   methods: {
     ...mapMutations("store-auth", ["setLoginStore", "deleteLoginStore"]),
     ...mapActions("store-auth", ["logout"]),
+    open() {
+      console.log('open');
+      this.sidebar = !this.sidebar
+    },
+    close() {
+      this.sidebar = false
+    }
   },
 };
 </script>
 
 <style lang="scss" scoped>
-#nav-toggle {
-  width: 70px;
-  height: 60px;
-  margin-right: auto;
-  padding: 1.6rem 2rem;
-}
-#nav-toggle:hover {
-  background-color: red;
-}
-#nav-toggle span {
-  display: inline-block;
-  height: 3px;
-  width: 30px;
-  background-color: #707070;
-  position: absolute;
-}
-#nav-toggle span:first-child {
-  top: 27px;
-}
-#nav-toggle span:last-child {
-  top: 38px;
-}
 
 .header {
-  background-color: #fff;
-  width: calc(100% - 190px);
+  background-color: #fafafa;
+  width: 100%;
   height: 60px;
   position: fixed;
   top: 0;
   right: 0;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  @include mq(sm) {
+    width: calc(100% - 190px);
+  }
+  #nav-toggle {
+    width: 70px;
+    height: 60px;
+    padding: 1.6rem 2rem;
+    @include mq(sm) {
+      display: none;
+    }
+  }
+  #nav-toggle span {
+    display: inline-block;
+    height: 3px;
+    width: 30px;
+    background-color: #707070;
+    position: absolute;
+  }
+  #nav-toggle span:first-child {
+    top: 27px;
+  }
+  #nav-toggle span:last-child {
+    top: 38px;
+  }
   &__inner {
     display: flex;
   }
 }
 
+.main-container.active {
+  #sidebar {
+    position: absolute;
+    transform: translateX(0px);
+    z-index: 9998;
+    .close {
+      opacity: 1;
+    }
+  }
+}
 .main-container {
   display: flex;
   padding-top: 10px;
-  padding-left: 190px;
+  @include mq(sm) {
+    padding-left: 190px;
+  }
   #sidebar {
-    background-color: skyblue;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    background-color: #fafafa;
     width: 190px;
     height: 100vh;
     position: absolute;
     top: 0;
     left: 0;
-    padding-top: 60px;
+    transform: translateX(-190px);
+    transition: all 0.3s;
+    @include mq(sm) {
+      transform: translateX(0px);
+    }
+    .close {
+      color: #fff;
+      font-size: 3rem;
+      padding: 0.8rem 2.2rem;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .global-nav__header {
+      height: 60px;
+      background-color: #ff427a;
+    }
     .link-list {
       &__item {
+        background-color: #ff427a;
         height: 60px;
+      }
+      &__link {
+        color: #fff;
+        display: flex;
+        justify-content: flex-start;
+        height: 60px;
+        line-height: 60px;
+        padding-left: 1.5rem;
+        .fas {
+          font-size: 2.2rem;
+          margin-right: 1.6rem;
+          position: relative;
+          top: 3px;
+        }
+      }
+      &__text {
+        font-size: 1.4rem;
       }
     }
   }
   main {
     width: 100%;
+  }
+}
+.nuxt-link-active {
+  background-color: #fafafa;
+  .fas {
+    color: #383838;
+  }
+  .link-list__text {
+    color: #383838;
   }
 }
 

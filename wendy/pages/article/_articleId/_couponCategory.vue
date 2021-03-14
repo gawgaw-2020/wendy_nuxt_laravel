@@ -33,7 +33,7 @@
         <p class="scan-btn__texr">店舗での掲示クーポン発行<br>QRコードスキャンはこちら</p>
       </router-link>
     </div>
-    <p class="scan"><button @click="scan">【開発用】選択店舗でスキャンしたことにする</button></p>
+    <!-- <p class="scan"><button @click="scan">【開発用】選択店舗でスキャンしたことにする</button></p> -->
   </div>
 </template>
 
@@ -109,7 +109,7 @@ export default {
 
 <style lang="scss" scoped>
 .coupon-detail {
-  padding-bottom: 8rem;
+  padding-bottom: 12rem;
   &__section-title {
     padding: 3.2rem 0 1.6rem;
   }

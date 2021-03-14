@@ -168,9 +168,9 @@
         </div>
         <p class="appeal__view-more"><nuxt-link :to="`/article/all-articles/`">もっと見る ＞</nuxt-link></p>
       </div>
-      <div class="appeal">
+      <!-- <div class="appeal">
         <p class="appeal__view-more"><nuxt-link :to="`/add_article_data/`">管理用リンク ＞</nuxt-link></p>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -406,7 +406,7 @@ export default {
 }
 
 .content {
-  padding-top: 13.6rem;
+  padding-top: 10.6rem;
   padding-bottom: 8.8rem;
   max-width: 768px;
   margin: 0 auto;
