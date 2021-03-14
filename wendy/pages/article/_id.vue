@@ -40,7 +40,7 @@
     </div>
     <div class="gallery" :style="{ backgroundImage: 'url(' + article.main_image + ')' }">
       <p class="gallery__area"><i class="fas fa-home" @click="$router.push('/')"></i>> 東京都 > {{ article.area }}</p>
-      <div class="gallery__share"><p><i class="fas fa-share-square"></i></p></div>
+      <!-- <div class="gallery__share"><p><i class="fas fa-share-square"></i></p></div> -->
       <div v-if="user" class="gallery__like" :class="{ 'active animate__animated animate__bounceIn': likeActive === true }" @click="likeToggle"><p><i class="fas fa-heart"></i></p></div>
     </div>
     <div class="content">
