@@ -1,24 +1,26 @@
 <template>
   <div class="store-data">
-    <div class="admin-header">
-      <div class="admin-header__inner">
-        <h1 class="page-title">基本情報確認</h1>
+    <div class="store-data-header">
+      <div class="store-data-header__inner">
+          <AdminPageTitle :page-title="'基本情報確認'"/>
       </div>
     </div>
-    <div class="admin-content">
-      <dl>
-        <dt>店名</dt>
-        <dd>{{ storeData.name }}</dd>
-        <dt>店名（フリガナ）</dt>
-        <dd>{{ storeData.name_kana }}</dd>
-        <dt>住所</dt>
-        <dd>{{ storeData.address }}</dd>
-        <dt>電話番号</dt>
-        <dd>{{ storeData.tell }}</dd>
-      </dl>
-      <p>上記の内容に関しては、WENDYにて変更作業を行いますので、下のボタンよりご依頼ください。</p>
-      <div><button>重要情報の変更を依頼する</button></div>
-    </div>
+    <div class="store-data-content">
+      <div class="store-data-content__inner">
+        <dl>
+          <dt>店名</dt>
+          <dd>{{ storeData.name }}</dd>
+          <dt>店名（フリガナ）</dt>
+          <dd>{{ storeData.name_kana }}</dd>
+          <dt>住所</dt>
+          <dd>{{ storeData.address }}</dd>
+          <dt>電話番号</dt>
+          <dd>{{ storeData.tell }}</dd>
+        </dl>
+        <p>上記の内容に関しては、WENDYにて変更作業を行いますので、下のボタンよりご依頼ください。</p>
+        <div><button class="btn btn-primary">重要情報の変更を依頼する</button></div>
+      </div>
+      </div>
   </div>
 </template>
 
@@ -72,15 +74,16 @@ export default {
 .store-data {
   padding: 4.8rem 0;
 }
-.admin-header {
+.store-data-header {
   &__inner {
     width: 90%;
     margin: 0 auto 2.4rem;
-    .page-title {
-      font-size: 2.4rem;
-      font-weight: normal;
-      border-bottom: 1px solid #707070;
-    }
+  }
+}
+.store-data-content {
+  &__inner {
+    width: 90%;
+    margin: 0 auto;
   }
 }
 

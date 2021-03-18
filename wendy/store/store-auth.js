@@ -1,7 +1,7 @@
 import firebase from '~/plugins/firebase'
 
 const db = firebase.firestore()
-const articlesRef = db.collection('suspended_articles')
+const suspendedArticlesRef = db.collection('suspended_articles')
 
 export const state = () => ({
   login_store: null,
@@ -81,7 +81,7 @@ export const actions = {
       })
       .then((docRef) => {
         console.log("Document written with ID: ", res.user.uid);
-        articlesRef.doc(res.user.uid).collection('coupons').doc('oso-lunch').set({
+        suspendedArticlesRef.doc(res.user.uid).collection('coupons').doc('oso-lunch').set({
           active: true,
           article_id: res.user.uid,
           category: '遅ランチ',
@@ -95,7 +95,7 @@ export const actions = {
           normal_price: 1800,
           image: '/img/coupon-image-sample/coupon_image-sample10.jpg',
         })
-        articlesRef.doc(res.user.uid).collection('coupons').doc('haya-dinner').set({
+        suspendedArticlesRef.doc(res.user.uid).collection('coupons').doc('haya-dinner').set({
           active: true,
           article_id: res.user.uid,
           category: '早ディナー',
@@ -109,7 +109,7 @@ export const actions = {
           normal_price: 1800,
           image: '/img/coupon-image-sample/coupon_image-sample10.jpg',
         })
-        articlesRef.doc(res.user.uid).collection('coupons').doc('oso-dinner').set({
+        suspendedArticlesRef.doc(res.user.uid).collection('coupons').doc('oso-dinner').set({
           active: true,
           article_id: res.user.uid,
           category: '遅ディナー',
