@@ -6,7 +6,7 @@
         <p class="user-input__input"><input type="text" v-model="name" placeholder="店舗名"></p>
       </div>
       <div class="user-input">
-        <p class="user-input__input"><input type="text" v-model="nam_kana" placeholder="店舗名（カタカナ）"></p>
+        <p class="user-input__input"><input type="text" v-model="name_kana" placeholder="店舗名（カタカナ）"></p>
       </div>
       <div class="user-input">
         <p class="user-input__input"><input type="tell" v-model="tell" placeholder="電話番号"></p>
@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       name: '',
-      nam_kana: '',
+      name_kana: '',
       tell: '',
       address: '',
       area: '',
@@ -55,7 +55,7 @@ export default {
     async signUp() {
       const data = {
         name: this.name,
-        nam_kana: this.nam_kana,
+        name_kana: this.name_kana,
         tell: this.tell,
         address: this.address,
         area: this.area,

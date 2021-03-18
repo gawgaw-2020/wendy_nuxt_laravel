@@ -43,7 +43,7 @@
             <li class="link-list__item">
               <nuxt-link class="link-list__link" to="/admin/edit/store-data/">
                 <span><i class="fas fa-th-list"></i></span>
-                <span class="link-list__text">基本情報編集</span>
+                <span class="link-list__text">基本情報確認</span>
               </nuxt-link>
             </li>
             <li class="link-list__item">

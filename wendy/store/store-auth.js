@@ -28,9 +28,9 @@ export const actions = {
     await firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password).then((res) => {
       firebase.firestore().doc(`suspended_articles/${res.user.uid}`).set({
         store_id: res.user.uid,
-        email: this.email,
-        tell: this.tell,
-        nam_kana: this.nam_kana,
+        email: payload.email,
+        tell: payload.tell,
+        name_kana: payload.name_kana,
         published: false,
         access_count: 0,
         area: payload.area,
@@ -135,5 +135,6 @@ export const actions = {
 
 export const getters = {
   storeName: state => state.login_store ? state.login_store.store_name :'',
+  loginStore: state => state.login_store ? state.login_store :'',
 }
 
