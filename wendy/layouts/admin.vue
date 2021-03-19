@@ -88,9 +88,15 @@ export default {
           .collection("suspended_articles")
           .doc(uid)
           .get()
-          .then(function (doc) {
+          .then(async function (doc) {
             if (doc.exists) {
               store_name = doc.data().name;
+            } else {
+              await firebase.firestore().collection('articles')
+              .doc(uid).get()
+              .then((doc) => {
+                store_name = doc.data().name;
+              })
             }
           });
 

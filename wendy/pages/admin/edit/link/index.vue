@@ -43,6 +43,7 @@ import firebase from 'firebase'
 //firebaseのDBを定義する
 const db = firebase.firestore()
 const suspendedArticlesRef = db.collection('suspended_articles')
+const articlesRef = db.collection('articles')
 
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
@@ -63,13 +64,26 @@ export default {
     const user = JSON.parse(wendyLocal)['store-auth'].login_store
     await suspendedArticlesRef.doc(user.uid).get()
     .then(async function(doc) {
-      storeData = doc.data()
-      const subCollection = await doc.ref.collection('coupons').orderBy('start').get();
-      subCollection.forEach(doc => {
-        coupon_id.coupon_id = doc.id
-        const allData = {...coupon_id, ...doc.data()}
-        coupons.push(allData)
-      });
+      if(doc.exists) {
+        storeData = doc.data()
+        const subCollection = await doc.ref.collection('coupons').orderBy('start').get();
+        subCollection.forEach(doc => {
+          coupon_id.coupon_id = doc.id
+          const allData = {...coupon_id, ...doc.data()}
+          coupons.push(allData)
+        });
+      } else {
+        await articlesRef.doc(user.uid).get()
+        .then(async (doc) => {
+          storeData = doc.data()
+          const subCollection = await doc.ref.collection('coupons').orderBy('start').get();
+          subCollection.forEach(doc => {
+            coupon_id.coupon_id = doc.id
+            const allData = {...coupon_id, ...doc.data()}
+            coupons.push(allData)
+          });
+        })
+      }
     })
     storeData['coupons'] = coupons
     return { storeData }
