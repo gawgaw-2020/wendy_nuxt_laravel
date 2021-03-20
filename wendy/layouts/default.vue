@@ -5,8 +5,7 @@
         <h1
           class="header__title"
           @click="$router.push('/')"
-          v-text="title"
-        ></h1>
+        >WENDY<span>東京</span></h1>
         <div class="header__buttons">
           <p
             class="header__login-button"
@@ -71,7 +70,7 @@ export default {
   name: "default",
   data() {
     return {
-      title: "WENDY",
+      title: "WENDY東京",
       isActiveShadow: true
     };
   },
@@ -197,6 +196,10 @@ export default {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    span {
+      font-size: 2.4rem;
+      margin-left: 6px;
+    }
   }
   &__buttons {
     font-size: 1.4rem;
