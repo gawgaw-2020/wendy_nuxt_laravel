@@ -17,8 +17,9 @@
           <dt>電話番号</dt>
           <dd>{{ storeData.tell }}</dd>
         </dl>
-        <p>上記の内容に関しては、WENDYにて変更作業を行いますので、下のボタンよりご依頼ください。</p>
-        <div><button class="btn btn-primary">重要情報の変更を依頼する</button></div>
+        <p>上記の内容に関しては、WENDYにて変更作業を行いますので、直接運営者にお問い合わせ下さい。</p>
+        <!-- <p>上記の内容に関しては、WENDYにて変更作業を行いますので、下のボタンよりご依頼ください。</p> -->
+        <!-- <div><button class="btn btn-primary">重要情報の変更を依頼する</button></div> -->
       </div>
       </div>
   </div>
