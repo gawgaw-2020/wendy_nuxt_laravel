@@ -82,6 +82,7 @@ export const actions = {
       .then((docRef) => {
         console.log("Document written with ID: ", res.user.uid);
         suspendedArticlesRef.doc(res.user.uid).collection('coupons').doc('oso-lunch').set({
+          coupon_id: 'oso-lunch',
           active: true,
           article_id: res.user.uid,
           category: '遅ランチ',
@@ -96,6 +97,7 @@ export const actions = {
           image: '/img/coupon-image-sample/coupon_image-sample10.jpg',
         })
         suspendedArticlesRef.doc(res.user.uid).collection('coupons').doc('haya-dinner').set({
+          coupon_id: 'haya-dinner',
           active: true,
           article_id: res.user.uid,
           category: '早ディナー',
@@ -110,6 +112,7 @@ export const actions = {
           image: '/img/coupon-image-sample/coupon_image-sample10.jpg',
         })
         suspendedArticlesRef.doc(res.user.uid).collection('coupons').doc('oso-dinner').set({
+          coupon_id: 'oso-dinner',
           active: true,
           article_id: res.user.uid,
           category: '遅ディナー',
