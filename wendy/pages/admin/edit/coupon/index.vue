@@ -31,7 +31,7 @@
               </dl>
               <div>
                 <div><nuxt-link :to="`/admin/edit/coupon/${coupon.coupon_id}`" class="btn btn-primary">編集する</nuxt-link></div>
-                <div><button class="btn btn-primary" @click="suspend" :data-coupon_id="coupon.coupon_id">掲載を停止する</button></div>
+                <div><button class="btn btn-success" @click="suspend" :data-coupon_id="coupon.coupon_id">掲載を停止する</button></div>
               </div>
             </li>
           </ul>
@@ -68,7 +68,7 @@
               </dl>
               <div>
                 <div><nuxt-link :to="`/admin/edit/coupon/${coupon.coupon_id}`" class="btn btn-primary">編集する</nuxt-link></div>
-                <div><button class="btn btn-primary" @click="resume" :data-coupon_id="coupon.coupon_id">掲載を再開する</button></div>
+                <div><button class="btn btn-success" @click="resume" :data-coupon_id="coupon.coupon_id">掲載を再開する</button></div>
               </div>
             </li>
           </ul>

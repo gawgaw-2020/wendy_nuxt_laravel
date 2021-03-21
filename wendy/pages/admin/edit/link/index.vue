@@ -72,6 +72,7 @@ export default {
           const allData = {...coupon_id, ...doc.data()}
           coupons.push(allData)
         });
+        storeData['coupons'] = coupons
       } else {
         await articlesRef.doc(user.uid).get()
         .then(async (doc) => {
@@ -82,10 +83,10 @@ export default {
             const allData = {...coupon_id, ...doc.data()}
             coupons.push(allData)
           });
+          storeData['coupons'] = coupons
         })
       }
     })
-    storeData['coupons'] = coupons
     return { storeData }
   },
   computed: {

@@ -143,6 +143,7 @@ export default {
   width: 100%;
   height: 60px;
   position: fixed;
+  z-index: 9997;
   top: 0;
   right: 0;
   display: flex;
@@ -179,7 +180,7 @@ export default {
 
 .main-container.active {
   #sidebar {
-    position: absolute;
+    position: fixed;
     transform: translateX(0px);
     z-index: 9998;
     .close {
@@ -198,7 +199,7 @@ export default {
     background-color: #fafafa;
     width: 190px;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     transform: translateX(-190px);

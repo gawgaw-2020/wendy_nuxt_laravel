@@ -11,7 +11,7 @@
         <p v-if="isActive">掲載中</p>
         <p v-else>停止中</p>
         <p>下記のボタンより掲載の停止・再開ができます。</p>
-        <div v-if="isActive"><button class="btn btn-primary" @click="suspend">掲載を停止する</button></div>
+        <div v-if="isActive"><button class="btn btn-success" @click="suspend">掲載を停止する</button></div>
         <div v-else><button class="btn btn-primary" @click="resume">掲載を再開する</button></div>
       </div>
     </div>
