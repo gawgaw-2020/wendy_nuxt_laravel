@@ -45,9 +45,10 @@
     <div class="hero">
       <div class="hero__mask">
         <div class="hero__catch">
-          <p class="hero__sub-title">When do you eat?</p>
-          <p class="hero__title">いつもと違う時間で</p>
-          <p class="hero__title">いつもよりお得にお食事</p>
+          <p class="hero__sub-title">「新しい生活様式」のための食事の形</p>
+          <p class="hero__title">時間をずらして美味しく安全に</p>
+          <p class="hero__title">「密」への不安を和らげ、より安全に、</p>
+          <p class="hero__title">そしてお得にお食事を。</p>
         </div>
       </div>
     </div>
@@ -73,8 +74,10 @@
                 <div class="mini-store-card__content">
                   <p class="mini-store-card__name">{{ article.name }}</p>
                   <p class="mini-store-card__title">{{ article.coupons[0].title }}</p>
-                  <div class="mini-store-card__discount-rate"><p><span class="oso-lunch">遅ランチで{{ article.coupons[0].discount_rate }}%OFF</span></p></div>
-                  <p class="mini-store-card__normal-price">通常価格 {{ article.coupons[0].normal_price.toLocaleString() }}円</p>
+                  <p v-if="article.coupons[0].discount_rate === 0" class="mini-store-card__discount-rate"><span class="haya-dinner">早ディナーで特別価格</span></p>
+                  <div v-else class="mini-store-card__discount-rate"><p><span class="haya-dinner">早ディナーで{{ article.coupons[0].discount_rate }}%OFF</span></p></div>
+                  <p v-if="article.coupons[0].discount_rate === 0" class="mini-store-card__normal-price">特別価格でご用意</p>
+                  <p v-else class="mini-store-card__normal-price">通常価格 {{ article.coupons[0].normal_price.toLocaleString() }}円</p>
                   <p class="mini-store-card__discount-price">Wendy価格 <span>{{ Math.floor(article.coupons[0].normal_price * ((100 - article.coupons[0].discount_rate) / 100)).toLocaleString() }}円</span></p>
                 </div>
               </nuxt-link>
@@ -103,8 +106,10 @@
                 <div class="mini-store-card__content">
                   <p class="mini-store-card__name">{{ article.name }}</p>
                   <p class="mini-store-card__title">{{ article.coupons[1].title }}</p>
-                  <div class="mini-store-card__discount-rate"><p><span class="haya-dinner">早ディナーで{{ article.coupons[1].discount_rate }}%OFF</span></p></div>
-                  <p class="mini-store-card__normal-price">通常価格 {{ article.coupons[1].normal_price.toLocaleString() }}円</p>
+                  <p v-if="article.coupons[1].discount_rate === 0" class="mini-store-card__discount-rate"><span class="haya-dinner">早ディナーで特別価格</span></p>
+                  <div v-else class="mini-store-card__discount-rate"><p><span class="haya-dinner">早ディナーで{{ article.coupons[1].discount_rate }}%OFF</span></p></div>
+                  <p v-if="article.coupons[1].discount_rate === 0" class="mini-store-card__normal-price-blank"></p>
+                  <p v-else class="mini-store-card__normal-price">通常価格 {{ article.coupons[1].normal_price.toLocaleString() }}円</p>
                   <p class="mini-store-card__discount-price">Wendy価格 <span>{{ Math.floor(article.coupons[1].normal_price * ((100 - article.coupons[1].discount_rate) / 100)).toLocaleString() }}円</span></p>
                 </div>
               </nuxt-link>
@@ -133,8 +138,10 @@
                 <div class="mini-store-card__content">
                   <p class="mini-store-card__name">{{ article.name }}</p>
                   <p class="mini-store-card__title">{{ article.coupons[2].title }}</p>
-                  <div class="mini-store-card__discount-rate"><p><span class="oso-dinner">遅ディナーで{{ article.coupons[2].discount_rate }}%OFF</span></p></div>
-                  <p class="mini-store-card__normal-price">通常価格 {{ article.coupons[2].normal_price.toLocaleString() }}円</p>
+                  <p v-if="article.coupons[2].discount_rate === 0" class="mini-store-card__discount-rate"><span class="haya-dinner">早ディナーで特別価格</span></p>
+                  <div v-else class="mini-store-card__discount-rate"><p><span class="haya-dinner">早ディナーで{{ article.coupons[2].discount_rate }}%OFF</span></p></div>
+                  <p v-if="article.coupons[2].discount_rate === 0" class="mini-store-card__normal-price-blank"></p>
+                  <p v-else class="mini-store-card__normal-price">通常価格 {{ article.coupons[2].normal_price.toLocaleString() }}円</p>
                   <p class="mini-store-card__discount-price">Wendy価格 <span>{{ Math.floor(article.coupons[2].normal_price * ((100 - article.coupons[2].discount_rate) / 100)).toLocaleString() }}円</span></p>
                 </div>
               </nuxt-link>
@@ -158,8 +165,10 @@
                 <div class="mini-store-card__content">
                   <p class="mini-store-card__name">{{ article.name }}</p>
                   <p class="mini-store-card__title">{{ article.coupons[1].title }}</p>
-                  <div class="mini-store-card__discount-rate"><p><span class="haya-dinner">早ディナーで{{ article.coupons[1].discount_rate }}%OFF</span></p></div>
-                  <p class="mini-store-card__normal-price">通常価格 {{ article.coupons[1].normal_price.toLocaleString() }}円</p>
+                  <p v-if="article.coupons[1].discount_rate === 0" class="mini-store-card__discount-rate"><span class="haya-dinner">早ディナーで特別価格</span></p>
+                  <div v-else class="mini-store-card__discount-rate"><p><span class="haya-dinner">早ディナーで{{ article.coupons[1].discount_rate }}%OFF</span></p></div>
+                  <p v-if="article.coupons[1].discount_rate === 0" class="mini-store-card__normal-price-blank"></p>
+                  <p v-else class="mini-store-card__normal-price">通常価格 {{ article.coupons[1].normal_price.toLocaleString() }}円</p>
                   <p class="mini-store-card__discount-price">Wendy価格 <span>{{ Math.floor(article.coupons[1].normal_price * ((100 - article.coupons[1].discount_rate) / 100)).toLocaleString() }}円</span></p>
                 </div>
               </nuxt-link>
@@ -504,6 +513,9 @@ export default {
       min-height: 7.2rem;
       font-size: 1.4rem;
       font-weight: bold;
+    }
+    &__normal-price-blank {
+      height: 18px;
     }
     &__normal-price {
       text-align: right;

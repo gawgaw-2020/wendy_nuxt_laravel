@@ -32,7 +32,9 @@
             </div>
             <div class="store-card__coupon-content-right">
               <p class="store-card__coupon-time">{{ coupon.start }} ~ {{ coupon.end }}の入店限定</p>
-              <p class="store-card__normal-price">通常価格 {{ coupon.normal_price.toLocaleString() }}円</p>
+
+              <p v-if="coupon.discount_rate === 0" class="store-card__normal-price-blank"></p>
+              <p v-else class="store-card__normal-price">通常価格 {{ coupon.normal_price.toLocaleString() }}円</p>
               <p class="store-card__discount-price">Wendy特別価格 <span>{{ Math.floor(coupon.normal_price * ((100 - coupon.discount_rate) / 100)).toLocaleString() }}円</span></p>
             </div>
           </div>

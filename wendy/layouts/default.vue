@@ -5,7 +5,7 @@
         <h1
           class="header__title"
           @click="$router.push('/')"
-        >WENDY<span>東京</span></h1>
+        >ずらし飯<span></span></h1>
         <div class="header__buttons">
           <p
             class="header__login-button"
@@ -70,7 +70,6 @@ export default {
   name: "default",
   data() {
     return {
-      title: "WENDY東京",
       isActiveShadow: true
     };
   },

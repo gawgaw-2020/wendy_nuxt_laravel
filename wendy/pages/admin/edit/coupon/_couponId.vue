@@ -23,8 +23,9 @@
           <div class="user-input">
             <label for="discount_rate">割引率</label>
             <div>
-              <select v-model="coupon.discount_rate">
+              <select v-model.number="coupon.discount_rate">
                 <option disabled value="">割引率を選択</option>
+                <option value="0">「お得」表示</option>
                 <option value="10">10% OFF</option>
                 <option value="20">20% OFF</option>
                 <option value="30">30% OFF</option>
@@ -74,8 +75,10 @@
           </div>
           <div  class="coupon__content" :style="{ backgroundImage: 'url(/img/' + coupon.coupon_id + '-bg.png)' }">
             <p class="coupon__title">{{ coupon.title }}</p>
-            <div class="coupon__discount-rate"><p><span :class="coupon.coupon_id">{{ coupon.category }}で{{ coupon.discount_rate }}%OFF</span></p></div>
-            <p class="coupon__normal-price">通常 {{ coupon.normal_price.toLocaleString() }}円</p>
+            <p v-if="coupon.discount_rate === 0" class="coupon__discount-rate"><span :class="coupon.coupon_id">{{ coupon.category }}で特別価格</span></p>
+            <div v-else class="coupon__discount-rate"><p><span :class="coupon.coupon_id">{{ coupon.category }}で{{ coupon.discount_rate }}%OFF</span></p></div>
+            <p v-if="coupon.discount_rate === 0" class="coupon__normal-price-blank"></p>
+            <p v-else class="coupon__normal-price">通常 {{ coupon.normal_price.toLocaleString() }}円</p>
             <p class="coupon__discount-price">Wendy特別価格 <span>{{ Math.floor(coupon.normal_price * ((100 - coupon.discount_rate) / 100)).toLocaleString() }}円</span></p>
           </div>
           <dl class="coupon__infotext">
