@@ -5,7 +5,7 @@
         <h1
           class="header__title"
           @click="$router.push('/')"
-        >ずらし飯<span></span></h1>
+        ><img src="/img/wendy-logo.png" alt=""></h1>
         <div class="header__buttons">
           <p
             class="header__login-button"
@@ -188,17 +188,13 @@ export default {
     position: relative;
   }
   &__title {
+    width: 120px;
     font-size: 3.2rem;
-    font-family: "nicomoji";
-    font-weight: normal;
     cursor: pointer;
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
-    span {
-      font-size: 2.4rem;
-      margin-left: 6px;
-    }
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
   &__buttons {
     font-size: 1.4rem;

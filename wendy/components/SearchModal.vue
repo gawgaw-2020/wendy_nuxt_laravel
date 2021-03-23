@@ -45,6 +45,10 @@ export default {
   width: 100%;
   position: absolute;
   top: 255px;
+    @include mq() {
+    top: 325px;
+  }
+
   &__inner {
     width: 90%;
     margin: 0 auto;

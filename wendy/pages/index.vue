@@ -45,14 +45,45 @@
     <div class="hero">
       <div class="hero__mask">
         <div class="hero__catch">
-          <p class="hero__sub-title">「新しい生活様式」のための食事の形</p>
-          <p class="hero__title">時間をずらして美味しく安全に</p>
-          <p class="hero__title">「密」への不安を和らげ、より安全に、</p>
-          <p class="hero__title">そしてお得にお食事を。</p>
+          <p class="hero__sub-title">飲食店のクーポンが探せます</p>
+          <p class="hero__title">来店時間のピークからずらして</p>
+          <p class="hero__title">お得に食事をしよう</p>
         </div>
       </div>
     </div>
     <SearchModal @timeModal='openTimeModal' @areaModal='openAreaModal' :selectedTime="this.selectedTime" :selectedArea="this.selectedArea"/>
+    <div class="introduction">
+      <div class="introduction__inner">
+        <section>
+          <h3>「ずらし飯」３つのおすすめ来店時間</h3>
+          <div class="time-box">
+            <div class="time-box__item">
+              <img src="/img/oso-lunch-time-image@2x.png" alt="" style="width: 80px; margin: 0 auto;">
+              <p>「遅めのランチ」</p>
+            </div>
+            <div class="time-box__item">
+              <img src="/img/haya-dinner-time-image@2x.png" alt="" style="width: 80px; margin: 0 auto;">
+              <p>「早めのディナー」</p>
+            </div>
+            <div class="time-box__item">
+              <img src="/img/oso-dinner-time-image@2x.png" alt="" style="width: 80px; margin: 0 auto;">
+              <p>「遅めのディナー」</p>
+            </div>
+          </div>
+          <p>いつもの混雑を避けて、<br>ゆったりとお食事してみませんか？</p>
+        </section>
+        <section>
+          <h3>変化に対応した飲食店の新しい取り組み</h3>
+          <p>「お客さんにたくさん来て欲しいけど、<br>来店時間が重なると密になってしまうな...」</p>
+          <p>多くの飲食店が、ピーク時間にとらわれず<br>楽しんでもらいたいと思っています。</p>
+        </section>
+        <section>
+          <h3>せっかくならお得な特典を探してみよう</h3>
+          <p>飲食店にも嬉しいお客さんの分散来店！</p>
+          <p>「ずらし飯」でより安全でお得な<br>新しい食体験をお楽しみ下さい。</p>
+        </section>
+      </div>
+    </div>
     <div class="content">
       <div class="appeal">
         <div class="appeal__header">
@@ -380,12 +411,13 @@ export default {
 .hero {
   background-image: url('/img/hero.png');
   background-size: cover;
-  background-position: center;
+  background-position: center -30px;
   max-width: 768px;
   height: 320px;
   margin: 0 auto;
   @include mq() {
     border-radius: 8px;
+    height: 400px;
   } 
   &__mask {
     background-color: rgba(56, 56, 56, 0.4);
@@ -410,12 +442,53 @@ export default {
     margin-bottom: 1.2rem;
   }
   &__title {
-    font-size: 2.1rem;
+    font-size: 2.4rem;
+  }
+}
+
+.introduction {
+  background-color: #f7f7f7;
+  text-align: center;
+  br {
+    @include mq() {
+      display: none;
+    }
+  }
+  &__inner {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 10.6rem 2rem 0.5rem;
+  }
+  section {
+    margin-bottom: 4rem;
+  }
+  h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.6rem;
+    border-bottom: 2px solid #ff427a;
+  }
+  p {
+    font-size: 1.4rem;
+    color: #5a5a5a;
+    margin-bottom: 8px;
+  }
+  .time-box {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1.6rem;
+    &__item {
+      width: 33%;
+      p {
+        color: #383838;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+    }
   }
 }
 
 .content {
-  padding-top: 10.6rem;
+  padding-top: 2.2rem;
   padding-bottom: 8.8rem;
   max-width: 768px;
   margin: 0 auto;
