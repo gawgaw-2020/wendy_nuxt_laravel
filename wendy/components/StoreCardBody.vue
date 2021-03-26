@@ -35,7 +35,7 @@
 
               <p v-if="coupon.discount_rate === 0" class="store-card__normal-price-blank"></p>
               <p v-else class="store-card__normal-price">通常価格 {{ coupon.normal_price.toLocaleString() }}円</p>
-              <p class="store-card__discount-price">Wendy特別価格 <span>{{ Math.floor(coupon.normal_price * ((100 - coupon.discount_rate) / 100)).toLocaleString() }}円</span></p>
+              <p class="store-card__discount-price">Wendy特別価格 <span>{{ Math.floor(coupon.normal_price * ((100 - coupon.discount_rate) / 100)).toLocaleString() }}<span class="yen">円</span></span></p>
             </div>
           </div>
         </div>
@@ -239,6 +239,10 @@ export default {
         font-size: 2.4rem;
         color: #ff427a;
         font-weight: bold;
+      }
+      .yen {
+        font-size: 1.8rem;
+        margin-left: 2px;
       }
     }
     &__no-coupon-time {

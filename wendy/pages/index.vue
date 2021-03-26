@@ -109,7 +109,7 @@
                   <div v-else class="mini-store-card__discount-rate"><p><span class="haya-dinner">早ディナーで{{ article.coupons[0].discount_rate }}%OFF</span></p></div>
                   <p v-if="article.coupons[0].discount_rate === 0" class="mini-store-card__normal-price">特別価格でご用意</p>
                   <p v-else class="mini-store-card__normal-price">通常価格 {{ article.coupons[0].normal_price.toLocaleString() }}円</p>
-                  <p class="mini-store-card__discount-price">Wendy価格 <span>{{ Math.floor(article.coupons[0].normal_price * ((100 - article.coupons[0].discount_rate) / 100)).toLocaleString() }}円</span></p>
+                  <p class="mini-store-card__discount-price">Wendy価格 <span>{{ Math.floor(article.coupons[0].normal_price * ((100 - article.coupons[0].discount_rate) / 100)).toLocaleString() }}<span class="yen">円</span></span></p>
                 </div>
               </nuxt-link>
             </li>
@@ -141,7 +141,7 @@
                   <div v-else class="mini-store-card__discount-rate"><p><span class="haya-dinner">早ディナーで{{ article.coupons[1].discount_rate }}%OFF</span></p></div>
                   <p v-if="article.coupons[1].discount_rate === 0" class="mini-store-card__normal-price-blank"></p>
                   <p v-else class="mini-store-card__normal-price">通常価格 {{ article.coupons[1].normal_price.toLocaleString() }}円</p>
-                  <p class="mini-store-card__discount-price">Wendy価格 <span>{{ Math.floor(article.coupons[1].normal_price * ((100 - article.coupons[1].discount_rate) / 100)).toLocaleString() }}円</span></p>
+                  <p class="mini-store-card__discount-price">Wendy価格 <span>{{ Math.floor(article.coupons[1].normal_price * ((100 - article.coupons[1].discount_rate) / 100)).toLocaleString() }}<span class="yen">円</span></span></p>
                 </div>
               </nuxt-link>
             </li>
@@ -173,7 +173,7 @@
                   <div v-else class="mini-store-card__discount-rate"><p><span class="haya-dinner">早ディナーで{{ article.coupons[2].discount_rate }}%OFF</span></p></div>
                   <p v-if="article.coupons[2].discount_rate === 0" class="mini-store-card__normal-price-blank"></p>
                   <p v-else class="mini-store-card__normal-price">通常価格 {{ article.coupons[2].normal_price.toLocaleString() }}円</p>
-                  <p class="mini-store-card__discount-price">Wendy価格 <span>{{ Math.floor(article.coupons[2].normal_price * ((100 - article.coupons[2].discount_rate) / 100)).toLocaleString() }}円</span></p>
+                  <p class="mini-store-card__discount-price">Wendy価格 <span>{{ Math.floor(article.coupons[2].normal_price * ((100 - article.coupons[2].discount_rate) / 100)).toLocaleString() }}<span class="yen">円</span></span></p>
                 </div>
               </nuxt-link>
             </li>
@@ -200,7 +200,7 @@
                   <div v-else class="mini-store-card__discount-rate"><p><span class="haya-dinner">早ディナーで{{ article.coupons[1].discount_rate }}%OFF</span></p></div>
                   <p v-if="article.coupons[1].discount_rate === 0" class="mini-store-card__normal-price-blank"></p>
                   <p v-else class="mini-store-card__normal-price">通常価格 {{ article.coupons[1].normal_price.toLocaleString() }}円</p>
-                  <p class="mini-store-card__discount-price">Wendy価格 <span>{{ Math.floor(article.coupons[1].normal_price * ((100 - article.coupons[1].discount_rate) / 100)).toLocaleString() }}円</span></p>
+                  <p class="mini-store-card__discount-price">Wendy価格 <span>{{ Math.floor(article.coupons[1].normal_price * ((100 - article.coupons[1].discount_rate) / 100)).toLocaleString() }}<span class="yen">円</span></span></p>
                 </div>
               </nuxt-link>
             </li>
@@ -622,6 +622,10 @@ export default {
         font-size: 2.4rem;
         color: #ff427a;
         font-weight: bold;
+      }
+      .yen {
+        font-size: 1.8rem;
+        margin-left: 2px;
       }
     }
   }
