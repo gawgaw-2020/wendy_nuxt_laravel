@@ -7,11 +7,11 @@
           <div class="login-link">
             <div class="user-input">
               <p class="user-input__input"><input type="email" v-model="email" placeholder="メールアドレス"></p>
-              <p class="user-input__error"></p>
+              <p class="user-input__error">{{ errMessageEmail }}</p>
             </div>
             <div class="user-input">
               <p class="user-input__input"><input type="password" v-model="password" placeholder="パスワード"></p>
-              <p class="user-input__error"></p>
+              <p class="user-input__error">{{ errMessagePassword }}</p>
             </div>
             <button class="login-link__btn btn btn-primary" @click="login">ログイン</button>
             <p class="login-link__social-title">他サイトIDで簡単ログイン</p>
@@ -37,8 +37,9 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
-
+      password: '',
+      errMessageEmail: '',
+      errMessagePassword: ''
     }
   },
   computed: {
@@ -48,7 +49,14 @@ export default {
     ...mapActions('auth', ['googleLogin', 'firebaseLogin', 'createUser']),
     ...mapActions("login", ["setBoxPosition"]),
     async login() {
-      await this.firebaseLogin({ email: this.email, password: this.password });
+      await this.firebaseLogin({ email: this.email, password: this.password })
+      .catch((error) => {
+        if(error.code === 'auth/invalid-email') {
+          this.errMessageEmail = 'メールアドレスを正しく入力して下さい'
+        } else if(error.code === 'auth/wrong-password') {
+          this.errMessagePassword = 'パスワードを正しく入力して下さい'
+        }
+      });
     },
     async guestLogin() {
       await this.firebaseLogin({ email: 'user@user.user', password: 'password' });

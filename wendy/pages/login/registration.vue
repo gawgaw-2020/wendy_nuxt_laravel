@@ -7,11 +7,11 @@
           <div class="registration-link">
             <div class="user-input">
               <p class="user-input__input"><input type="email" v-model="email" placeholder="メールアドレス"></p>
-              <p class="user-input__error"></p>
+              <p class="user-input__error">{{ errMessageEmail }}</p>
             </div>
             <div class="user-input">
               <p class="user-input__input"><input type="password" v-model="password" placeholder="パスワード"></p>
-              <p class="user-input__error">{{ passwordError }}</p>
+              <p class="user-input__error">{{ errMessagePassword }}</p>
             </div>
             <button class="registration-link__btn btn btn-primary" @click="signUp">新規登録</button>
             <p class="registration-link__social-title">他サイトIDで簡単登録</p>
@@ -31,23 +31,24 @@ export default {
     return {
       email: '',
       password: '',
+      errMessageEmail: '',
+      errMessagePassword: ''
     }
   },
   computed: {
     ...mapState("auth", ["login_user"]),
-    passwordError: function() {
-      if (this.password.length === 0) {
-        return ''
-      }
-      if (this.password.length < 8) {
-        return 'パスワードは8文字以上で入力してください'
-      }
-    }
   },
   methods: {
     ...mapActions("auth", ["googleLogin", "firebaseSignUp", 'createUser']),
     async signUp() {
       await this.firebaseSignUp({ email: this.email, password: this.password })
+      .catch((error) => {
+        if(error.code === 'auth/invalid-email') {
+          this.errMessageEmail = 'メールアドレスを正しく入力して下さい'
+        } else if(error.code === 'auth/wrong-password') {
+          this.errMessagePassword = 'パスワードを正しく入力して下さい'
+        }
+      });
     },
   },
   created: function() {
