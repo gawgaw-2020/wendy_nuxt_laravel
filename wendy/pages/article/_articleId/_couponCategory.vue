@@ -29,13 +29,13 @@
     <!-- <p class="coupon-detail__sub-title">今日は何人で利用しますか</p>
     <p class="coupon-detail__sub-title">お店のQRコードを読み取ってお食事スタート!!</p> -->
     <CouponDetailSectionTitle class="coupon-detail__section-title" :coupon-detail-section-title="'お店で店員さんにこの画面を掲示して下さい'"/>
-    <!-- <div class="scan-btn">
+    <div class="scan-btn">
       <router-link :to="{ path: '/article/scan', query: { start: coupon.start, end: coupon.end, title: coupon.title, article_id: coupon.article_id }}">
         <p class="scan-btn__icon"><img src="/img/qr-code@2x.png" alt=""></p>
-        <p class="scan-btn__texr">店舗での掲示クーポン発行<br>QRコードスキャンはこちら</p>
+        <p class="scan-btn__texr">対象店舗での<br>QRコードスキャンはこちら</p>
       </router-link>
-    </div> -->
-    <!-- <p class="scan"><button @click="scan">【開発用】選択店舗でスキャンしたことにする</button></p> -->
+    </div>
+    <p class="scan"><button @click="scan">【開発用】選択店舗でスキャンしたことにする</button></p>
   </div>
 </template>
 
