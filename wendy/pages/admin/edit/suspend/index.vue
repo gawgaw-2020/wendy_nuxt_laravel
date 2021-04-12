@@ -8,8 +8,8 @@
     <div class="suspend-content">
       <div class="suspend-content__inner">
         <p>現在の掲載状況</p>
-        <p v-if="isActive">掲載中</p>
-        <p v-else>停止中</p>
+        <p class="status" v-if="isActive">掲載中</p>
+        <p class="status" v-else>停止中</p>
         <p>下記のボタンより掲載の停止・再開ができます。</p>
         <div v-if="isActive"><button class="btn btn-success" @click="suspend">掲載を停止する</button></div>
         <div v-else><button class="btn btn-primary" @click="resume">掲載を再開する</button></div>
@@ -115,6 +115,13 @@ export default {
   &__inner {
     width: 90%;
     margin: 0 auto;
+    .status {
+      font-weight: bold;
+      font-size: 3.6rem;
+    }
+    p {
+      margin-bottom: 16px;
+    }
   }
 }
 

@@ -28,12 +28,12 @@
                 <span class="link-list__text">クーポン編集</span>
               </nuxt-link>
             </li>
-            <li class="link-list__item">
+            <!-- <li class="link-list__item">
               <nuxt-link class="link-list__link" to="/admin/edit/store/">
                 <span><i class="fas fa-store-alt"></i></span>
                 <span class="link-list__text">店舗ページ編集</span>
               </nuxt-link>
-            </li>
+            </li> -->
             <li class="link-list__item">
               <nuxt-link class="link-list__link" to="/admin/edit/link/">
                 <span><i class="fas fa-external-link-alt"></i></span>
@@ -73,7 +73,7 @@ export default {
   name: "default",
   data() {
     return {
-      title: "管理画面",
+      title: "店舗管理画面",
       sidebar: false
     };
   },
@@ -147,7 +147,7 @@ export default {
   top: 0;
   right: 0;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   @include mq(sm) {
     width: calc(100% - 190px);
@@ -175,6 +175,22 @@ export default {
   }
   &__inner {
     display: flex;
+  }
+  h1 {
+    line-height: 60px;
+    padding: 0 20px;
+  }
+  &__store-name {
+    align-self: center;
+    padding: 0 20px;
+  }
+  &__logout-button {
+    align-self: center;
+    color: #fff;
+    background-color: #707070;
+    padding: 10px 20px;
+    border-radius: 99px;
+    margin: 0 20px;
   }
 }
 

@@ -31,9 +31,9 @@
                 <dt>フリーコメント</dt>
                 <dd>{{ coupon.information }}</dd>
               </dl>
-              <div>
-                <div><nuxt-link :to="`/admin/edit/coupon/${coupon.coupon_id}`" class="btn btn-primary">編集する</nuxt-link></div>
-                <div><button class="btn btn-success" @click="suspend" :data-coupon_id="coupon.coupon_id">掲載を停止する</button></div>
+              <div class="edit-btns">
+                <div class="edit-btns__edit"><nuxt-link :to="`/admin/edit/coupon/${coupon.coupon_id}`" class="btn btn-primary">編集する</nuxt-link></div>
+                <div class="edit-btns__change"><button class="btn btn-success" @click="suspend" :data-coupon_id="coupon.coupon_id">掲載を停止する</button></div>
               </div>
             </li>
           </ul>
@@ -68,9 +68,9 @@
                 <dt>フリーコメント</dt>
                 <dd>{{ coupon.information }}</dd>
               </dl>
-              <div>
-                <div><nuxt-link :to="`/admin/edit/coupon/${coupon.coupon_id}`" class="btn btn-primary">編集する</nuxt-link></div>
-                <div><button class="btn btn-success" @click="resume" :data-coupon_id="coupon.coupon_id">掲載を再開する</button></div>
+              <div class="edit-btns">
+                <div class="edit-btns__edit"><nuxt-link :to="`/admin/edit/coupon/${coupon.coupon_id}`" class="btn btn-primary">編集する</nuxt-link></div>
+                <div class="edit-btns__change"><button class="btn btn-success" @click="resume" :data-coupon_id="coupon.coupon_id">掲載を再開する</button></div>
               </div>
             </li>
           </ul>
@@ -298,4 +298,9 @@ export default {
 }
 }
 
+.edit-btns {
+  &__edit {
+    margin-bottom: 24px;
+  }
+}
 </style>

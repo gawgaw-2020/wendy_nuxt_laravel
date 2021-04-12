@@ -123,5 +123,13 @@ export default {
   }
 }
 
+.user-input {
+  margin-bottom: 32px;
+  &__input {
+    input {
+      padding: 10px 5px 5px;
+    }
+  }
+}
 
 </style>

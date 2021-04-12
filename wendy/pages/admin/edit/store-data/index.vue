@@ -7,7 +7,7 @@
     </div>
     <div class="store-data-content">
       <div class="store-data-content__inner">
-        <dl>
+        <dl class="store-data-list">
           <dt>店名</dt>
           <dd>{{ storeData.name }}</dd>
           <dt>店名（フリガナ）</dt>
@@ -100,6 +100,11 @@ export default {
   &__inner {
     width: 90%;
     margin: 0 auto;
+    .store-data-list {
+      dd {
+        margin-bottom: 24px;
+      }
+    }
   }
 }
 
