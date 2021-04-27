@@ -4,7 +4,7 @@
     <MyPageNavigation/>
     <div class="mypage-history">
       <div class="mypage-history__inner">
-        <h3 class="mypage-history__title">WENDYクーポン利用履歴</h3>
+        <h3 class="mypage-history__title">ずらし飯クーポン利用履歴</h3>
         <div class="history">
           <p class="mypage-history__empty-message" v-if="!historyArticles.length">まだクーポンの利用履歴がありません</p>
           <ul class="history__list">

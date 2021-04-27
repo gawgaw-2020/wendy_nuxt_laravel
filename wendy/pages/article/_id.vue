@@ -4,7 +4,7 @@
       <div class="modal__inner animate__animated animate__fadeIn">
       <div class="modal__image" :style="{ backgroundImage: 'url(' + article.main_image + ')' }"></div>
       <p class="modal__title">{{ article.name }}</p>
-      <p class="modal__info">予約・お問い合わせの際は<br>「WENDYのクーポンを使いたい」<br>とお伝え下さい。</p>
+      <p class="modal__info">予約・お問い合わせの際は<br>「ずらし飯のクーポンを使いたい」<br>とお伝え下さい。</p>
       <ul class="link-list">
         <li class="link-list__item">
           <i class="fas fa-external-link-alt"></i>

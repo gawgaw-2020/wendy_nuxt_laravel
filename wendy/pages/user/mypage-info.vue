@@ -4,7 +4,7 @@
     <MyPageNavigation/>
     <div class="mypage-info">
       <div class="mypage-info__inner">
-        <h3 class="mypage-info__title">WENDYからのお知らせ</h3>
+        <h3 class="mypage-info__title">ずらし飯からのお知らせ</h3>
         <div class="info">
           <ul class="info__list">
             <li class="info__item">
