@@ -437,7 +437,7 @@
             <div v-else class="coupon__discount-rate"><p><span :class="coupon.coupon_id">{{ coupon.category }}で{{ coupon.discount_rate }}%OFF</span></p></div>
             <p v-if="coupon.discount_rate === 0" class="coupon__normal-price-blank"></p>
             <p v-else class="coupon__normal-price">通常 {{ coupon.normal_price.toLocaleString() }}円</p>
-            <p class="coupon__discount-price">ずらし飯特別価格 <span>{{ Math.floor(coupon.normal_price * ((100 - coupon.discount_rate) / 100)).toLocaleString() }}<span class="yen">円</span></span></p>
+            <p class="coupon__discount-price">ずらし飯価格 <span>{{ Math.floor(coupon.normal_price * ((100 - coupon.discount_rate) / 100)).toLocaleString() }}<span class="yen">円</span></span></p>
           </div>
           <dl class="coupon__infotext">
             <dt>利用方法</dt>
