@@ -50,6 +50,11 @@ const db = firebase.firestore();
 const articlesRef = db.collection("articles");
 
 export default {
+  head() {
+    return {
+      title: this.coupon.category + 'のクーポン詳細'
+    }
+  },
   data() {
     return {};
   },

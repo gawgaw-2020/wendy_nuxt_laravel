@@ -18,6 +18,11 @@ import { mapGetters, mapActions } from "vuex";
 import InfiniteLoading from 'vue-infinite-loading';
 
 export default {
+  head() {
+    return {
+      title: '全店舗表示'
+    }
+  },
   components: {
     InfiniteLoading
   },

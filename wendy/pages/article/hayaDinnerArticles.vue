@@ -11,6 +11,11 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
+  head() {
+    return {
+      title: '早い時間のディナーでお得なお店'
+    }
+  },
   data() {
     return {
     }

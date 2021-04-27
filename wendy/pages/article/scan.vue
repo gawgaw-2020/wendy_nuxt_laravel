@@ -17,6 +17,11 @@ const db = firebase.firestore()
 const usersRef = db.collection('users')
 
 export default {
+  head() {
+    return {
+      title: '店舗QR読み取り'
+    }
+  },
   data() {
     return {
       result: '',

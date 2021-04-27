@@ -12,6 +12,11 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
+  head() {
+    return {
+      title: '検索結果'
+    }
+  },
   data() {
     return {
       userSelectedTime: '',

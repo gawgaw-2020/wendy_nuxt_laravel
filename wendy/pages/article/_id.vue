@@ -177,6 +177,11 @@ const articlesRef = db.collection('articles')
 const usersRef = db.collection('users')
 
 export default {
+  head() {
+    return {
+      title: this.article.name
+    }
+  },
   data() {
     return {
       content: '',

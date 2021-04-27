@@ -17,6 +17,11 @@
 <script>
 
 export default {
+  head() {
+    return {
+      title: '読み取り完了'
+    }
+  },
   data() {
     return {
     }
