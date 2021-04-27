@@ -27,6 +27,11 @@
 import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
 
 export default {
+  head() {
+    return {
+      title: '新規登録'
+    }
+  },
   data() {
     return {
       email: '',

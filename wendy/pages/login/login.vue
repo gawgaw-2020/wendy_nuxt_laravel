@@ -34,6 +34,11 @@
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
+  head() {
+    return {
+      title: 'ログイン'
+    }
+  },
   data() {
     return {
       email: '',
