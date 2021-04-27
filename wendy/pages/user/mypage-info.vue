@@ -10,22 +10,29 @@
             <li class="info__item">
               <p class="info__icon"><img src="/img/info-icon.png" alt=""></p>
               <div class="info__content">
-                <p class="info__title">アプリがリニューアルしました！アプリがリニューアルしました！アプリがリニューアルしました！</p>
-                <p class="info__date">1日前</p>
+                <p class="info__title">利用した店舗が履歴として確認できるようになりました。</p>
+                <p class="info__date">1週間前</p>
               </div>
             </li>
             <li class="info__item">
               <p class="info__icon"><img src="/img/info-icon.png" alt=""></p>
               <div class="info__content">
-                <p class="info__title">検索機能がパワーアップしました！検索機能がパワーアップしました！</p>
-                <p class="info__date">1日前</p>
+                <p class="info__title">店舗がお気に入り登録できるようになりました！</p>
+                <p class="info__date">2週間前</p>
+              </div>
+            </li>
+            <li class="info__item">
+              <p class="info__icon"><img src="/img/info-icon.png" alt=""></p>
+              <div class="info__content">
+                <p class="info__title">Googleのアカウントを使ってユーザー登録が出来るようになりました。</p>
+                <p class="info__date">1ヶ月前</p>
               </div>
             </li>
             <li class="info__item">
               <p class="info__icon"><img src="/img/info-icon.png" alt=""></p>
               <div class="info__content">
                 <p class="info__title">アプリがリニューアルしました！</p>
-                <p class="info__date">1日前</p>
+                <p class="info__date">2ヶ月前</p>
               </div>
             </li>
           </ul>
