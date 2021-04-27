@@ -21,6 +21,11 @@ import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
   middleware: 'authenticated',
+  head() {
+    return {
+      title: 'お気に入り店舗'
+    }
+  },
   data() {
     return {
 

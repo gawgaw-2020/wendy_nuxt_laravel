@@ -34,6 +34,11 @@ import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
   middleware: 'authenticated',
+  head() {
+    return {
+      title: '利用履歴'
+    }
+  },
   data() {
     return {
 

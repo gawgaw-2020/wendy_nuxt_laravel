@@ -219,6 +219,11 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
+  head() {
+    return {
+      title: 'TOP'
+    }
+  },
   data() {
     return {
       timeModal: false,

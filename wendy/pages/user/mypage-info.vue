@@ -38,6 +38,11 @@
 <script>
 export default {
   middleware: 'authenticated',
+  head() {
+    return {
+      title: 'ずらし飯からのお知らせ'
+    }
+  },
   data() {
     return {
 
