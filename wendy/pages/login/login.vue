@@ -25,7 +25,7 @@
           </div>
         </div>
       </div>
-      <p class="guestLogin"><button @click="guestLogin">【開発用】ゲストユーザーでログイン</button></p>
+      <p class="guestLogin"><button @click="guestLogin">【ゲストユーザーでログイン】</button></p>
     </div>
   </div>
 </template>

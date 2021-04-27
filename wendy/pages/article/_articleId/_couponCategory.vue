@@ -35,7 +35,7 @@
         <p class="scan-btn__texr">対象店舗での<br>QRコードスキャンはこちら</p>
       </router-link>
     </div>
-    <p class="scan"><button @click="scan">【開発用】選択店舗でスキャンしたことにする</button></p>
+    <p class="scan"><button @click="scan">【選択店舗でスキャンしたことにする】</button></p>
   </div>
 </template>
 
