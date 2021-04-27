@@ -182,8 +182,10 @@
         <p class="appeal__view-more"><nuxt-link :to="`/article/osoDinnerArticles/?selectedTime=遅ディナー`">もっと見る ＞</nuxt-link></p>
       </div>
       <div class="appeal">
-        <p class="appeal__title">＊全てのお店をチェックする＊</p>
-        <p class="appeal__sub-title">どのお店もお得がいっぱい</p>
+        <div class="appeal__titles">
+          <p class="appeal__title">＊全てのお店をチェックする＊</p>
+          <p class="appeal__sub-title">どのお店もお得がいっぱい</p>
+        </div>
         <div class="appeal-stores">
           <ul class="appeal-stores__inner">
             <li class="mini-store-card" v-for="(article, index) in allArticles" :key="index">
@@ -505,6 +507,9 @@ export default {
   border-bottom: 16px solid #efefef;
   @include mq() {
     border-bottom: none;
+  }
+  &__titles {
+    padding-left: 1.6rem;
   }
   &__header {
     display: flex;
