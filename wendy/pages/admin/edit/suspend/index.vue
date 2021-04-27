@@ -30,6 +30,11 @@ import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
 
 export default {
+  head() {
+    return {
+      title: '掲載の停止・再開'
+    }
+  },
   middleware: 'storeAuthenticated',
   layout: 'admin',
   data() {

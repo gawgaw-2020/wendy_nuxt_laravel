@@ -37,6 +37,11 @@ import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
 
 export default {
+  head() {
+    return {
+      title: '基本情報確認'
+    }
+  },
   middleware: 'storeAuthenticated',
   layout: 'admin',
   data() {

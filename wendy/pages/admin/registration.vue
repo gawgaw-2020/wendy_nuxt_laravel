@@ -35,6 +35,11 @@
 import { mapActions } from "vuex";
 
 export default {
+  head() {
+    return {
+      title: '店舗新規登録'
+    }
+  },
   layout: 'admin',
   data() {
     return {

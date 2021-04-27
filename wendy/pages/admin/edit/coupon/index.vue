@@ -91,6 +91,11 @@ import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
 
 export default {
+  head() {
+    return {
+      title: 'クーポン一覧'
+    }
+  },
   middleware: 'storeAuthenticated',
   layout: 'admin',
   data() {

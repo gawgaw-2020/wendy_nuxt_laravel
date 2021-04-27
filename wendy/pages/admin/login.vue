@@ -19,6 +19,11 @@
 import { mapState, mapActions } from "vuex";
 
 export default {
+  head() {
+    return {
+      title: '店舗ログイン画面'
+    }
+  },
   layout: 'admin',
   data() {
     return {

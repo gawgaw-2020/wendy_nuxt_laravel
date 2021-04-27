@@ -9,6 +9,11 @@ import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
 
 export default {
+  head() {
+    return {
+      title: '店舗情報編集'
+    }
+  },
   middleware: 'storeAuthenticated',
   layout: 'admin',
   data() {
