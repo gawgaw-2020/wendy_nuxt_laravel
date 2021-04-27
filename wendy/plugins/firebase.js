@@ -1,5 +1,7 @@
 
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+import "firebase/auth"
 
 //firebaseの初期化に必要なデータをconfigで用意する
 //必要に応じてパラメーターをここで定義

@@ -1,5 +1,7 @@
 import { extendWith } from "lodash"
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+import "firebase/auth"
 
 export default function ({ store, redirect, route }) {
   let wendyLocal = localStorage.getItem('wendy')

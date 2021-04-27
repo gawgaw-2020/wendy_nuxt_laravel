@@ -169,7 +169,9 @@
 </template>
 
 <script>
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+import "firebase/auth"
 
 //firebaseのDBを定義する
 const db = firebase.firestore()

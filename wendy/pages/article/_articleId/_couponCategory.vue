@@ -41,7 +41,9 @@
 
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
-import firebase from "firebase";
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+import "firebase/auth"
 //firestoreのアクション部分のパッケージをインストールする
 import { firestoreAction } from "vuexfire";
 
