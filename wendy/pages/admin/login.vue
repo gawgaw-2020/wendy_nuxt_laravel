@@ -47,19 +47,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .login-title {
   margin-bottom: 2.4rem;
+  text-align: center;
+  margin-right: 190px;
 }
 .store-login {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   max-width: 650px;
   padding: 4rem 6rem;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-left: 190px;
   .user-input {
     margin-bottom: 2.4rem;
   }
   .login-link__btn {
     display: block;
     margin-left: auto;
+    border-radius: 10px;
   }
 }
 </style>
